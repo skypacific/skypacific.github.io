@@ -1,1 +1,0 @@
-# skypacific.github.io
