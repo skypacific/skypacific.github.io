@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>자바스크립트 스타일 가이드</title>
+  <meta name="description" content="본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을 생성하기 위해 권장하는 스타일을 가이드 한다." />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@skypacific" />
+    <meta name="twitter:title" content="자바스크립트 스타일 가이드" />
+    <meta name="twitter:image" content="http://localhost:4000/assets/images/internet.png" />
+    
+    <meta name="twitter:description"  content="본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을 생성하기 위해 권장하는 스타일을 가이드 한다." />
+    
+  
+  
+  <meta property="og:site_name" content="UXDev's Blog" />
+  <meta property="og:title" content="자바스크립트 스타일 가이드"/>
+  
+  <meta property="og:description" content="본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을 생성하기 위해 권장하는 스타일을 가이드 한다." />
+  
+  <meta property="og:image" content="http://localhost:4000/assets/images/internet.png" />
+  <meta property="og:url" content="http://localhost:4000/2019/01/16/kang.heehun@javascript-style-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2019-01-16T00:00:00+09:00">
+
+  <meta property="fb:app_id" content="" />
+
+  <meta name="naver-site-verification" content="" />
+
+  <link rel="canonical" href="http://localhost:4000/2019/01/16/kang.heehun@javascript-style-guide.html"/>
+  <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png"/>
+  <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548576564557519000" />
+  <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
+  <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
+
+  <link rel="stylesheet" type="text/css" href="/css/monokai-sublime.css" />
+
+  <script src="/assets/js/webfont.js"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      custom: {
+        families: ['Spoqa Han Sans'],
+        urls: ['/css/spoqa-han-sans-font.css']
+      }
+    });
+  </script>
+  <script>
+    var _mailChimpUrl = "";
+  </script>
+
+  
+</head>
+
+  <body itemscope itemtype="http://schema.org/BlogPosting">
+    <!-- header start -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+
+<a href="http://localhost:4000" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
+<!-- header end -->
+
+
+    <main class="content" role="main">
+      <article class="post">
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+          <meta itemprop="name" content="UXDev's Blog" />
+          <meta itemprop="url" content="http://localhost:4000" />
+          <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+            <meta itemprop="url" content="http://localhost:4000/assets/images/internet.png" />
+          </div>
+        </div>
+        <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+          <meta itemprop="url" content="http://localhost:4000/assets/images/kang.heehun.jpg" />
+        </div>
+        <meta itemprop="headline" content="자바스크립트 스타일 가이드" />
+        <meta itemprop="mainEntityOfPage" content="/2019/01/16/kang.heehun@javascript-style-guide.html" />
+        <meta itemprop="datePublished" content="2019-01-16 00:00:00 +0900" />
+        <meta itemprop="dateModified" content="2019-01-16 00:00:00 +0900" />
+        
+        <div class="noarticleimage">
+          <div class="post-meta">
+            <h1 class="post-title">
+              자바스크립트 스타일 가이드
+              
+            </h1>
+            <div class="cf post-meta-text">
+              <section class="share">
+                <div class="fb-like" data-href="http://localhost:4000/2019/01/16/kang.heehun@javascript-style-guide.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+                
+                  
+                
+              </section>
+              <div class="author-info">
+                <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+                <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  heehun kang<meta itemprop="name" content="heehun kang" /><meta itemprop="url" content="http://localhost:4000/about" />
+                </h4>
+                on
+                <time datetime="2019-01-16T00:00:00+09:00">16 Jan 2019</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <div>
+          <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#1-들여쓰기는-공백space를-사용하고-탭tab을-사용하지-않는다">1. 들여쓰기는 공백(space)를 사용하고, 탭(tab)을 사용하지 않는다.</a></li>
+<li class="toc-entry toc-h1"><a href="#2-문장은-항상-세미콜론으로-끝나야-한다">2. 문장은 항상 세미콜론(;)으로 끝나야 한다.</a></li>
+<li class="toc-entry toc-h1"><a href="#3-if-for-와-같은-제어문-반복문-문단에는-항상-중괄호를-사용하도록-한다">3. if, for 와 같은 제어문, 반복문 문단에는 항상 중괄호({})를 사용하도록 한다.</a></li>
+<li class="toc-entry toc-h1"><a href="#4-객체object나-json문자열-작성시에-값value에-수평-정렬은-사용하지-않도록-한다">4. 객체(object)나 JSON문자열 작성시에 값(value)에 수평 정렬은 사용하지 않도록 한다.</a></li>
+<li class="toc-entry toc-h1"><a href="#5-문자열-선언시에-이중따옴표보다는-작은따옴표를-사용하도록-한다">5. 문자열 선언시에 이중따옴표(“)보다는 작은따옴표(‘)를 사용하도록 한다.</a></li>
+</ul><p><code class="highlighter-rouge">본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을 생성하기 위해 권장하는 스타일을 가이드 한다.</code></p>
+
+<h1 id="1-들여쓰기는-공백space를-사용하고-탭tab을-사용하지-않는다">
+<a id="1-들여쓰기는-공백space를-사용하고-탭tab을-사용하지-않는다" class="anchor" href="#1-%EB%93%A4%EC%97%AC%EC%93%B0%EA%B8%B0%EB%8A%94-%EA%B3%B5%EB%B0%B1space%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B3%A0-%ED%83%ADtab%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EB%8A%94%EB%8B%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 들여쓰기는 공백(space)를 사용하고, 탭(tab)을 사용하지 않는다.</h1>
+<ul>
+  <li>소스편집기마다 탭으로 들여쓰는 깊이가 다르기 때문에, 다른 편집기에서 작성한 문서를 불러들이면 들여쓰기 컬럼이 깨지기 때문이다.</li>
+  <li>
+    <p>들여쓰기는 공백 2문자를 권장으로 한다.</p>
+
+    <div class="language-javascript highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="c1">//안좋은예</span>
+  <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">//좋은예</span>
+  <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr>
+
+<h1 id="2-문장은-항상-세미콜론으로-끝나야-한다">
+<a id="2-문장은-항상-세미콜론으로-끝나야-한다" class="anchor" href="#2-%EB%AC%B8%EC%9E%A5%EC%9D%80-%ED%95%AD%EC%83%81-%EC%84%B8%EB%AF%B8%EC%BD%9C%EB%A1%A0%EC%9C%BC%EB%A1%9C-%EB%81%9D%EB%82%98%EC%95%BC-%ED%95%9C%EB%8B%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 문장은 항상 세미콜론(;)으로 끝나야 한다.</h1>
+<ul>
+  <li>
+    <p>특정 스크립트 엔진에서는 문장 끝에 세미콜론을 생략해도 에러가 발생하지 않는 경우가 있지만, 문장의 끝은 항상 세미콜론으로 끝나는것을 권장한다.</p>
+
+    <div class="language-javascript highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="c1">//안좋은예</span>
+  <span class="kd">var</span> <span class="nx">test1</span> <span class="o">=</span> <span class="s2">"111"</span>
+  <span class="kd">var</span> <span class="nx">test2</span> <span class="o">=</span> <span class="s2">"abc"</span>
+  <span class="nx">print</span><span class="p">(</span><span class="nx">test1</span><span class="p">)</span>
+
+  <span class="c1">//좋은예</span>
+  <span class="kd">var</span> <span class="nx">test1</span> <span class="o">=</span> <span class="s2">"111"</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">test2</span> <span class="o">=</span> <span class="s2">"abc"</span><span class="p">;</span>
+  <span class="nx">print</span><span class="p">(</span><span class="nx">test1</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr>
+
+<h1 id="3-if-for-와-같은-제어문-반복문-문단에는-항상-중괄호를-사용하도록-한다">
+<a id="3-if-for-와-같은-제어문-반복문-문단에는-항상-중괄호를-사용하도록-한다" class="anchor" href="#3-if-for-%EC%99%80-%EA%B0%99%EC%9D%80-%EC%A0%9C%EC%96%B4%EB%AC%B8-%EB%B0%98%EB%B3%B5%EB%AC%B8-%EB%AC%B8%EB%8B%A8%EC%97%90%EB%8A%94-%ED%95%AD%EC%83%81-%EC%A4%91%EA%B4%84%ED%98%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8F%84%EB%A1%9D-%ED%95%9C%EB%8B%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. if, for 와 같은 제어문, 반복문 문단에는 항상 중괄호({})를 사용하도록 한다.</h1>
+<ul>
+  <li>
+    <p>if, for 와 같은 제어문, 반복문 문단에서 한줄로 이루어진 문단은 중괄호({})를 생략해도 가능한 경우가 있지만, 이러한 문장에도 항상 중괄호({})를 사용하도록 한다.</p>
+
+    <div class="language-javascript highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="c1">//안좋은예</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">print</span><span class="p">(</span><span class="s2">"aaa"</span><span class="p">)</span>
+  <span class="k">else</span> <span class="nx">print</span><span class="p">(</span><span class="s2">"bbb"</span><span class="p">)</span>
+
+  <span class="c1">//좋은예</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">test</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s2">"aaa"</span><span class="p">)</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s2">"bbb"</span><span class="p">)</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr>
+
+<h1 id="4-객체object나-json문자열-작성시에-값value에-수평-정렬은-사용하지-않도록-한다">
+<a id="4-객체object나-json문자열-작성시에-값value에-수평-정렬은-사용하지-않도록-한다" class="anchor" href="#4-%EA%B0%9D%EC%B2%B4object%EB%82%98-json%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%9E%91%EC%84%B1%EC%8B%9C%EC%97%90-%EA%B0%92value%EC%97%90-%EC%88%98%ED%8F%89-%EC%A0%95%EB%A0%AC%EC%9D%80-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EB%8F%84%EB%A1%9D-%ED%95%9C%EB%8B%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 객체(object)나 JSON문자열 작성시에 값(value)에 수평 정렬은 사용하지 않도록 한다.</h1>
+<ul>
+  <li>객체나 JSON문자열 작성시 값 부분에 수평 정렬을 넣는 경우가 있는데, 이는 편집기마다 포맷팅이 깨지는 경우가 많으므로 권장하지 않는다.</li>
+  <li>
+    <p>현대의 우수한 편집기들(IntelliJ, VS Code 등)은 컬러 스타일링으로 키:값 구분을 확실히 해주므로 예전과 같이 값 수평 정렬은 필요하지 않다.</p>
+
+    <div class="language-javascript highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="c1">//안좋은예</span>
+  <span class="p">{</span>
+    <span class="nl">age</span><span class="p">:</span>       <span class="mi">35</span><span class="p">,</span>
+    <span class="nx">firstName</span><span class="p">:</span> <span class="s1">'Chris'</span><span class="p">,</span>
+    <span class="nx">lastName</span><span class="p">:</span>  <span class="s1">'Evans'</span><span class="p">,</span>
+    <span class="nx">sex</span><span class="p">:</span>       <span class="s1">'Male'</span>
+  <span class="p">}</span>
+
+  <span class="c1">//좋은예</span>
+  <span class="p">{</span>
+    <span class="nl">age</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>
+    <span class="nx">firstName</span><span class="p">:</span> <span class="s1">'Chris'</span><span class="p">,</span>
+    <span class="nx">lastName</span><span class="p">:</span> <span class="s1">'Evans'</span><span class="p">,</span>
+    <span class="nx">sex</span><span class="p">:</span> <span class="s1">'Male'</span>
+  <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr>
+
+<h1 id="5-문자열-선언시에-이중따옴표보다는-작은따옴표를-사용하도록-한다">
+<a id="5-문자열-선언시에-이중따옴표보다는-작은따옴표를-사용하도록-한다" class="anchor" href="#5-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%84%A0%EC%96%B8%EC%8B%9C%EC%97%90-%EC%9D%B4%EC%A4%91%EB%94%B0%EC%98%B4%ED%91%9C%EB%B3%B4%EB%8B%A4%EB%8A%94-%EC%9E%91%EC%9D%80%EB%94%B0%EC%98%B4%ED%91%9C%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8F%84%EB%A1%9D-%ED%95%9C%EB%8B%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. 문자열 선언시에 이중따옴표(“)보다는 작은따옴표(‘)를 사용하도록 한다.</h1>
+<ul>
+  <li>
+    <p>문자열 선언시에 작은따옴표(‘)를 사용하도록 권장하며, 자바스크립트 ES2015 이상을 지원하는 템플릿 문자열의 선언시에는 백틱(`)을 사용도록 한다.</p>
+
+    <div class="language-javascript highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="c1">//안좋은예</span>
+  <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="s2">"Hello "</span> <span class="o">+</span> <span class="nx">username</span><span class="p">;</span>
+
+  <span class="c1">//좋은예</span>
+  <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="s1">'Hello '</span> <span class="o">+</span> <span class="nx">username</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="s2">`Hello </span><span class="p">${</span><span class="nx">username</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+
+          </div>
+          <p class="tags">
+            
+              <a href="/tags#javascript-ref">JavaScript</a>
+            
+              <a href="/tags#style-ref">Style</a>
+            
+              <a href="/tags#guide-ref">Guide</a>
+            
+          </p>
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            <div class="fb-like" data-href="http://localhost:4000/2019/01/16/kang.heehun@javascript-style-guide.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+            
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+              <h4>heehun kang</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2019-01-16 00:00">16 Jan 2019</time></p>
+            </section>
+            <footer class="subscribe-info">
+                <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+                <a class="subscribe" href=""  target="blank"><img id='feedlyFollow' src='//s3.feedly.com/img/follows/feedly-follow-logo-black_2x.png' alt='follow us in feedly' width='18' height='18'> Feedly 구독하기</a><br />
+                <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> RSS 구독하기</span></a><br />
+                 
+                  <a class="subscribe" href="" target="_blank"> <span class="tooltip"> <i class="nf nf-oct-mail"></i> Email 구독하기</span></a>
+                
+            </footer>
+          </div>
+
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <div class="googleads">
+              
+            </div>
+          </div>
+        </div>
+
+        
+
+         
+        <div class="fb-comments-wrapper">
+          
+            <div class="fb-comments" data-href="http://localhost:4000/2019/01/16/kang.heehun@javascript-style-guide.html" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+          
+        </div>
+        
+
+        
+      </article>
+    </main>
+
+    <aside class="read-next">
+      
+        <a class="read-next-story no-cover" href="/2019/01/22/kang.heehun@ides-for-developers.html">
+          <section class="post">
+            <h2>개발자를 위한 통합개발환경 비교</h2>
+            <p>현재 시장에는 개발자를 위한 많은 통합개발환경(이하 IDE)가 있다. 본 글에서는 주류로 많이 사용중인 Eclipse, VS...</p>
+          </section>
+        </a>
+      
+      
+    </aside>
+    <footer class="post-site-footer clearfix">
+      <section class="copyright"><a href="/">UXDev's Blog</a> © 2019</section>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548576564557519000"></script>
+<script type="text/javascript" src="/assets/js/readingtime.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image');
+
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+  </body>
+</html>
