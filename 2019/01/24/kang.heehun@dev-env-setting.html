@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548571539840848000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548576135474898000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -145,17 +145,48 @@
           </div>
           <a name="topofpage"></a>
           <div>
-          <p><code class="highlighter-rouge">개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다.</code></p>
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#i-windows-에서-패키지-관리자를-사용해-기본-개발-환경-설정">I. Windows 에서 패키지 관리자를 사용해 기본 개발 환경 설정</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-chocolatey-설치">1. Chocolatey 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#2-자바개발킷jdk-18-설치">2. 자바개발킷(JDK) 1.8 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#3-maven-설치">3. Maven 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#4-git-설치">4. Git 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#5-npm-설치">5. NPM 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#6-docker-설치">6. Docker 설치</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ii-macos-에서-패키지-관리자를-사용해-기본-개발-환경-설정">II. MacOS 에서 패키지 관리자를 사용해 기본 개발 환경 설정</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-homebrew-설치-이하-brew">1. HomeBrew 설치 (이하 brew)</a></li>
+<li class="toc-entry toc-h3"><a href="#2-자바개발킷jdk-18-설치-1">2. 자바개발킷(JDK) 1.8 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#3-maven-설치-1">3. Maven 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#4-git-설치-1">4. Git 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#5-npm-설치-1">5. NPM 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#6-docker-설치-1">6. Docker 설치</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#iii-linux-에서-패키지-관리자를-사용해-기본-개발-환경-설정">III. Linux 에서 패키지 관리자를 사용해 기본 개발 환경 설정</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-자바개발킷jdk-18-설치">1. 자바개발킷(JDK) 1.8 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#2-maven-설치">2. Maven 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#3-git-설치">3. Git 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#4-npm-설치">4. NPM 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#5-docker-설치">5. Docker 설치</a></li>
+</ul>
+</li>
+</ul><p><code class="highlighter-rouge">개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다.</code></p>
 
 <p>일반적으로 개발도구를 설치할때 다음과 같이 세가지 방법이 있을 수 있다.</p>
 <ul>
   <li>웹브라우져로 다운로드 사이트에 접속해 프로그램 패케지 (.exe, .dmg, .zip, .tar.gz 등)을 다운받아 수동으로 설치하는 방법</li>
-  <li>패키지 관리자를 통해 프로그램 패키지를 다운로드 받아 자동으로 설치하는 방법<br />
+  <li>패키지 관리자를 통해 프로그램 패키지를 다운로드 받아 자동으로 설치하는 방법<br>
 (Windows -&gt; Chocolate, MacOS -&gt; brew, Linux -&gt; apt)</li>
   <li>컨테이너 기반 기술(Docker 등)에 프로그램 이미지를 다운받아 자동으로 설치하는 방법</li>
 </ul>
 
-<h2 id="i-windows-에서-패키지-관리자를-사용해-기본-개발-환경-설정">I. Windows 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
+<h2 id="i-windows-에서-패키지-관리자를-사용해-기본-개발-환경-설정">
+<a id="i-windows-에서-패키지-관리자를-사용해-기본-개발-환경-설정" class="anchor" href="#i-windows-%EC%97%90%EC%84%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Windows 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
 
 <p>Windows에서는 기본적으로 패키지 관리자가 없기 때문에 별도로 패캐지 관리자를 설치해야 한다.</p>
 
@@ -163,62 +194,77 @@
 
 <p><em>여기서 C:&gt; 다음에 나오는 문장들은 터미널에서 입력하는 명령이다.</em></p>
 
-<h3 id="1-chocolatey-설치">1. Chocolatey 설치</h3>
+<h3 id="1-chocolatey-설치">
+<a id="1-chocolatey-설치" class="anchor" href="#1-chocolatey-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Chocolatey 설치</h3>
 <ul>
   <li>터미널(cmd.exe)를 관리자 권한으로 실행하고 아래 명령으로 Chocolatey를 설치한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@<span class="s2">"%SystemRoot%</span><span class="se">\S</span><span class="s2">ystem32</span><span class="se">\W</span><span class="s2">indowsPowerShell</span><span class="se">\v</span><span class="s2">1.0</span><span class="se">\p</span><span class="s2">owershell.exe"</span> <span class="nt">-NoProfile</span> <span class="nt">-InputFormat</span> None <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-Command</span> <span class="s2">"iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"</span> <span class="o">&amp;&amp;</span> SET <span class="s2">"PATH=%PATH%;%ALLUSERSPROFILE%</span><span class="se">\c</span><span class="s2">hocolatey</span><span class="se">\b</span><span class="s2">in"</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>@<span class="s2">"%SystemRoot%</span><span class="se">\S</span><span class="s2">ystem32</span><span class="se">\W</span><span class="s2">indowsPowerShell</span><span class="se">\v</span><span class="s2">1.0</span><span class="se">\p</span><span class="s2">owershell.exe"</span> <span class="nt">-NoProfile</span> <span class="nt">-InputFormat</span> None <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-Command</span> <span class="s2">"iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"</span> <span class="o">&amp;&amp;</span> SET <span class="s2">"PATH=%PATH%;%ALLUSERSPROFILE%</span><span class="se">\c</span><span class="s2">hocolatey</span><span class="se">\b</span><span class="s2">in"</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span>choco <span class="nt">-v</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span>choco <span class="nt">-v</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="2-자바개발킷jdk-18-설치">2. 자바개발킷(JDK) 1.8 설치</h3>
+<h3 id="2-자바개발킷jdk-18-설치">
+<a id="2-자바개발킷jdk-18-설치" class="anchor" href="#2-%EC%9E%90%EB%B0%94%EA%B0%9C%EB%B0%9C%ED%82%B7jdk-18-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 자바개발킷(JDK) 1.8 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install jdk8
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install jdk8
 </code></pre></div>    </div>
   </li>
   <li>JDK가 설치된 디렉토리를 PATH 환경변수값에 추가한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> <span class="nb">set </span><span class="nv">PATH</span><span class="o">=</span>%PATH%<span class="p">;</span>C:<span class="se">\P</span>rogram Files<span class="se">\J</span>ava<span class="se">\j</span>dk1.8.0_201<span class="se">\b</span><span class="k">in</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> <span class="nb">set </span><span class="nv">PATH</span><span class="o">=</span>%PATH%<span class="p">;</span>C:<span class="se">\P</span>rogram Files<span class="se">\J</span>ava<span class="se">\j</span>dk1.8.0_201<span class="se">\b</span><span class="k">in</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> java <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> java <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="3-maven-설치">3. Maven 설치</h3>
+<h3 id="3-maven-설치">
+<a id="3-maven-설치" class="anchor" href="#3-maven-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Maven 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install maven
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install maven
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> mvn <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> mvn <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="4-git-설치">4. Git 설치</h3>
+<h3 id="4-git-설치">
+<a id="4-git-설치" class="anchor" href="#4-git-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Git 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install git
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install git
 </code></pre></div>    </div>
   </li>
   <li>Git이 설치된 디렉토리를 PATH 환경변수값에 추가한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> <span class="nb">set </span><span class="nv">PATH</span><span class="o">=</span>%PATH%<span class="p">;</span>C:<span class="se">\P</span>rogram Files<span class="se">\G</span>it<span class="se">\b</span><span class="k">in</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> <span class="nb">set </span><span class="nv">PATH</span><span class="o">=</span>%PATH%<span class="p">;</span>C:<span class="se">\P</span>rogram Files<span class="se">\G</span>it<span class="se">\b</span><span class="k">in</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> git <span class="nt">--version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> git <span class="nt">--version</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 환경설정
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
 C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> user.email <span class="s2">"you@your-domain.com"</span>
 C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core.precomposeunicode <span class="nb">true
 </span>C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core.quotepath <span class="nb">false</span>
@@ -226,19 +272,23 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
   </li>
 </ul>
 
-<h3 id="5-npm-설치">5. NPM 설치</h3>
+<h3 id="5-npm-설치">
+<a id="5-npm-설치" class="anchor" href="#5-npm-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. NPM 설치</h3>
 <ul>
   <li>터미널 앱에서 아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install nodejs
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install nodejs
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> npm <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> npm <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="6-docker-설치">6. Docker 설치</h3>
+<h3 id="6-docker-설치">
+<a id="6-docker-설치" class="anchor" href="#6-docker-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Docker 설치</h3>
 <ul>
   <li>
     <p>웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치
@@ -246,64 +296,78 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
   </li>
   <li>
     <p>아래 명령으로 hello-world 이미지를 실행해본다.</p>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> docker run hello-world
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> docker run hello-world
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<hr />
+<hr>
 
-<h2 id="ii-macos-에서-패키지-관리자를-사용해-기본-개발-환경-설정">II. MacOS 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
+<h2 id="ii-macos-에서-패키지-관리자를-사용해-기본-개발-환경-설정">
+<a id="ii-macos-에서-패키지-관리자를-사용해-기본-개발-환경-설정" class="anchor" href="#ii-macos-%EC%97%90%EC%84%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>II. MacOS 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
 
 <p>MacOS에서 사용하는 패키지 관리자는 HomeBrew인데, 기본 설치가 안되어 있으므로 HomeBrew를 먼저 설치 후 다음 과정을 진행한다.</p>
 
 <p><em>여기서 $ 다음에 나오는 문장들은 터미널에서 입력하는 명령이다.</em></p>
 
-<h3 id="1-homebrew-설치-이하-brew">1. HomeBrew 설치 (이하 brew)</h3>
+<h3 id="1-homebrew-설치-이하-brew">
+<a id="1-homebrew-설치-이하-brew" class="anchor" href="#1-homebrew-%EC%84%A4%EC%B9%98-%EC%9D%B4%ED%95%98-brew" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. HomeBrew 설치 (이하 brew)</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> /usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> /usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="2-자바개발킷jdk-18-설치-1">2. 자바개발킷(JDK) 1.8 설치</h3>
+<h3 id="2-자바개발킷jdk-18-설치-1">
+<a id="2-자바개발킷jdk-18-설치-1" class="anchor" href="#2-%EC%9E%90%EB%B0%94%EA%B0%9C%EB%B0%9C%ED%82%B7jdk-18-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 자바개발킷(JDK) 1.8 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap caskroom/versions
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap caskroom/versions
 <span class="nv">$ </span>brew cask install java
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="3-maven-설치-1">3. Maven 설치</h3>
+<h3 id="3-maven-설치-1">
+<a id="3-maven-설치-1" class="anchor" href="#3-maven-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Maven 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew intall maven
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew intall maven
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="4-git-설치-1">4. Git 설치</h3>
+<h3 id="4-git-설치-1">
+<a id="4-git-설치-1" class="anchor" href="#4-git-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Git 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew intall git git-lfs
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew intall git git-lfs
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git <span class="nt">--version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git <span class="nt">--version</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 환경설정
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
 <span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"you@your-domain.com"</span>
 <span class="nv">$ </span>git config <span class="nt">--global</span> core.precomposeunicode <span class="nb">true</span>
 <span class="nv">$ </span>git config <span class="nt">--global</span> core.quotepath <span class="nb">false</span>
@@ -311,19 +375,23 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
   </li>
 </ul>
 
-<h3 id="5-npm-설치-1">5. NPM 설치</h3>
+<h3 id="5-npm-설치-1">
+<a id="5-npm-설치-1" class="anchor" href="#5-npm-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. NPM 설치</h3>
 <ul>
   <li>터미널 앱에서 아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew install npm
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew install npm
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="6-docker-설치-1">6. Docker 설치</h3>
+<h3 id="6-docker-설치-1">
+<a id="6-docker-설치-1" class="anchor" href="#6-docker-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Docker 설치</h3>
 <ul>
   <li>
     <p>웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치
@@ -331,14 +399,16 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
   </li>
   <li>
     <p>아래 명령으로 hello-world 이미지를 실행해본다.</p>
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run hello-world
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run hello-world
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<hr />
+<hr>
 
-<h2 id="iii-linux-에서-패키지-관리자를-사용해-기본-개발-환경-설정">III. Linux 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
+<h2 id="iii-linux-에서-패키지-관리자를-사용해-기본-개발-환경-설정">
+<a id="iii-linux-에서-패키지-관리자를-사용해-기본-개발-환경-설정" class="anchor" href="#iii-linux-%EC%97%90%EC%84%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>III. Linux 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
 
 <p>여기서는 Linux OS 중에서 대표적으로 많이 사용되는 Ubuntu 10.x를 기반으로 진행한다.</p>
 
@@ -346,54 +416,67 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
 
 <p><em>여기서 $ 다음에 나오는 문장들은 입력하는 명령이다.</em></p>
 
-<h3 id="1-자바개발킷jdk-18-설치">1. 자바개발킷(JDK) 1.8 설치</h3>
+<h3 id="1-자바개발킷jdk-18-설치">
+<a id="1-자바개발킷jdk-18-설치" class="anchor" href="#1-%EC%9E%90%EB%B0%94%EA%B0%9C%EB%B0%9C%ED%82%B7jdk-18-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 자바개발킷(JDK) 1.8 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install openjdk-8-jdk
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install openjdk-8-jdk
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 자바 환경변수 수정
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>vi /etc/environment
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>vi /etc/environment
 </code></pre></div>    </div>
   </li>
   <li>/etc/environment 파일에 아래 항목 추가
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">"/usr/lib/jvm/java-8-openjdk-amd64"</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">"/usr/lib/jvm/java-8-openjdk-amd64"</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 자바 환경변수 리로드
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> /etc/environment
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> /etc/environment
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="2-maven-설치">2. Maven 설치</h3>
+<h3 id="2-maven-설치">
+<a id="2-maven-설치" class="anchor" href="#2-maven-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Maven 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install maven
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install maven
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="3-git-설치">3. Git 설치</h3>
+<h3 id="3-git-설치">
+<a id="3-git-설치" class="anchor" href="#3-git-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Git 설치</h3>
 <ul>
   <li>아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install git
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install git
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git version
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git version
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 환경설정
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
 <span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"you@your-domain.com"</span>
 <span class="nv">$ </span>git config <span class="nt">--global</span> core.precomposeunicode <span class="nb">true</span>
 <span class="nv">$ </span>git config <span class="nt">--global</span> core.quotepath <span class="nb">false</span>
@@ -401,22 +484,27 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
   </li>
 </ul>
 
-<h3 id="4-npm-설치">4. NPM 설치</h3>
+<h3 id="4-npm-설치">
+<a id="4-npm-설치" class="anchor" href="#4-npm-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. NPM 설치</h3>
 <ul>
   <li>터미널 앱에서 아래 명령으로 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install npm
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install npm
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 버젼 확인
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nt">-version</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nt">-version</span>
 </code></pre></div>    </div>
   </li>
 </ul>
 
-<h3 id="5-docker-설치">5. Docker 설치</h3>
+<h3 id="5-docker-설치">
+<a id="5-docker-설치" class="anchor" href="#5-docker-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Docker 설치</h3>
 <ul>
   <li>아래 명령으로 apt 에서 HTTPS 를 통해 레파지토리를 사용하는 패케지 설치
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install <span class="se">\</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install <span class="se">\</span>
   apt-transport-https <span class="se">\</span>
   ca-certificates <span class="se">\</span>
   curl <span class="se">\</span>
@@ -425,26 +513,31 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 Docker 의 GPG 키를 가져온다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg | <span class="nb">sudo </span>apt-key add -
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg | <span class="nb">sudo </span>apt-key add -
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로  핑거프린트를 검증한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-key fingerprint 0EBFCD88
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-key fingerprint 0EBFCD88
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 apt 레파지토리를 추가한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository <span class="se">\</span>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository <span class="se">\</span>
  <span class="s2">"deb [arch=amd64] https://download.docker.com/linux/ubuntu </span><span class="se">\</span><span class="s2">
  </span><span class="k">$(</span>lsb_release <span class="nt">-cs</span><span class="k">)</span><span class="s2"> </span><span class="se">\</span><span class="s2">
  stable"</span>
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 Docker를 설치한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install docker-ce
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install docker-ce
 </code></pre></div>    </div>
   </li>
   <li>아래 명령으로 hello-world 이미지를 실행해본다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker run hello-world
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker run hello-world
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -537,7 +630,7 @@ C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548571539840848000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548576135474898000"></script>
 <script type="text/javascript" src="/assets/js/readingtime.js"></script>
 <script>
 (function ($) {
