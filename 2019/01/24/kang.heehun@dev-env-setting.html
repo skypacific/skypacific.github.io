@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>개발자 기본 개발 환경 설정</title>
+  <meta name="description" content="개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다." />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@skypacific" />
+    <meta name="twitter:title" content="개발자 기본 개발 환경 설정" />
+    <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
+    
+    <meta name="twitter:description"  content="개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다." />
+    
+  
+  
+  <meta property="og:site_name" content="UXDev's Blog" />
+  <meta property="og:title" content="개발자 기본 개발 환경 설정"/>
+  
+  <meta property="og:description" content="개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다." />
+  
+  <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
+  <meta property="og:url" content="https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html" />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2019-01-24T00:00:00+09:00">
+
+  <meta property="fb:app_id" content="" />
+
+  <meta name="naver-site-verification" content="" />
+
+  <link rel="canonical" href="https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html"/>
+  <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png"/>
+  <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548601458603130000" />
+  <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
+  <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
+
+  <link rel="stylesheet" type="text/css" href="/css/monokai-sublime.css" />
+
+  <script src="/assets/js/webfont.js"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      custom: {
+        families: ['Spoqa Han Sans'],
+        urls: ['/css/spoqa-han-sans-font.css']
+      }
+    });
+  </script>
+  <script>
+    var _mailChimpUrl = "";
+  </script>
+
+  
+</head>
+
+  <body itemscope itemtype="http://schema.org/BlogPosting">
+    <!-- header start -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+
+<a href="https://skypacific.github.io" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
+<!-- header end -->
+
+
+    <main class="content" role="main">
+      <article class="post">
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+          <meta itemprop="name" content="UXDev's Blog" />
+          <meta itemprop="url" content="https://skypacific.github.io" />
+          <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+            <meta itemprop="url" content="https://skypacific.github.io/assets/images/internet.png" />
+          </div>
+        </div>
+        <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+          <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg" />
+        </div>
+        <meta itemprop="headline" content="개발자 기본 개발 환경 설정" />
+        <meta itemprop="mainEntityOfPage" content="/2019/01/24/kang.heehun@dev-env-setting.html" />
+        <meta itemprop="datePublished" content="2019-01-24 00:00:00 +0900" />
+        <meta itemprop="dateModified" content="2019-01-24 00:00:00 +0900" />
+        
+        <div class="noarticleimage">
+          <div class="post-meta">
+            <h1 class="post-title">
+              개발자 기본 개발 환경 설정
+              
+            </h1>
+            <div class="cf post-meta-text">
+              <section class="share">
+                <div class="fb-like" data-href="https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+                
+                  
+                
+              </section>
+              <div class="author-info">
+                <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+                <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  heehun kang<meta itemprop="name" content="heehun kang" /><meta itemprop="url" content="https://skypacific.github.io/about" />
+                </h4>
+                on
+                <time datetime="2019-01-24T00:00:00+09:00">24 Jan 2019</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <div>
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#i-windows-에서-패키지-관리자를-사용해-기본-개발-환경-설정">I. Windows 에서 패키지 관리자를 사용해 기본 개발 환경 설정</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-chocolatey-설치">1. Chocolatey 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#2-자바개발킷jdk-18-설치">2. 자바개발킷(JDK) 1.8 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#3-maven-설치">3. Maven 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#4-git-설치">4. Git 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#5-npm-설치">5. NPM 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#6-docker-설치">6. Docker 설치</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ii-macos-에서-패키지-관리자를-사용해-기본-개발-환경-설정">II. MacOS 에서 패키지 관리자를 사용해 기본 개발 환경 설정</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-homebrew-설치-이하-brew">1. HomeBrew 설치 (이하 brew)</a></li>
+<li class="toc-entry toc-h3"><a href="#2-자바개발킷jdk-18-설치-1">2. 자바개발킷(JDK) 1.8 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#3-maven-설치-1">3. Maven 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#4-git-설치-1">4. Git 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#5-npm-설치-1">5. NPM 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#6-docker-설치-1">6. Docker 설치</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#iii-linux-에서-패키지-관리자를-사용해-기본-개발-환경-설정">III. Linux 에서 패키지 관리자를 사용해 기본 개발 환경 설정</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-자바개발킷jdk-18-설치">1. 자바개발킷(JDK) 1.8 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#2-maven-설치">2. Maven 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#3-git-설치">3. Git 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#4-npm-설치">4. NPM 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#5-docker-설치">5. Docker 설치</a></li>
+</ul>
+</li>
+</ul><p><code class="highlighter-rouge">개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다.</code></p>
+
+<p>일반적으로 개발도구를 설치할때 다음과 같이 세가지 방법이 있을 수 있다.</p>
+<ul>
+  <li>웹브라우져로 다운로드 사이트에 접속해 프로그램 패케지 (.exe, .dmg, .zip, .tar.gz 등)을 다운받아 수동으로 설치하는 방법</li>
+  <li>패키지 관리자를 통해 프로그램 패키지를 다운로드 받아 자동으로 설치하는 방법<br>
+(Windows -&gt; Chocolate, MacOS -&gt; brew, Linux -&gt; apt)</li>
+  <li>컨테이너 기반 기술(Docker 등)에 프로그램 이미지를 다운받아 자동으로 설치하는 방법</li>
+</ul>
+
+<p>이 글에서는 두번째 패캐지 관리자를 사용하는 방법을 설명 하기로 한다.</p>
+
+<h2 id="i-windows-에서-패키지-관리자를-사용해-기본-개발-환경-설정">
+<a id="i-windows-에서-패키지-관리자를-사용해-기본-개발-환경-설정" class="anchor" href="#i-windows-%EC%97%90%EC%84%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Windows 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
+
+<p>윈도우즈에서는 기본적으로 패키지 관리자가 없기 때문에 별도로 패캐지 관리자를 설치해야 한다.</p>
+
+<p>윈도우즈에서 가장 많이 사용하는 Chocolatey 를 사용한다.</p>
+
+<p><em>여기서 C:&gt; 다음에 나오는 문장들은 터미널에서 입력하는 명령이다.</em></p>
+
+<h3 id="1-chocolatey-설치">
+<a id="1-chocolatey-설치" class="anchor" href="#1-chocolatey-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Chocolatey 설치</h3>
+<ul>
+  <li>터미널(cmd.exe)를 관리자 권한으로 실행하고 아래 명령으로 Chocolatey를 설치한다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>@<span class="s2">"%SystemRoot%</span><span class="se">\S</span><span class="s2">ystem32</span><span class="se">\W</span><span class="s2">indowsPowerShell</span><span class="se">\v</span><span class="s2">1.0</span><span class="se">\p</span><span class="s2">owershell.exe"</span> <span class="nt">-NoProfile</span> <span class="nt">-InputFormat</span> None <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-Command</span> <span class="s2">"iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"</span> <span class="o">&amp;&amp;</span> SET <span class="s2">"PATH=%PATH%;%ALLUSERSPROFILE%</span><span class="se">\c</span><span class="s2">hocolatey</span><span class="se">\b</span><span class="s2">in"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span>choco <span class="nt">-v</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="2-자바개발킷jdk-18-설치">
+<a id="2-자바개발킷jdk-18-설치" class="anchor" href="#2-%EC%9E%90%EB%B0%94%EA%B0%9C%EB%B0%9C%ED%82%B7jdk-18-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 자바개발킷(JDK) 1.8 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install jdk8
+</code></pre></div>    </div>
+  </li>
+  <li>JDK가 설치된 디렉토리를 PATH 환경변수값에 추가한다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> <span class="nb">set </span><span class="nv">PATH</span><span class="o">=</span>%PATH%<span class="p">;</span>C:<span class="se">\P</span>rogram Files<span class="se">\J</span>ava<span class="se">\j</span>dk1.8.0_201<span class="se">\b</span><span class="k">in</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> java <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="3-maven-설치">
+<a id="3-maven-설치" class="anchor" href="#3-maven-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Maven 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install maven
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> mvn <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="4-git-설치">
+<a id="4-git-설치" class="anchor" href="#4-git-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Git 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install git
+</code></pre></div>    </div>
+  </li>
+  <li>Git이 설치된 디렉토리를 PATH 환경변수값에 추가한다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> <span class="nb">set </span><span class="nv">PATH</span><span class="o">=</span>%PATH%<span class="p">;</span>C:<span class="se">\P</span>rogram Files<span class="se">\G</span>it<span class="se">\b</span><span class="k">in</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> git <span class="nt">--version</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 환경설정
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> user.email <span class="s2">"you@your-domain.com"</span>
+C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core.precomposeunicode <span class="nb">true
+</span>C:<span class="se">\&gt;</span> git config <span class="nt">--global</span> core.quotepath <span class="nb">false</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="5-npm-설치">
+<a id="5-npm-설치" class="anchor" href="#5-npm-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. NPM 설치</h3>
+<ul>
+  <li>터미널 앱에서 아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> choco install nodejs
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> npm <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="6-docker-설치">
+<a id="6-docker-설치" class="anchor" href="#6-docker-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Docker 설치</h3>
+<ul>
+  <li>
+    <p>웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치
+<a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows">https://hub.docker.com/editions/community/docker-ce-desktop-windows</a></p>
+  </li>
+  <li>
+    <p>아래 명령으로 hello-world 이미지를 실행해본다.</p>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>C:<span class="se">\&gt;</span> docker run hello-world
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="ii-macos-에서-패키지-관리자를-사용해-기본-개발-환경-설정">
+<a id="ii-macos-에서-패키지-관리자를-사용해-기본-개발-환경-설정" class="anchor" href="#ii-macos-%EC%97%90%EC%84%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>II. MacOS 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
+
+<p>MacOS에서 사용하는 패키지 관리자는 HomeBrew인데, 기본 설치가 안되어 있으므로 HomeBrew를 먼저 설치 후 다음 과정을 진행한다.</p>
+
+<p><em>여기서 $ 다음에 나오는 문장들은 터미널에서 입력하는 명령이다.</em></p>
+
+<h3 id="1-homebrew-설치-이하-brew">
+<a id="1-homebrew-설치-이하-brew" class="anchor" href="#1-homebrew-%EC%84%A4%EC%B9%98-%EC%9D%B4%ED%95%98-brew" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. HomeBrew 설치 (이하 brew)</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo</span> /usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="2-자바개발킷jdk-18-설치-1">
+<a id="2-자바개발킷jdk-18-설치-1" class="anchor" href="#2-%EC%9E%90%EB%B0%94%EA%B0%9C%EB%B0%9C%ED%82%B7jdk-18-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 자바개발킷(JDK) 1.8 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap caskroom/versions
+<span class="nv">$ </span>brew cask install java
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="3-maven-설치-1">
+<a id="3-maven-설치-1" class="anchor" href="#3-maven-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Maven 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew intall maven
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="4-git-설치-1">
+<a id="4-git-설치-1" class="anchor" href="#4-git-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Git 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew intall git git-lfs
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git <span class="nt">--version</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 환경설정
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"you@your-domain.com"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> core.precomposeunicode <span class="nb">true</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> core.quotepath <span class="nb">false</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="5-npm-설치-1">
+<a id="5-npm-설치-1" class="anchor" href="#5-npm-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. NPM 설치</h3>
+<ul>
+  <li>터미널 앱에서 아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew install npm
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="6-docker-설치-1">
+<a id="6-docker-설치-1" class="anchor" href="#6-docker-%EC%84%A4%EC%B9%98-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Docker 설치</h3>
+<ul>
+  <li>
+    <p>웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치
+<a href="https://hub.docker.com/editions/community/docker-ce-desktop-mac">https://hub.docker.com/editions/community/docker-ce-desktop-mac</a></p>
+  </li>
+  <li>
+    <p>아래 명령으로 hello-world 이미지를 실행해본다.</p>
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>docker run hello-world
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="iii-linux-에서-패키지-관리자를-사용해-기본-개발-환경-설정">
+<a id="iii-linux-에서-패키지-관리자를-사용해-기본-개발-환경-설정" class="anchor" href="#iii-linux-%EC%97%90%EC%84%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EA%B4%80%EB%A6%AC%EC%9E%90%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-%EA%B8%B0%EB%B3%B8-%EA%B0%9C%EB%B0%9C-%ED%99%98%EA%B2%BD-%EC%84%A4%EC%A0%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>III. Linux 에서 패키지 관리자를 사용해 기본 개발 환경 설정</h2>
+
+<p>Linux OS 중에서 대표적으로 많이 사용되는 Ubuntu 10.x를 기반으로 진행한다.</p>
+
+<p>기본 패키지 관리자 apt 는 이미 설치되어 있으므로 apt 설치과정은 생략한다.</p>
+
+<p><em>여기서 $ 다음에 나오는 문장들은 입력하는 명령이다.</em></p>
+
+<h3 id="1-자바개발킷jdk-18-설치">
+<a id="1-자바개발킷jdk-18-설치" class="anchor" href="#1-%EC%9E%90%EB%B0%94%EA%B0%9C%EB%B0%9C%ED%82%B7jdk-18-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 자바개발킷(JDK) 1.8 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install openjdk-8-jdk
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 자바 환경변수 수정
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>vi /etc/environment
+</code></pre></div>    </div>
+  </li>
+  <li>/etc/environment 파일에 아래 항목 추가
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">"/usr/lib/jvm/java-8-openjdk-amd64"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 자바 환경변수 리로드
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> /etc/environment
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="2-maven-설치">
+<a id="2-maven-설치" class="anchor" href="#2-maven-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Maven 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install maven
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="3-git-설치">
+<a id="3-git-설치" class="anchor" href="#3-git-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Git 설치</h3>
+<ul>
+  <li>아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install git
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git version
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 환경설정
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git config <span class="nt">--global</span> user.name <span class="s2">"Your Name"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> user.email <span class="s2">"you@your-domain.com"</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> core.precomposeunicode <span class="nb">true</span>
+<span class="nv">$ </span>git config <span class="nt">--global</span> core.quotepath <span class="nb">false</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="4-npm-설치">
+<a id="4-npm-설치" class="anchor" href="#4-npm-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. NPM 설치</h3>
+<ul>
+  <li>터미널 앱에서 아래 명령으로 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install npm
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 버젼 확인
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nt">-version</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="5-docker-설치">
+<a id="5-docker-설치" class="anchor" href="#5-docker-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Docker 설치</h3>
+<ul>
+  <li>아래 명령으로 apt 에서 HTTPS 를 통해 레파지토리를 사용하는 패케지 설치
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install <span class="se">\</span>
+  apt-transport-https <span class="se">\</span>
+  ca-certificates <span class="se">\</span>
+  curl <span class="se">\</span>
+  gnupg2 <span class="se">\</span>
+  software-properties-common
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 Docker 의 GPG 키를 가져온다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg | <span class="nb">sudo </span>apt-key add -
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로  핑거프린트를 검증한다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-key fingerprint 0EBFCD88
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 apt 레파지토리를 추가한다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>add-apt-repository <span class="se">\</span>
+ <span class="s2">"deb [arch=amd64] https://download.docker.com/linux/ubuntu </span><span class="se">\</span><span class="s2">
+ </span><span class="k">$(</span>lsb_release <span class="nt">-cs</span><span class="k">)</span><span class="s2"> </span><span class="se">\</span><span class="s2">
+ stable"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 Docker를 설치한다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get install docker-ce
+</code></pre></div>    </div>
+  </li>
+  <li>아래 명령으로 hello-world 이미지를 실행해본다.
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker run hello-world
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+          </div>
+          <p class="tags">
+            
+              <a href="/tags#developmentenviroment-ref">DevelopmentEnviroment</a>
+            
+              <a href="/tags#통합개발환경-ref">통합개발환경</a>
+            
+              <a href="/tags#개발환경-ref">개발환경</a>
+            
+          </p>
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            <div class="fb-like" data-href="https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+            
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+              <h4>heehun kang</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2019-01-24 00:00">24 Jan 2019</time></p>
+            </section>
+            <footer class="subscribe-info">
+                <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+                <a class="subscribe" href=""  target="blank"><img id='feedlyFollow' src='//s3.feedly.com/img/follows/feedly-follow-logo-black_2x.png' alt='follow us in feedly' width='18' height='18'> Feedly 구독하기</a><br />
+                <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> RSS 구독하기</span></a><br />
+                 
+                  <a class="subscribe" href="" target="_blank"> <span class="tooltip"> <i class="nf nf-oct-mail"></i> Email 구독하기</span></a>
+                
+            </footer>
+          </div>
+
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <div class="googleads">
+              
+            </div>
+          </div>
+        </div>
+
+        
+
+         
+        <div class="fb-comments-wrapper">
+          
+            <div class="fb-comments" data-href="https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+          
+        </div>
+        
+
+        
+      </article>
+    </main>
+
+    <aside class="read-next">
+      
+        <a class="read-next-story no-cover" href="/2019/01/25/kang.heehun@introduce-spring-boot.html">
+          <section class="post">
+            <h2>스프링 부트 (Spring boot) 소개</h2>
+            <p>최근 백엔드(Back-end) 자바 어플리케이션 개발에서 가장 핫한 프레임워크은 아무래도 스프링 부트가 아닐까 한다. 오늘은 이...</p>
+          </section>
+        </a>
+      
+      
+        <a class="read-next-story prev no-cover" href="/2019/01/22/kang.heehun@ides-for-developers.html">
+          <section class="post">
+            <h2>개발자를 위한 통합개발환경 비교</h2>
+            <p>현재 시장에는 개발자를 위한 많은 통합개발환경(이하 IDE)가 있다. 본 글에서는 주류로 많이 사용중인 Eclipse, VS...</p>
+          </section>
+        </a>
+      
+    </aside>
+    <footer class="post-site-footer clearfix">
+      <section class="copyright"><a href="/">UXDev's Blog</a> © 2019</section>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548601458603130000"></script>
+<script type="text/javascript" src="/assets/js/readingtime.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image');
+
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+  </body>
+</html>
