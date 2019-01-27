@@ -4,10 +4,10 @@
     <title>UXDev's Blog</title>
     <description>UX개발팀 기술 블로그
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 27 Jan 2019 17:09:24 +0900</pubDate>
-    <lastBuildDate>Sun, 27 Jan 2019 17:09:24 +0900</lastBuildDate>
+    <link>https://skypacific.github.io/</link>
+    <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 27 Jan 2019 17:10:48 +0900</pubDate>
+    <lastBuildDate>Sun, 27 Jan 2019 17:10:48 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -157,8 +157,8 @@
 &lt;hr /&gt;
 </description>
         <pubDate>Fri, 25 Jan 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2019/01/25/kang.heehun@introduce-spring-boot.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/01/25/kang.heehun@introduce-spring-boot.html</guid>
+        <link>https://skypacific.github.io/2019/01/25/kang.heehun@introduce-spring-boot.html</link>
+        <guid isPermaLink="true">https://skypacific.github.io/2019/01/25/kang.heehun@introduce-spring-boot.html</guid>
         
         <category>Spring</category>
         
@@ -480,8 +480,8 @@ C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; git config &lt;span cl
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 24 Jan 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2019/01/24/kang.heehun@dev-env-setting.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/01/24/kang.heehun@dev-env-setting.html</guid>
+        <link>https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html</link>
+        <guid isPermaLink="true">https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html</guid>
         
         <category>Developer</category>
         
@@ -576,8 +576,8 @@ VS Code 는 엘렉트론 프레임워크로 개발 되어있고 윈도우즈, �
 
 </description>
         <pubDate>Tue, 22 Jan 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2019/01/22/kang.heehun@ides-for-developers.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/01/22/kang.heehun@ides-for-developers.html</guid>
+        <link>https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html</link>
+        <guid isPermaLink="true">https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html</guid>
         
         <category>IDE</category>
         
@@ -706,8 +706,8 @@ VS Code 는 엘렉트론 프레임워크로 개발 되어있고 윈도우즈, �
 
 </description>
         <pubDate>Wed, 16 Jan 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2019/01/16/kang.heehun@javascript-style-guide.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2019/01/16/kang.heehun@javascript-style-guide.html</guid>
+        <link>https://skypacific.github.io/2019/01/16/kang.heehun@javascript-style-guide.html</link>
+        <guid isPermaLink="true">https://skypacific.github.io/2019/01/16/kang.heehun@javascript-style-guide.html</guid>
         
         <category>JavaScript</category>
         
