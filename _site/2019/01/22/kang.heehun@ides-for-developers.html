@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>개발자를 위한 통합개발환경 비교</title>
+  <meta name="description" content="현재 시장에는 개발자를 위한 많은 통합개발환경(이하 IDE)가 있다. 본 글에서는 주류로 많이 사용중인 Eclipse, VS Code, IntelliJ 를 비교분석 해보도록 한다." />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@skypacific" />
+    <meta name="twitter:title" content="개발자를 위한 통합개발환경 비교" />
+    <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
+    
+    <meta name="twitter:description"  content="현재 시장에는 개발자를 위한 많은 통합개발환경(이하 IDE)가 있다. 본 글에서는 주류로 많이 사용중인 Eclipse, VS Code, IntelliJ 를 비교분석 해보도록 한다." />
+    
+  
+  
+  <meta property="og:site_name" content="UXDev's Blog" />
+  <meta property="og:title" content="개발자를 위한 통합개발환경 비교"/>
+  
+  <meta property="og:description" content="현재 시장에는 개발자를 위한 많은 통합개발환경(이하 IDE)가 있다. 본 글에서는 주류로 많이 사용중인 Eclipse, VS Code, IntelliJ 를 비교분석 해보도록 한다." />
+  
+  <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
+  <meta property="og:url" content="https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html" />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2019-01-22T00:00:00+09:00">
+
+  <meta property="fb:app_id" content="" />
+
+  <meta name="naver-site-verification" content="" />
+
+  <link rel="canonical" href="https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html"/>
+  <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png"/>
+  <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548601458603130000" />
+  <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
+  <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
+
+  <link rel="stylesheet" type="text/css" href="/css/monokai-sublime.css" />
+
+  <script src="/assets/js/webfont.js"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      custom: {
+        families: ['Spoqa Han Sans'],
+        urls: ['/css/spoqa-han-sans-font.css']
+      }
+    });
+  </script>
+  <script>
+    var _mailChimpUrl = "";
+  </script>
+
+  
+</head>
+
+  <body itemscope itemtype="http://schema.org/BlogPosting">
+    <!-- header start -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '', 'auto');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.12&appId=";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+
+<a href="https://skypacific.github.io" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
+<!-- header end -->
+
+
+    <main class="content" role="main">
+      <article class="post">
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+          <meta itemprop="name" content="UXDev's Blog" />
+          <meta itemprop="url" content="https://skypacific.github.io" />
+          <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+            <meta itemprop="url" content="https://skypacific.github.io/assets/images/internet.png" />
+          </div>
+        </div>
+        <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+          <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg" />
+        </div>
+        <meta itemprop="headline" content="개발자를 위한 통합개발환경 비교" />
+        <meta itemprop="mainEntityOfPage" content="/2019/01/22/kang.heehun@ides-for-developers.html" />
+        <meta itemprop="datePublished" content="2019-01-22 00:00:00 +0900" />
+        <meta itemprop="dateModified" content="2019-01-22 00:00:00 +0900" />
+        
+        <div class="noarticleimage">
+          <div class="post-meta">
+            <h1 class="post-title">
+              개발자를 위한 통합개발환경 비교
+              
+            </h1>
+            <div class="cf post-meta-text">
+              <section class="share">
+                <div class="fb-like" data-href="https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+                
+                  
+                
+              </section>
+              <div class="author-info">
+                <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+                <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  heehun kang<meta itemprop="name" content="heehun kang" /><meta itemprop="url" content="https://skypacific.github.io/about" />
+                </h4>
+                on
+                <time datetime="2019-01-22T00:00:00+09:00">22 Jan 2019</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <div>
+          <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#1-eclipse">1. Eclipse</a></li>
+<li class="toc-entry toc-h1"><a href="#2-vs-code">2. VS Code</a></li>
+<li class="toc-entry toc-h1"><a href="#3-intellij">3. IntelliJ</a></li>
+<li class="toc-entry toc-h1"><a href="#4-부록">4. 부록</a></li>
+</ul><p><code class="highlighter-rouge">현재 시장에는 개발자를 위한 많은 통합개발환경(이하 IDE)가 있다.</code><br>
+<code class="highlighter-rouge">본 글에서는 주류로 많이 사용중인 Eclipse, VS Code, IntelliJ 를 비교분석 해보도록 한다.</code></p>
+
+<h1 id="1-eclipse">
+<a id="1-eclipse" class="anchor" href="#1-eclipse" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Eclipse</h1>
+
+<p><img src="/assets/images/eclipse_screen_01.png" alt="Eclipse"></p>
+
+<p><a href="https://www.eclipse.org/">https://www.eclipse.org/</a></p>
+
+<p>역사가 오래된 IDE로 많은 개발자 커뮤니티, 잘 작성된 문서, 수 많은 플러그인들이 존재한다.</p>
+
+<p>웹, 모바일, 데스크탑, 엔터프라이즈, 엠베디드 시스템 어플리케이션 개발에 사용되며<br>
+Eclipse 는 자바(JAVA)로 개발되어 있어 윈도우즈, 리눅스, 맥OS 등 대부분의 OS를 지원한다.</p>
+
+<p>자바를 위해 개발되었지만 C/C++, PHP, Rust, Groovy, Scala, Python 등의 언어도 지원한다.</p>
+
+<ul>
+  <li>장점&gt; 라이센스가 Eclipse Public License 로 배포되어 무료로 자유롭게 사용할 수 있다.</li>
+  <li>단점&gt; 자바로 만들어져서 자바가상머신(JVM) 위에서 실행되므로 다른 IDE에 비교해서 속도가 느리다.</li>
+</ul>
+
+<hr>
+
+<h1 id="2-vs-code">
+<a id="2-vs-code" class="anchor" href="#2-vs-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. VS Code</h1>
+
+<p><img src="/assets/images/vscode_screen_01.png" alt="VS Code"></p>
+
+<p><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+
+<p>마이크로소프트에서 개발한 IDE로 기본기능은 코드편집기 수준이지만, 추가적인 플러그인을 설치하면 타 IDE 못지않는 역활을 수행한다.
+VS Code 는 엘렉트론 프레임워크로 개발 되어있고 윈도우즈, 리눅스, 맥OS를 지원하며 속도도 상당히 빠르다.<br>
+많은 플러그인들의 지원으로 .NET, Java, JavaScript, Python 등 현존하는 대부분의 백엔드, 프론트엔드 개발을 거의 다 지원한다.
+게임개발툴로 유명한 유니티의 IDE도 VS Code를 사용한다.</p>
+
+<ul>
+  <li>장점&gt; 네이티브 코드로 작성되어 속도가 가장 빠르다.</li>
+  <li>단점&gt; 적정한 확장프로그램(플러그인)을 찾아 설치해야 쓸만한 환경을 구축할 수 있다.</li>
+</ul>
+
+<hr>
+
+<h1 id="3-intellij">
+<a id="3-intellij" class="anchor" href="#3-intellij" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. IntelliJ</h1>
+
+<p><img src="/assets/images/intellij_screen_01.png" alt="IntelliJ"></p>
+
+<p><a href="https://www.jetbrains.com/idea/">https://www.jetbrains.com/idea/</a></p>
+
+<p>JetBrain사에서 만든 IDE이다.<br>
+자바 어플리케이션을 만드는데 특화 되어 있으나, 자바외에 Kotlin, Scala, Android, Mercurial, Groovy 등의 언어도 지원한다.</p>
+
+<p>주목할만점으로는 다양한 벡엔드&amp;프론트엔드 프로젝트 생성, 자동완성(auto completion), 소스코드분석, 지능형리펙토링, 디버거, 테스트러너 기능이 비교된 IDE 중에서 가장 우수하다.
+이러한 기능들 덕분에 개발자의 생산성이 대폭 향상 된다.</p>
+
+<p>Eclipse 로 생성된 프로젝트를 IntelliJ 프로젝트로 가져오거나(Import),
+IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Export) 기능도 충실해서 Eclipse 사용자와 협업도 문제가 없다.</p>
+
+<p>안드로이드 IDE인 안드로이드 스튜디오도 IntelliJ에 근간을 두고 있다.</p>
+
+<p>유로 버젼인 Ultimate 버젼과, 무료 버젼인 Community 버젼으로 나뉘어 있다.</p>
+
+<ul>
+  <li>장점&gt; 우수한 스마트 코드 작성 기능들 덕분에 개발자의 생산성을 대폭 높여준다.</li>
+  <li>단점&gt; 모든 기능을 사용할 수 있는 Ultimate 버젼은 유료 라이센스이다.</li>
+</ul>
+
+<hr>
+
+<h1 id="4-부록">
+<a id="4-부록" class="anchor" href="#4-%EB%B6%80%EB%A1%9D" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 부록</h1>
+
+<p>아래 동영상은 IntelliJ의 스마트 코드 작성 기능 몇가지를 올려보았다.</p>
+
+<p><img src="/assets/images/IntelliJ01.gif" alt="IntelliJ 스마트 코드 작성 1"></p>
+
+<p><img src="/assets/images/IntelliJ02.gif" alt="IntelliJ 스마트 코드 작성 2"></p>
+
+<p><img src="/assets/images/IntelliJ03.gif" alt="IntelliJ 스마트 코드 작성 3"></p>
+
+
+          </div>
+          <p class="tags">
+            
+              <a href="/tags#ide-ref">IDE</a>
+            
+              <a href="/tags#developmentenviroment-ref">DevelopmentEnviroment</a>
+            
+              <a href="/tags#통합개발환경-ref">통합개발환경</a>
+            
+              <a href="/tags#개발환경-ref">개발환경</a>
+            
+          </p>
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            <div class="fb-like" data-href="https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+            
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+              <h4>heehun kang</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2019-01-22 00:00">22 Jan 2019</time></p>
+            </section>
+            <footer class="subscribe-info">
+                <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+                <a class="subscribe" href=""  target="blank"><img id='feedlyFollow' src='//s3.feedly.com/img/follows/feedly-follow-logo-black_2x.png' alt='follow us in feedly' width='18' height='18'> Feedly 구독하기</a><br />
+                <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> RSS 구독하기</span></a><br />
+                 
+                  <a class="subscribe" href="" target="_blank"> <span class="tooltip"> <i class="nf nf-oct-mail"></i> Email 구독하기</span></a>
+                
+            </footer>
+          </div>
+
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <div class="googleads">
+              
+            </div>
+          </div>
+        </div>
+
+        
+
+         
+        <div class="fb-comments-wrapper">
+          
+            <div class="fb-comments" data-href="https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+          
+        </div>
+        
+
+        
+      </article>
+    </main>
+
+    <aside class="read-next">
+      
+        <a class="read-next-story no-cover" href="/2019/01/24/kang.heehun@dev-env-setting.html">
+          <section class="post">
+            <h2>개발자 기본 개발 환경 설정</h2>
+            <p>개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다.</p>
+          </section>
+        </a>
+      
+      
+        <a class="read-next-story prev no-cover" href="/2019/01/21/kang.heehun@javascript-style-guide.html">
+          <section class="post">
+            <h2>자바스크립트 스타일 가이드</h2>
+            <p>본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을...</p>
+          </section>
+        </a>
+      
+    </aside>
+    <footer class="post-site-footer clearfix">
+      <section class="copyright"><a href="/">UXDev's Blog</a> © 2019</section>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548601458603130000"></script>
+<script type="text/javascript" src="/assets/js/readingtime.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image');
+
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+  </body>
+</html>
