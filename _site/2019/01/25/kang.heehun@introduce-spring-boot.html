@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548571539840848000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548576135474898000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -145,7 +145,26 @@
           </div>
           <a name="topofpage"></a>
           <div>
-          <p><code class="highlighter-rouge">최근 백엔드(Back-end) 자바 어플리케이션 개발에서 가장 핫한 프레임워크은 아무래도 스프링 부트가 아닐까 한다.
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#i-spring-initializr-로-프로젝트-시작">I. Spring Initializr 로 프로젝트 시작</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-spring-initializr-서비스에-접속해서-프로젝트를-생성">1. Spring Initializr 서비스에 접속해서 프로젝트를 생성</a></li>
+<li class="toc-entry toc-h3"><a href="#2-intellij-를-사용해서-프로젝트를-생성">2. IntelliJ 를 사용해서 프로젝트를 생성</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ii-프로젝트를-빌드하고-실행">II. 프로젝트를 빌드하고 실행</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행">1. 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행</a></li>
+<li class="toc-entry toc-h3"><a href="#2-intellij-에서-jar-파일-빌드하고-실행">2. IntelliJ 에서 JAR 파일 빌드하고 실행</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#iii-웹서비스-접속">III. 웹서비스 접속</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-기본으로-생성된-웹서비스-접속">1. 기본으로 생성된 웹서비스 접속</a></li>
+<li class="toc-entry toc-h3"><a href="#2-웹서비스에-hello-핸들러-추가">2. 웹서비스에 /hello 핸들러 추가</a></li>
+</ul>
+</li>
+</ul><p><code class="highlighter-rouge">최근 백엔드(Back-end) 자바 어플리케이션 개발에서 가장 핫한 프레임워크은 아무래도 스프링 부트가 아닐까 한다.
 오늘은 이 스프링 부트에 대해 소개하는 시간을 가져본다.</code></p>
 
 <p>스프링 부트(Spring Boot)는 스프링 프레임워크에서 중요하게 추진중인 프로젝트로 아래와 같은 기능을 가진다.</p>
@@ -157,24 +176,30 @@
   <li>스프링 및 외부 라이브러리 들의 설정을 자동으로 해준다.</li>
 </ul>
 
-<p>아주 간단한 REST 웹서비스를 만들어보기로 하자.<br />
-일반적인 방법과 IntelliJ를 사용해서 만드는 방법 두가지 다 진행 해보도록 한다.<br />
+<p>아주 간단한 REST 웹서비스를 만들어보기로 하자.<br>
+일반적인 방법과 IntelliJ를 사용해서 만드는 방법 두가지 다 진행 해보도록 한다.<br>
 (Eclipse, VS Code, Atom 사용자는 <a href="https://spring.io/tools">Spring Tool 4</a> 사용을 권장한다.)</p>
 
-<h2 id="i-spring-initializr-로-프로젝트-시작">I. Spring Initializr 로 프로젝트 시작</h2>
+<h2 id="i-spring-initializr-로-프로젝트-시작">
+<a id="i-spring-initializr-로-프로젝트-시작" class="anchor" href="#i-spring-initializr-%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Spring Initializr 로 프로젝트 시작</h2>
 
 <p><em>Spring Initializr 는 스프링 부트스트랩 어플리케이션을 생성시켜주는 서비스 이다.</em></p>
 
-<h3 id="1-spring-initializr-서비스에-접속해서-프로젝트를-생성">1. Spring Initializr 서비스에 접속해서 프로젝트를 생성</h3>
+<h3 id="1-spring-initializr-서비스에-접속해서-프로젝트를-생성">
+<a id="1-spring-initializr-서비스에-접속해서-프로젝트를-생성" class="anchor" href="#1-spring-initializr-%EC%84%9C%EB%B9%84%EC%8A%A4%EC%97%90-%EC%A0%91%EC%86%8D%ED%95%B4%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Spring Initializr 서비스에 접속해서 프로젝트를 생성</h3>
 
 <ul>
-  <li>아래 링크를 클릭하여 Spring Initializr 서비스로 접속한다.<br />
-<a href="https://start.spring.io/">https://start.spring.io/</a></li>
+  <li>아래 링크를 클릭하여 Spring Initializr 서비스로 접속한다.<br>
+<a href="https://start.spring.io/">https://start.spring.io/</a>
+</li>
   <li>최상단의 “Generate a …” 메뉴에서
     <ul>
-      <li><strong>Build Type :</strong> Maven Project 선택</li>
-      <li><strong>Language :</strong> Java 선택</li>
-      <li><strong>Spring Boot :</strong> 2.1.2 선택</li>
+      <li>
+<strong>Build Type :</strong> Maven Project 선택</li>
+      <li>
+<strong>Language :</strong> Java 선택</li>
+      <li>
+<strong>Spring Boot :</strong> 2.1.2 선택</li>
     </ul>
   </li>
   <li>“Group”, “Artifact” 항목에 값을 입력한다.</li>
@@ -184,13 +209,14 @@
   <li>
     <p>“Generate Project” 버튼을 클릭한다.</p>
 
-    <p><img src="/assets/images/springboot01.gif" alt="Spring Initializr 서비스에 접속해서 프로젝트를 생성" /></p>
+    <p><img src="/assets/images/springboot01.gif" alt="Spring Initializr 서비스에 접속해서 프로젝트를 생성"></p>
   </li>
 </ul>
 
-<hr />
+<hr>
 
-<h3 id="2-intellij-를-사용해서-프로젝트를-생성">2. IntelliJ 를 사용해서 프로젝트를 생성</h3>
+<h3 id="2-intellij-를-사용해서-프로젝트를-생성">
+<a id="2-intellij-를-사용해서-프로젝트를-생성" class="anchor" href="#2-intellij-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%84%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. IntelliJ 를 사용해서 프로젝트를 생성</h3>
 <ul>
   <li>IntelliJ에서 “New Project…“를 클릭하고, 왼쪽 프로젝트 템플릿 목록에서 “Spring Initializr”를 선택하고 “Next” 버튼을 클릭한다.</li>
   <li>“Group”, “Artifact”, “Type”, “Language” 등의 항목에 값을 입력하고 “Next” 버튼을 클릭한다.</li>
@@ -198,73 +224,83 @@
   <li>
     <p>최종적으로 입력한 내용이 맞는지 확인하고 “Finish” 버튼을 클릭한다.</p>
 
-    <p><img src="/assets/images/springboot02.gif" alt="IntelliJ 를 사용해서 프로젝트를 생성" /></p>
+    <p><img src="/assets/images/springboot02.gif" alt="IntelliJ 를 사용해서 프로젝트를 생성"></p>
   </li>
 </ul>
 
-<hr />
+<hr>
 
-<h2 id="ii-프로젝트를-빌드하고-실행">II. 프로젝트를 빌드하고 실행</h2>
+<h2 id="ii-프로젝트를-빌드하고-실행">
+<a id="ii-프로젝트를-빌드하고-실행" class="anchor" href="#ii-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EB%B9%8C%EB%93%9C%ED%95%98%EA%B3%A0-%EC%8B%A4%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>II. 프로젝트를 빌드하고 실행</h2>
 
-<h3 id="1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행">1. 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행</h3>
+<h3 id="1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행">
+<a id="1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행" class="anchor" href="#1-%ED%84%B0%EB%AF%B8%EB%84%90%EC%BB%B4%EB%A7%A8%EB%93%9C-%EC%89%98%EC%97%90%EC%84%9C-jar-%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C%ED%95%98%EA%B3%A0-%EC%8B%A4%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행</h3>
 <ul>
   <li>위의 프로젝트 파일이 생성된 폴더로 이동한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Projects/sbtest01
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/Projects/sbtest01
 </code></pre></div>    </div>
   </li>
   <li>아래 명령을 입력하여 JAR 파일을 빌드한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn install
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>mvn install
 </code></pre></div>    </div>
   </li>
   <li>아래 명령을 입력하여 JAR 파일을 실행한다.
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-jar</span> target/sbtest01-0.0.1-SNAPSHOT.jar
+    <div class="language-shell highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>java <span class="nt">-jar</span> target/sbtest01-0.0.1-SNAPSHOT.jar
 </code></pre></div>    </div>
 
-    <p><img src="/assets/images/sbbuild01.gif" alt="터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행" /></p>
+    <p><img src="/assets/images/sbbuild01.gif" alt="터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행"></p>
   </li>
 </ul>
 
-<h3 id="2-intellij-에서-jar-파일-빌드하고-실행">2. IntelliJ 에서 JAR 파일 빌드하고 실행</h3>
+<h3 id="2-intellij-에서-jar-파일-빌드하고-실행">
+<a id="2-intellij-에서-jar-파일-빌드하고-실행" class="anchor" href="#2-intellij-%EC%97%90%EC%84%9C-jar-%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C%ED%95%98%EA%B3%A0-%EC%8B%A4%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. IntelliJ 에서 JAR 파일 빌드하고 실행</h3>
 <ul>
   <li>IntelliJ에서 생성된 프로젝트를 연다.</li>
   <li>메뉴 “Build” -&gt; “Build Project” 를 클릭하여 프로젝트를 빌드한다.</li>
   <li>
     <p>메뉴 “Run” -&gt; “Run 프로젝트명” 를 클릭하여 프로젝트를 실행한다.</p>
 
-    <p><img src="/assets/images/sbbuild02.gif" alt="IntelliJ 에서 JAR 파일 빌드하고 실행" /></p>
+    <p><img src="/assets/images/sbbuild02.gif" alt="IntelliJ 에서 JAR 파일 빌드하고 실행"></p>
   </li>
 </ul>
 
-<hr />
+<hr>
 
-<h2 id="iii-웹서비스-접속">III. 웹서비스 접속</h2>
+<h2 id="iii-웹서비스-접속">
+<a id="iii-웹서비스-접속" class="anchor" href="#iii-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%A0%91%EC%86%8D" aria-hidden="true"><span class="octicon octicon-link"></span></a>III. 웹서비스 접속</h2>
 
-<h3 id="1-기본으로-생성된-웹서비스-접속">1. 기본으로 생성된 웹서비스 접속</h3>
+<h3 id="1-기본으로-생성된-웹서비스-접속">
+<a id="1-기본으로-생성된-웹서비스-접속" class="anchor" href="#1-%EA%B8%B0%EB%B3%B8%EC%9C%BC%EB%A1%9C-%EC%83%9D%EC%84%B1%EB%90%9C-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%A0%91%EC%86%8D" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 기본으로 생성된 웹서비스 접속</h3>
 
 <ul>
   <li>
-    <p>웹브라우져를 열고 아래 링크에 접속한다.<br />
+    <p>웹브라우져를 열고 아래 링크에 접속한다.<br>
 <a href="http://localhost:8080/">http://localhost:8080/</a></p>
   </li>
   <li>
     <p>홈경로(“/”)의 요청핸들러(Request Handler)가 없기 때문에 404 에러가 나타나는것을 확인한다.</p>
 
-    <p><img src="/assets/images/sbservice01.png" alt="IntelliJ 에서 JAR 파일 빌드하고 실행" /></p>
+    <p><img src="/assets/images/sbservice01.png" alt="IntelliJ 에서 JAR 파일 빌드하고 실행"></p>
   </li>
 </ul>
 
-<h3 id="2-웹서비스에-hello-핸들러-추가">2. 웹서비스에 /hello 핸들러 추가</h3>
+<h3 id="2-웹서비스에-hello-핸들러-추가">
+<a id="2-웹서비스에-hello-핸들러-추가" class="anchor" href="#2-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4%EC%97%90-hello-%ED%95%B8%EB%93%A4%EB%9F%AC-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 웹서비스에 /hello 핸들러 추가</h3>
 
 <ul>
   <li>
     <p>프로젝트 아래에서 /src/main 디렉토리 아래의 어플리케이션 메인 자바파일을 연다.</p>
 
-    <p><img src="/assets/images/java_application_main_default.png" alt="어플리케이션 메인 자바파일" /></p>
+    <p><img src="/assets/images/java_application_main_default.png" alt="어플리케이션 메인 자바파일"></p>
   </li>
   <li>
     <p>아래 코드와 같이 간단한 /hello 핸들러를 추가한다.</p>
 
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nd">@RestController</span>
+    <div class="language-java highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>  <span class="nd">@RestController</span>
   <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">HelloController</span> <span class="o">{</span>
 
       <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">)</span>
@@ -274,7 +310,7 @@
   <span class="o">}</span>
 </code></pre></div>    </div>
 
-    <p><img src="/assets/images/java_application_main_hello.png" alt="어플리케이션 메인 hello 핸들러 추가" /></p>
+    <p><img src="/assets/images/java_application_main_hello.png" alt="어플리케이션 메인 hello 핸들러 추가"></p>
   </li>
   <li>
     <p>프로젝트를 다시 빌드하고 웹브라우져를 열고 아래 링크에 접속한다.
@@ -283,11 +319,11 @@
   <li>
     <p>/hello 요청핸들러(Request Handler)가 작동하여 “Hello World” 문자열이 나타나는것을 확인한다.</p>
 
-    <p><img src="/assets/images/sbservice02.png" alt="IntelliJ 에서 hello 핸들러 접속" /></p>
+    <p><img src="/assets/images/sbservice02.png" alt="IntelliJ 에서 hello 핸들러 접속"></p>
   </li>
 </ul>
 
-<hr />
+<hr>
 
           </div>
           <p class="tags">
@@ -370,7 +406,7 @@
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548571539840848000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548576135474898000"></script>
 <script type="text/javascript" src="/assets/js/readingtime.js"></script>
 <script>
 (function ($) {
