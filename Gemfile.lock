@@ -251,7 +251,6 @@ DEPENDENCIES
   bourbon
   github-pages
   jekyll-toc
-  jemoji
 
 BUNDLED WITH
    2.0.1

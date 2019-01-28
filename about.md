@@ -9,7 +9,7 @@ permalink: /about/
     <div class="name"><b>강희훈</b>/skypacific</div>
 </div>
 
-[JTBC](http://jtbc.joins.com/) / UX개발팀
+중앙미디어그룹 / UX개발팀
 
 `java` `spring` `webflux` `.NET` `C/C++` `javascript(ES2015)` `docker` `kubernetes` `machine-learning`
 
