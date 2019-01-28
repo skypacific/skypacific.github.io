@@ -36,7 +36,7 @@ twitter_handle: "@skypacific"
 absolute_root_path: /Users/heehun.kang/Documents/jekyll/skypacific.github.io
 
 # tracking & ad code
-#fb_app_id: "1611862309129685"
+fb_app_id: "380589692745930"
 google_tagmanager_id: "GTM-MLD9R29"
 #google_analytics_id: "UA-133318156-1"
 google_ad_client: "ca-pub-6479271863698606"
@@ -53,12 +53,12 @@ social:
 #    share_title: ?text=
 #    share_link: "&amp;url="
 
-# - icon:	facebook
-#   url:	https://facebook.com/skypacific
-#   desc: Connect with me facebook
-#   share_url: https://www.facebook.com/sharer.php
-#   share_title: ?t=
-#   share_link: "&amp;u="
+  - icon:	facebook
+    url:	https://www.facebook.com/heehun.kang.9
+    desc: Connect with me facebook
+    share_url: https://www.facebook.com/sharer.php
+    share_title: ?t=
+    share_link: "&amp;u="
 
   - icon:	github
     url:	https://github.com/skypacific
