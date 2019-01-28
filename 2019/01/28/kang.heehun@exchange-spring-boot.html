@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스</title>
+  <meta name="description" content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다." />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@skypacific" />
+    <meta name="twitter:title" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스" />
+    <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
+    
+    <meta name="twitter:description"  content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다." />
+    
+  
+  
+  <meta property="og:site_name" content="UXDev's Blog" />
+  <meta property="og:title" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스"/>
+  
+  <meta property="og:description" content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다." />
+  
+  <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
+  <meta property="og:url" content="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2019-01-28T00:00:00+09:00">
+
+  <meta property="fb:app_id" content="" />
+
+  <meta name="naver-site-verification" content="" />
+
+  <link rel="canonical" href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
+  <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png"/>
+  <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548654044669682000" />
+  <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
+  <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
+
+  <link rel="stylesheet" type="text/css" href="/css/monokai-sublime.css" />
+
+  <script src="/assets/js/webfont.js"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      custom: {
+        families: ['Spoqa Han Sans'],
+        urls: ['/css/spoqa-han-sans-font.css']
+      }
+    });
+  </script>
+
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6479271863698606",
+      enable_page_level_ads: true
+    });
+  </script>
+  
+</head>
+
+  <body itemscope itemtype="http://schema.org/BlogPosting">
+    <!-- header start -->
+
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MLD9R29');</script>
+
+
+
+
+
+
+<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+
+<a href="https://skypacific.github.io" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
+<!-- header end -->
+
+
+    <main class="content" role="main">
+      <article class="post">
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+          <meta itemprop="name" content="UXDev's Blog">
+          <meta itemprop="url" content="https://skypacific.github.io">
+          <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+            <meta itemprop="url" content="https://skypacific.github.io/assets/images/internet.png">
+          </div>
+        </div>
+        <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+          <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg">
+        </div>
+        <meta itemprop="headline" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스">
+        <meta itemprop="mainEntityOfPage" content="/2019/01/28/kang.heehun@exchange-spring-boot.html">
+        <meta itemprop="datePublished" content="2019-01-28 00:00:00 +0900">
+        <meta itemprop="dateModified" content="2019-01-28 00:00:00 +0900">
+        
+        <div class="noarticleimage">
+          <div class="post-meta">
+            <h1 class="post-title">
+              스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스
+              
+            </h1>
+            <div class="cf post-meta-text">
+              <section class="share">
+                <div class="fb-like" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+                
+                  
+                
+              </section>
+              <div class="author-info">
+                <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+                <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  heehun kang<meta itemprop="name" content="heehun kang">
+<meta itemprop="url" content="https://skypacific.github.io/about">
+                </h4>
+                on
+                <time datetime="2019-01-28T00:00:00+09:00">28 Jan 2019</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <div>
+          <ul class="section-nav">
+</ul>
+<p><code class="highlighter-rouge">스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다.
+Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다.</code></p>
+
+<p>크게 Exchange 서버에 엑세스 방법은 EAS 와 EWS 2가지 방법이 있다.</p>
+
+<ol>
+  <li>EAS (Exchange ActiveSync)
+    <ul>
+      <li>EAS는 모바일 디바이스와 같은 클라이언트 어플리케이 접속을 하기 위해 만들어진 기술이다.</li>
+      <li>서버 to 서버는 지원하지 않는다.</li>
+      <li>모바일 기기의 개인정보관리자(PIM - Personal Information Manager)와 싱크를 맞추는것도 지원된다.</li>
+      <li>검색 기능에서 최대 200개 결과만 가져올 수 있다.</li>
+    </ul>
+  </li>
+  <li>EWS (Exchange Web Services)
+    <ul>
+      <li>EWA는 클라이언트 to 서버, 서버 to 서버 엑세스 둘 다 지원을 한다.</li>
+      <li>EWS에 비해 상대적으로 더 많은 기능들이 지원되고 더 많은 자원에 접근가능하다.</li>
+      <li>검색 밎 사용자 자원 조회에 허용 제한이 없다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>보다 자세한 차이점은 아래 링크에서 참고할 수 있다.<br>
+<a href="https://docs.microsoft.com/en-us/previous-versions/office/developer/exchange-server-interoperability-guidance/dn144954(v%3Dexchg.140)">Choosing between Exchange ActiveSync and EWS</a></p>
+
+<p>이 글에서는 이전 글 <a href="/2019/01/25/kang.heehun@introduce-spring-boot.html">스프링 부트 (Spring boot) 소개</a> 에 이어서 진행하도록 한다.<br>
+만약 이전 글을 읽지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.<br>
+<img class="emoji" title=":floppy_disk:" alt=":floppy_disk:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4be.png" height="20" width="20"> <a href="https://skypacific.github.io/assets/download/sbtest01.zip">sbtest01.zip 소스파일</a></p>
+
+          </div>
+          <p class="tags">
+            
+              <a href="/tags#spring-ref">Spring</a>
+            
+              <a href="/tags#springboot-ref">SpringBoot</a>
+            
+              <a href="/tags#back-end-ref">Back-end</a>
+            
+              <a href="/tags#exchange-ref">Exchange</a>
+            
+          </p>
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            <div class="fb-like" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+            
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+              <h4>heehun kang</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2019-01-28 00:00">28 Jan 2019</time></p>
+            </section>
+            <footer class="subscribe-info">
+                <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+                
+                <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> RSS 구독하기</span></a><br>
+                
+            </footer>
+          </div>
+
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <div class="googleads">
+              
+                 
+              
+            </div>
+          </div>
+        </div>
+
+        
+
+         
+        <div class="fb-comments-wrapper">
+          
+            <div class="fb-comments" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+          
+        </div>
+        
+
+        
+      </article>
+    </main>
+
+    <aside class="read-next">
+      
+      
+        <a class="read-next-story prev no-cover" href="/2019/01/25/kang.heehun@introduce-spring-boot.html">
+          <section class="post">
+            <h2>스프링 부트 (Spring boot) 소개</h2>
+            <p>최근 백엔드(Back-end) 자바 어플리케이션 개발에서 가장 핫한 프레임워크은 아무래도 스프링 부트가 아닐까 한다. 오늘은 이...</p>
+          </section>
+        </a>
+      
+    </aside>
+    <footer class="post-site-footer clearfix">
+      <section class="copyright"><a href="/">UXDev's Blog</a> © 2019</section>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548654044669682000"></script>
+<script type="text/javascript" src="/assets/js/readingtime.js"></script>
+<script>
+(function ($) {
+  "use strict";
+  $(document).ready(function(){
+
+    var $window = $(window),
+    $image = $('.post-image-image, .teaserimage-image');
+
+      $window.on('scroll', function() {
+        var top = $window.scrollTop();
+
+        if (top < 0 || top > 1500) { return; }
+        $image
+          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
+          .css('opacity', 1-Math.max(top/700, 0));
+      });
+      $window.trigger('scroll');
+
+      var height = $('.article-image').height();
+      $('.post-content').css('padding-top', height + 'px');
+
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+         && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({ scrollTop: target.offset().top }, 500);
+            return false;
+          }
+        }
+      });
+
+  });
+}(jQuery));
+</script>
+
+  </body>
+</html>

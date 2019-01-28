@@ -4,13 +4,50 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-01-28T01:02:11+09:00</updated>
+ <updated>2019-01-28T14:40:44+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스</title>
+   <link href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
+   <updated>2019-01-28T00:00:00+09:00</updated>
+   <id>https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot</id>
+   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다.
+Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;크게 Exchange 서버에 엑세스 방법은 EAS 와 EWS 2가지 방법이 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;EAS (Exchange ActiveSync)
+    &lt;ul&gt;
+      &lt;li&gt;EAS는 모바일 디바이스와 같은 클라이언트 어플리케이 접속을 하기 위해 만들어진 기술이다.&lt;/li&gt;
+      &lt;li&gt;서버 to 서버는 지원하지 않는다.&lt;/li&gt;
+      &lt;li&gt;모바일 기기의 개인정보관리자(PIM - Personal Information Manager)와 싱크를 맞추는것도 지원된다.&lt;/li&gt;
+      &lt;li&gt;검색 기능에서 최대 200개 결과만 가져올 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EWS (Exchange Web Services)
+    &lt;ul&gt;
+      &lt;li&gt;EWA는 클라이언트 to 서버, 서버 to 서버 엑세스 둘 다 지원을 한다.&lt;/li&gt;
+      &lt;li&gt;EWS에 비해 상대적으로 더 많은 기능들이 지원되고 더 많은 자원에 접근가능하다.&lt;/li&gt;
+      &lt;li&gt;검색 밎 사용자 자원 조회에 허용 제한이 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;보다 자세한 차이점은 아래 링크에서 참고할 수 있다.&lt;br /&gt;
+&lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/office/developer/exchange-server-interoperability-guidance/dn144954(v%3Dexchg.140)&quot;&gt;Choosing between Exchange ActiveSync and EWS&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;이 글에서는 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 에 이어서 진행하도록 한다.&lt;br /&gt;
+만약 이전 글을 읽지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
+:floppy_disk: &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>스프링 부트 (Spring boot) 소개</title>
@@ -110,7 +147,6 @@
 &lt;hr /&gt;
 
 &lt;h2 id=&quot;iii-웹서비스-접속&quot;&gt;III. 웹서비스 접속&lt;/h2&gt;
-
 &lt;h3 id=&quot;1-기본으로-생성된-웹서비스-접속&quot;&gt;1. 기본으로 생성된 웹서비스 접속&lt;/h3&gt;
 
 &lt;ul&gt;
@@ -125,7 +161,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;2-웹서비스에-hello-핸들러-추가&quot;&gt;2. 웹서비스에 /hello 핸들러 추가&lt;/h3&gt;
+&lt;h3 id=&quot;2-rest-웹서비스-hello-요청핸들러-추가&quot;&gt;2. REST 웹서비스 /hello 요청핸들러 추가&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -149,7 +185,7 @@
     &lt;p&gt;&lt;img src=&quot;/assets/images/java_application_main_hello.png&quot; alt=&quot;어플리케이션 메인 hello 핸들러 추가&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;프로젝트를 다시 빌드하고 웹브라우져를 열고 아래 링크에 접속한다.
+    &lt;p&gt;프로젝트를 다시 빌드하고 웹브라우져를 열고 아래 링크에 접속한다.&lt;br /&gt;
 &lt;a href=&quot;http://localhost:8080/hello&quot;&gt;http://localhost:8080/hello&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -158,6 +194,11 @@
     &lt;p&gt;&lt;img src=&quot;/assets/images/sbservice02.png&quot; alt=&quot;IntelliJ 에서 hello 핸들러 접속&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;본 예제에서 사용된 sbtest01.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
+:floppy_disk: &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 </content>
@@ -266,7 +307,7 @@ C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; git config &lt;span cl
 &lt;h3 id=&quot;6-docker-설치&quot;&gt;6. Docker 설치&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치
+    &lt;p&gt;웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치&lt;br /&gt;
 &lt;a href=&quot;https://hub.docker.com/editions/community/docker-ce-desktop-windows&quot;&gt;https://hub.docker.com/editions/community/docker-ce-desktop-windows&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -351,7 +392,7 @@ C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; git config &lt;span cl
 &lt;h3 id=&quot;6-docker-설치-1&quot;&gt;6. Docker 설치&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치
+    &lt;p&gt;웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치&lt;br /&gt;
 &lt;a href=&quot;https://hub.docker.com/editions/community/docker-ce-desktop-mac&quot;&gt;https://hub.docker.com/editions/community/docker-ce-desktop-mac&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -510,9 +551,9 @@ Eclipse 는 자바(JAVA)로 개발되어 있어 윈도우즈, 리눅스, 맥OS �
 
 &lt;p&gt;&lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;https://code.visualstudio.com/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;마이크로소프트에서 개발한 IDE로 기본기능은 코드편집기 수준이지만, 추가적인 플러그인을 설치하면 타 IDE 못지않는 역활을 수행한다.
+&lt;p&gt;마이크로소프트에서 개발한 IDE로 기본기능은 코드편집기 수준이지만, 추가적인 플러그인을 설치하면 타 IDE 못지않는 역활을 수행한다.&lt;br /&gt;
 VS Code 는 엘렉트론 프레임워크로 개발 되어있고 윈도우즈, 리눅스, 맥OS를 지원하며 속도도 상당히 빠르다.&lt;br /&gt;
-많은 플러그인들의 지원으로 .NET, Java, JavaScript, Python 등 현존하는 대부분의 백엔드, 프론트엔드 개발을 거의 다 지원한다.
+많은 플러그인들의 지원으로 .NET, Java, JavaScript, Python 등 현존하는 대부분의 백엔드, 프론트엔드 개발을 거의 다 지원한다.&lt;br /&gt;
 게임개발툴로 유명한 유니티의 IDE도 VS Code를 사용한다.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -531,10 +572,10 @@ VS Code 는 엘렉트론 프레임워크로 개발 되어있고 윈도우즈, �
 &lt;p&gt;JetBrain사에서 만든 IDE이다.&lt;br /&gt;
 자바 어플리케이션을 만드는데 특화 되어 있으나, 자바외에 Kotlin, Scala, Android, Mercurial, Groovy 등의 언어도 지원한다.&lt;/p&gt;
 
-&lt;p&gt;주목할만점으로는 다양한 벡엔드&amp;amp;프론트엔드 프로젝트 생성, 자동완성(auto completion), 소스코드분석, 지능형리펙토링, 디버거, 테스트러너 기능이 비교된 IDE 중에서 가장 우수하다.
+&lt;p&gt;주목할만점으로는 다양한 벡엔드&amp;amp;프론트엔드 프로젝트 생성, 자동완성(auto completion), 소스코드분석, 지능형리펙토링, 디버거, 테스트러너 기능이 비교된 IDE 중에서 가장 우수하다.&lt;br /&gt;
 이러한 기능들 덕분에 개발자의 생산성이 대폭 향상 된다.&lt;/p&gt;
 
-&lt;p&gt;Eclipse 로 생성된 프로젝트를 IntelliJ 프로젝트로 가져오거나(Import),
+&lt;p&gt;Eclipse 로 생성된 프로젝트를 IntelliJ 프로젝트로 가져오거나(Import),&lt;br /&gt;
 IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Export) 기능도 충실해서 Eclipse 사용자와 협업도 문제가 없다.&lt;/p&gt;
 
 &lt;p&gt;안드로이드 IDE인 안드로이드 스튜디오도 IntelliJ에 근간을 두고 있다.&lt;/p&gt;
@@ -558,6 +599,7 @@ IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Expo
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/IntelliJ03.gif&quot; alt=&quot;IntelliJ 스마트 코드 작성 3&quot; /&gt;&lt;/p&gt;
 
+&lt;hr /&gt;
 </content>
  </entry>
  
@@ -566,7 +608,7 @@ IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Expo
    <link href="https://skypacific.github.io/2019/01/21/kang.heehun@javascript-style-guide.html"/>
    <updated>2019-01-21T00:00:00+09:00</updated>
    <id>https://skypacific.github.io/2019/01/21/kang.heehun@javascript-style-guide</id>
-   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을 생성하기 위해 권장하는 스타일을 가이드 한다.&lt;/code&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을 생성하기 위해 권장하는 스타일을 모아보았다.&lt;/code&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;1-들여쓰기는-공백space를-사용하고-탭tab을-사용하지-않는다&quot;&gt;1. 들여쓰기는 공백(space)를 사용하고, 탭(tab)을 사용하지 않는다.&lt;/h1&gt;
 &lt;ul&gt;
@@ -672,6 +714,7 @@ IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Expo
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;hr /&gt;
 </content>
  </entry>
  
