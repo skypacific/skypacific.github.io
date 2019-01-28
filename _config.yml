@@ -3,6 +3,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-toc
+  - jemoji
 
 # Site settings
 title: "UXDev's Blog"
@@ -24,8 +25,8 @@ timezone: "Asia/Seoul"
 
 url: "https://skypacific.github.io" # the base hostname & protocol for your site
 baseurl: ""
-mailchimp: ""
-feedly: ""
+#mailchimp: ""
+#feedly: ""
 twitter_handle: "@skypacific"
 
 #fill in disqus shortname to use disqus
@@ -36,8 +37,9 @@ absolute_root_path: /Users/heehun.kang/Documents/jekyll/skypacific.github.io
 
 # tracking & ad code
 #fb_app_id: "1611862309129685"
-#google_analytics_id: "UA-43194822-1"
-#google_ad_client: "ca-pub-2468713653725581"
+google_tagmanager_id: "GTM-MLD9R29"
+#google_analytics_id: "UA-133318156-1"
+google_ad_client: "ca-pub-6479271863698606"
 #google_ad_slot_1_id: "1015072194"
 #google_ad_slot_2_id: "8649023787"
 #naver_site_verification: "cc257cc7988ed85c9db6c228330b4870f9dfa25f"
