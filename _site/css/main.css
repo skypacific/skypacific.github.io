@@ -62,7 +62,7 @@ body {
 
 .blog-header {
   width: 100%;
-  max-width: 700px;
+  background-color: #fafafa;
   margin: 0 auto;
   position: relative;
   padding: 0;
@@ -109,7 +109,8 @@ body {
     font-weight: normal;
     letter-spacing: -1px; }
   .blog-header .custom-links {
-    margin: 0 0 50px;
+    margin: 0 0 20px;
+    padding: 0 0 30px;
     text-align: center;
     color: #ccc; }
     .blog-header .custom-links a {
@@ -438,7 +439,7 @@ body {
     padding-bottom: 20px;
     color: #333; }
   .post .post-content a {
-    color: #db4d5e;
+    color: #479dfb;
     text-decoration: underline; }
   .post .post-content img {
     max-width: 100%;
@@ -824,7 +825,7 @@ pre {
       width: 80%;
       margin: 0 auto; }
       .read-next .read-next-story .post:before {
-        content: "Read This Next";
+        content: "다음글 보기";
         padding: 4px 10px 5px;
         text-transform: uppercase;
         font-size: 11px;
@@ -834,7 +835,7 @@ pre {
         border-radius: 4px;
         transition: all 0.5s ease; }
     .read-next .read-next-story.prev .post:before {
-      content: "You Might Enjoy"; }
+      content: "이전글 보기"; }
     .read-next .read-next-story h2 {
       margin-top: 30px;
       color: #fff;
@@ -931,12 +932,10 @@ pre {
   overflow-y: auto;
   list-style-type: none;
   transform: translate3d(-100%, -50%, 0);
-  opacity: 0;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.4, 0.95);
-  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.4, 0.95); }
-  .post .post-content .section-nav.active {
-    transform: translate3d(0, -50%, 0);
-    opacity: 1; }
+  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.4, 0.95);
+  transform: translate3d(0, -50%, 0);
+  opacity: 1; }
   .post .post-content .section-nav li {
     font-size: 13px;
     line-height: 140%;
@@ -953,8 +952,8 @@ pre {
       -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.4, 0.95); }
       .post .post-content .section-nav li a.active, .post .post-content .section-nav li a:hover {
         padding-left: 5px;
-        border-left: 3px solid #db4d5e;
-        color: #db4d5e; }
+        border-left: 3px solid #479dfb;
+        color: #479dfb; }
 @media(max-width: 1100px) {
   .post .post-content .section-nav {
     display: none; } }

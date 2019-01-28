@@ -43,21 +43,12 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548664342527045000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548669165314753000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
   <link rel="stylesheet" type="text/css" href="/css/monokai-sublime.css" />
 
-  <script src="/assets/js/webfont.js"></script>
-  <script type="text/javascript">
-    WebFont.load({
-      custom: {
-        families: ['Spoqa Han Sans'],
-        urls: ['/css/spoqa-han-sans-font.css']
-      }
-    });
-  </script>
 
 
   
@@ -95,8 +86,6 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
-<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
-
 <a href="https://skypacific.github.io" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
 <!-- header end -->
 
@@ -127,7 +116,9 @@
             <div class="cf post-meta-text">
               <section class="share">
                 <div class="fb-like" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+                
+                <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
+                
                 
                   
                     <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EC%97%90%EC%84%9C+Exchange+%EC%84%9C%EB%B2%84+%EC%97%91%EC%84%B8%EC%8A%A4&amp;u=https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"
@@ -155,11 +146,7 @@
         <br>
         
         <section class="post-content">
-          <div class="post-reading">
-            <span class="post-reading-time"></span> read
-          </div>
           <a name="topofpage"></a>
-          <div>
           <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#i-프로젝트의-maven-디펜던시에-ews-모듈-추가">I. 프로젝트의 Maven 디펜던시에 EWS 모듈 추가</a></li>
 <li class="toc-entry toc-h2"><a href="#ii-프로젝트에-컨트롤러-클래스-생성">II. 프로젝트에 컨트롤러 클래스 생성</a>
@@ -177,7 +164,7 @@
 </li>
 <li class="toc-entry toc-h2"><a href="#iv-프로젝트를-빌드하고-실행">IV. 프로젝트를 빌드하고 실행</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#1--터미널컴맨드-쉘에서-jar-파일-빌드하고-실행">1.  터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행</a></li>
+<li class="toc-entry toc-h3"><a href="#1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행">1. 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행</a></li>
 <li class="toc-entry toc-h3"><a href="#2-intellij-에서-jar-파일-빌드하고-실행">2. IntelliJ 에서 JAR 파일 빌드하고 실행</a></li>
 </ul>
 </li>
@@ -220,8 +207,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 <a id="i-프로젝트의-maven-디펜던시에-ews-모듈-추가" class="anchor" href="#i-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%9D%98-maven-%EB%94%94%ED%8E%9C%EB%8D%98%EC%8B%9C%EC%97%90-ews-%EB%AA%A8%EB%93%88-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. 프로젝트의 Maven 디펜던시에 EWS 모듈 추가</h2>
 
 <ul>
-  <li>
-<i class="nf nf-mdi-file_xml"></i> 프로젝트 루트에 있는 Maven 디펜던시 파일 (pom.xml)을 열고 아래 디펜던시를 추가한다.
+  <li>프로젝트 루트에 있는 Maven 디펜던시 파일 (pom.xml)을 열고 아래 디펜던시를 추가한다.
     <div class="language-xml highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;dependency&gt;</span>
       <span class="nt">&lt;groupId&gt;</span>com.microsoft.ews-java-api<span class="nt">&lt;/groupId&gt;</span>
@@ -441,8 +427,8 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 <h2 id="iv-프로젝트를-빌드하고-실행">
 <a id="iv-프로젝트를-빌드하고-실행" class="anchor" href="#iv-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EB%B9%8C%EB%93%9C%ED%95%98%EA%B3%A0-%EC%8B%A4%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>IV. 프로젝트를 빌드하고 실행</h2>
 
-<h3 id="1--터미널컴맨드-쉘에서-jar-파일-빌드하고-실행">
-<a id="1--터미널컴맨드-쉘에서-jar-파일-빌드하고-실행" class="anchor" href="#1--%ED%84%B0%EB%AF%B8%EB%84%90%EC%BB%B4%EB%A7%A8%EB%93%9C-%EC%89%98%EC%97%90%EC%84%9C-jar-%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C%ED%95%98%EA%B3%A0-%EC%8B%A4%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. <i class="nf nf-oct-terminal"></i> 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행</h3>
+<h3 id="1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행">
+<a id="1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행" class="anchor" href="#1-%ED%84%B0%EB%AF%B8%EB%84%90%EC%BB%B4%EB%A7%A8%EB%93%9C-%EC%89%98%EC%97%90%EC%84%9C-jar-%ED%8C%8C%EC%9D%BC-%EB%B9%8C%EB%93%9C%ED%95%98%EA%B3%A0-%EC%8B%A4%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행</h3>
 
 <ul>
   <li>위의 프로젝트 파일이 생성된 폴더로 이동한다.
@@ -501,7 +487,6 @@ http://localhost:8080//ews/user/inbox</p>
 <hr>
 
 
-          </div>
           <p class="tags">
             
               <a href="/tags#spring-ref">Spring</a>
@@ -517,7 +502,9 @@ http://localhost:8080//ews/user/inbox</p>
         <footer class="post-footer">
           <section class="share">
             <div class="fb-like" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+            
+            <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
+            
             
               
                 <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EC%97%90%EC%84%9C+Exchange+%EC%84%9C%EB%B2%84+%EC%97%91%EC%84%B8%EC%8A%A4&amp;u=https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot"
@@ -531,34 +518,7 @@ http://localhost:8080//ews/user/inbox</p>
           </section>
         </footer>
         <div class="bottom-teaser cf">
-          <div class="isLeft">
-            <h5 class="index-headline featured"><span>Written by</span></h5>
-            <section class="author">
-              <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
-              <h4>heehun kang</h4>
-              <p class="bio"></p>
-              <hr>
-              <p class="published">Published <time datetime="2019-01-28 00:00">28 Jan 2019</time></p>
-            </section>
-            <footer class="subscribe-info">
-                <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
-                
-                <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> RSS 구독하기</span></a><br />
-                
-            </footer>
-          </div>
-
-          <div class="isRight">
-            <h5 class="index-headline featured"><span>Supported by</span></h5>
-            <div class="googleads">
-              
-                &nbsp;
-              
-            </div>
-          </div>
         </div>
-
-        
 
          
         <div class="fb-comments-wrapper">
@@ -589,44 +549,7 @@ http://localhost:8080//ews/user/inbox</p>
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548664342527045000"></script>
-<script type="text/javascript" src="/assets/js/readingtime.js"></script>
-<script>
-(function ($) {
-  "use strict";
-  $(document).ready(function(){
-
-    var $window = $(window),
-    $image = $('.post-image-image, .teaserimage-image');
-
-      $window.on('scroll', function() {
-        var top = $window.scrollTop();
-
-        if (top < 0 || top > 1500) { return; }
-        $image
-          .css('transform', 'translate3d(0px, '+top/3+'px, 0px)')
-          .css('opacity', 1-Math.max(top/700, 0));
-      });
-      $window.trigger('scroll');
-
-      var height = $('.article-image').height();
-      $('.post-content').css('padding-top', height + 'px');
-
-      $('a[href*=#]:not([href=#])').click(function() {
-        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-         && location.hostname == this.hostname) {
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-          if (target.length) {
-            $('html,body').animate({ scrollTop: target.offset().top }, 500);
-            return false;
-          }
-        }
-      });
-
-  });
-}(jQuery));
-</script>
+<script type="text/javascript" src="/assets/js/index.js?1548669165314753000"></script>
 
   </body>
 </html>

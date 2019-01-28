@@ -20,6 +20,7 @@ permalink: /about/
 
 ## Contact me
 
+- <i class="nf nf-fa-facebook"></i> [facebook.com/heehun.kang.9](https://www.facebook.com/heehun.kang.9)
 - <i class="nf nf-fa-instagram"></i> [instagram.com/netwiredz](https://www.instagram.com/netwiredz)
 - <i class="nf nf-fa-github"></i> [github.com/skypacific](https://github.com/skypacific/)
 - <i class="nf nf-oct-mail"></i> [skypacific@gmail.com](mailto:skypacific@gmail.com)

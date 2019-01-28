@@ -6,8 +6,8 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 28 Jan 2019 17:32:22 +0900</pubDate>
-    <lastBuildDate>Mon, 28 Jan 2019 17:32:22 +0900</lastBuildDate>
+    <pubDate>Mon, 28 Jan 2019 18:52:45 +0900</pubDate>
+    <lastBuildDate>Mon, 28 Jan 2019 18:52:45 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -49,7 +49,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 &lt;h2 id=&quot;i-프로젝트의-maven-디펜던시에-ews-모듈-추가&quot;&gt;I. 프로젝트의 Maven 디펜던시에 EWS 모듈 추가&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;i class=&quot;nf nf-mdi-file_xml&quot;&gt;&lt;/i&gt; 프로젝트 루트에 있는 Maven 디펜던시 파일 (pom.xml)을 열고 아래 디펜던시를 추가한다.
+  &lt;li&gt;프로젝트 루트에 있는 Maven 디펜던시 파일 (pom.xml)을 열고 아래 디펜던시를 추가한다.
     &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.microsoft.ews-java-api&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
       &lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;ews-java-api&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
@@ -247,7 +247,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 
 &lt;h2 id=&quot;iv-프로젝트를-빌드하고-실행&quot;&gt;IV. 프로젝트를 빌드하고 실행&lt;/h2&gt;
 
-&lt;h3 id=&quot;1--터미널컴맨드-쉘에서-jar-파일-빌드하고-실행&quot;&gt;1. &lt;i class=&quot;nf nf-oct-terminal&quot;&gt;&lt;/i&gt; 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행&lt;/h3&gt;
+&lt;h3 id=&quot;1-터미널컴맨드-쉘에서-jar-파일-빌드하고-실행&quot;&gt;1. 터미널(컴맨드) 쉘에서 JAR 파일 빌드하고 실행&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;위의 프로젝트 파일이 생성된 폴더로 이동한다.

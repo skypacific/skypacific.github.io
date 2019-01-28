@@ -59,7 +59,9 @@
             <div class="cf post-meta-text">
               <section class="share">
                 <div class="fb-like" data-href="{{ site.url }}{{ page.url }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+                
+                <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
+                
                 {% for social in site.social %}
                   {% if social.share_url != null %}
                     <a class="icon-{{ social.icon }}" href="{{ social.share_url }}{{ social.share_title }}{{page.title | cgi_escape}}{{ social.share_link }}{{site.url}}{{page.id}}.html"
@@ -85,13 +87,8 @@
         <br>
         {% endif %}
         <section class="post-content">
-          <div class="post-reading">
-            <span class="post-reading-time"></span> read
-          </div>
           <a name="topofpage"></a>
-          <div>
           {{ content | toc }}
-          </div>
           <p class="tags">
             {% for tag in page.tags %}
               <a href="/tags#{{ tag | slugify }}-ref">{{ tag }}</a>
@@ -101,7 +98,9 @@
         <footer class="post-footer">
           <section class="share">
             <div class="fb-like" data-href="{{ site.url }}{{ page.url }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+            
+            <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
+            
             {% for social in site.social %}
               {% if social.share_url != null %}
                 <a class="icon-{{ social.icon }}" href="{{ social.share_url }}{{ social.share_title }}{{page.title | cgi_escape}}{{ social.share_link }}{{site.url}}{{page.id}}"
@@ -113,48 +112,7 @@
           </section>
         </footer>
         <div class="bottom-teaser cf">
-          <div class="isLeft">
-            <h5 class="index-headline featured"><span>Written by</span></h5>
-            <section class="author">
-              <div class="author-image" style="background-image: url({{site.author_image}})">Blog Logo</div>
-              <h4>{{ site.author }}</h4>
-              <p class="bio">{{author.bio}}</p>
-              <hr>
-              <p class="published">Published <time datetime="{{ page.date | date: "%F %R" }}">{{ page.date | date_to_string }}</time></p>
-            </section>
-            <footer class="subscribe-info">
-                <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
-                {% if site.feedly %}
-                <a class="subscribe" href="{{ site.feedly }}"  target="blank"><img id='feedlyFollow' src='//s3.feedly.com/img/follows/feedly-follow-logo-black_2x.png' alt='follow us in feedly' width='18' height='18'> Feedly 구독하기</a><br />
-                {% endif %}
-                <a class="subscribe" href="{{ "/feed.xml" | prepend: site.baseurl }}"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> RSS 구독하기</span></a><br />
-                {% if site.mailchimp %} 
-                  <a class="subscribe" href="{{ site.mailchimp }}" target="_blank"> <span class="tooltip"> <i class="nf nf-oct-mail"></i> Email 구독하기</span></a>
-                {% endif %}
-            </footer>
-          </div>
-
-          <div class="isRight">
-            <h5 class="index-headline featured"><span>Supported by</span></h5>
-            <div class="googleads">
-              {% if site.google_ad_slot_1_id %}
-                <!-- 기본 광고 -->
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="{{ site.google_ad_client }}"
-                    data-ad-slot="{{ site.google_ad_slot_1_id }}"
-                    data-ad-format="auto"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-              {% else %}
-                &nbsp;
-              {% endif %}
-            </div>
-          </div>
         </div>
-
-        
 
         {% if page.comments %} 
         <div class="fb-comments-wrapper">
