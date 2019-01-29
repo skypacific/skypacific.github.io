@@ -6,8 +6,8 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 29 Jan 2019 18:50:26 +0900</pubDate>
-    <lastBuildDate>Tue, 29 Jan 2019 18:50:26 +0900</lastBuildDate>
+    <pubDate>Tue, 29 Jan 2019 19:09:05 +0900</pubDate>
+    <lastBuildDate>Tue, 29 Jan 2019 19:09:05 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -330,8 +330,8 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;이 글에서는 간단한 REST 웹서비스를 만들어보기로 하자.&lt;br /&gt;
-일반적인 방법과 IntelliJ를 사용해서 만드는 방법 두가지 다 진행 해보도록 한다.&lt;br /&gt;
-(Eclipse, VS Code, Atom 사용자는 &lt;a href=&quot;https://spring.io/tools&quot;&gt;Spring Tool 4&lt;/a&gt; 사용을 권장한다.)&lt;/p&gt;
+&lt;strong&gt;Spring Initializr를 사용하는 방법&lt;/strong&gt;과 &lt;strong&gt;통합개발환경을 사용하는 방법&lt;/strong&gt; 두가지 다 진행 해보도록 한다.&lt;br /&gt;
+여기서는 통합개발환경으로 IntelliJ를 사용하였지만 Eclipse, VS Code, Atom 사용자는 &lt;a href=&quot;https://spring.io/tools&quot;&gt;Spring Tool 4&lt;/a&gt; 를 다운받아 설치하는것을 권장한다.&lt;/p&gt;
 
 &lt;h2 id=&quot;i-spring-initializr-로-프로젝트-시작&quot;&gt;I. Spring Initializr 로 프로젝트 시작&lt;/h2&gt;
 
@@ -367,12 +367,12 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
   &lt;li&gt;IntelliJ에서 “New Project…“를 클릭하고, 왼쪽 프로젝트 템플릿 목록에서 “Spring Initializr”를 선택하고 “Next” 버튼을 클릭한다.&lt;/li&gt;
   &lt;li&gt;“Group”, “Artifact”, “Type”, “Language” 등의 항목에 값을 입력하고 “Next” 버튼을 클릭한다.&lt;/li&gt;
   &lt;li&gt;이 어플리케이션에서 필요한 “Web” 모듈을 선택하고 “Next” 버튼을 클릭한다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;최종적으로 입력한 내용이 맞는지 확인하고 “Finish” 버튼을 클릭한다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/springboot02.gif&quot; alt=&quot;IntelliJ 를 사용해서 프로젝트를 생성&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;최종적으로 입력한 내용이 맞는지 확인하고 “Finish” 버튼을 클릭한다.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Spring Tool 4 (Eclipse) 에서 프로젝트를 생성할때는 File -&amp;gt; New -&amp;gt; Spring Starter Project 를 선택하면 된다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/springboot02.gif&quot; alt=&quot;IntelliJ 를 사용해서 프로젝트를 생성&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -400,12 +400,12 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;IntelliJ에서 생성된 프로젝트를 연다.&lt;/li&gt;
   &lt;li&gt;메뉴 “Build” -&amp;gt; “Build Project” 를 클릭하여 프로젝트를 빌드한다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;메뉴 “Run” -&amp;gt; “Run 프로젝트명” 를 클릭하여 프로젝트를 실행한다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/assets/images/sbbuild02.gif&quot; alt=&quot;IntelliJ 에서 JAR 파일 빌드하고 실행&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;메뉴 “Run” -&amp;gt; “Run 프로젝트명” 를 클릭하여 프로젝트를 실행한다.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Spring Tool 4 (Eclipse) 에서도 위와 같은 메뉴를 실행하면 된다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/sbbuild02.gif&quot; alt=&quot;IntelliJ 에서 JAR 파일 빌드하고 실행&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 

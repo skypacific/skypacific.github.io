@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548755426230199000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548756545190279000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -164,8 +164,8 @@
 </ul>
 
 <p>이 글에서는 간단한 REST 웹서비스를 만들어보기로 하자.<br>
-일반적인 방법과 IntelliJ를 사용해서 만드는 방법 두가지 다 진행 해보도록 한다.<br>
-(Eclipse, VS Code, Atom 사용자는 <a href="https://spring.io/tools">Spring Tool 4</a> 사용을 권장한다.)</p>
+<strong>Spring Initializr를 사용하는 방법</strong>과 <strong>통합개발환경을 사용하는 방법</strong> 두가지 다 진행 해보도록 한다.<br>
+여기서는 통합개발환경으로 IntelliJ를 사용하였지만 Eclipse, VS Code, Atom 사용자는 <a href="https://spring.io/tools">Spring Tool 4</a> 를 다운받아 설치하는것을 권장한다.</p>
 
 <h2 id="i-spring-initializr-로-프로젝트-시작">
 <a id="i-spring-initializr-로-프로젝트-시작" class="anchor" href="#i-spring-initializr-%EB%A1%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%8B%9C%EC%9E%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Spring Initializr 로 프로젝트 시작</h2>
@@ -208,12 +208,12 @@
   <li>IntelliJ에서 “New Project…“를 클릭하고, 왼쪽 프로젝트 템플릿 목록에서 “Spring Initializr”를 선택하고 “Next” 버튼을 클릭한다.</li>
   <li>“Group”, “Artifact”, “Type”, “Language” 등의 항목에 값을 입력하고 “Next” 버튼을 클릭한다.</li>
   <li>이 어플리케이션에서 필요한 “Web” 모듈을 선택하고 “Next” 버튼을 클릭한다.</li>
-  <li>
-    <p>최종적으로 입력한 내용이 맞는지 확인하고 “Finish” 버튼을 클릭한다.</p>
-
-    <p><img src="/assets/images/springboot02.gif" alt="IntelliJ 를 사용해서 프로젝트를 생성"></p>
-  </li>
+  <li>최종적으로 입력한 내용이 맞는지 확인하고 “Finish” 버튼을 클릭한다.</li>
 </ul>
+
+<p><code class="highlighter-rouge">Spring Tool 4 (Eclipse) 에서 프로젝트를 생성할때는 File -&gt; New -&gt; Spring Starter Project 를 선택하면 된다.</code></p>
+
+<p><img src="/assets/images/springboot02.gif" alt="IntelliJ 를 사용해서 프로젝트를 생성"></p>
 
 <hr>
 
@@ -247,12 +247,12 @@
 <ul>
   <li>IntelliJ에서 생성된 프로젝트를 연다.</li>
   <li>메뉴 “Build” -&gt; “Build Project” 를 클릭하여 프로젝트를 빌드한다.</li>
-  <li>
-    <p>메뉴 “Run” -&gt; “Run 프로젝트명” 를 클릭하여 프로젝트를 실행한다.</p>
-
-    <p><img src="/assets/images/sbbuild02.gif" alt="IntelliJ 에서 JAR 파일 빌드하고 실행"></p>
-  </li>
+  <li>메뉴 “Run” -&gt; “Run 프로젝트명” 를 클릭하여 프로젝트를 실행한다.</li>
 </ul>
+
+<p><code class="highlighter-rouge">Spring Tool 4 (Eclipse) 에서도 위와 같은 메뉴를 실행하면 된다.</code></p>
+
+<p><img src="/assets/images/sbbuild02.gif" alt="IntelliJ 에서 JAR 파일 빌드하고 실행"></p>
 
 <hr>
 
@@ -402,7 +402,7 @@
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548755426230199000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548756545190279000"></script>
 
   </body>
 </html>
