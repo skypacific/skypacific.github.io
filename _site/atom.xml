@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-01-29T18:42:00+09:00</updated>
+ <updated>2019-01-29T18:50:26+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -34,8 +34,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 &lt;ul&gt;
   &lt;li&gt;EWA는 클라이언트 to 서버, 서버 to 서버 둘 다 지원을 한다.&lt;/li&gt;
   &lt;li&gt;EWS에 비해 상대적으로 더 많은 기능들이 지원되고 더 많은 자원에 접근가능하다.&lt;/li&gt;
-  &lt;li&gt;검색 기능에 허용 제한이 없다.&lt;/li&gt;
-  &lt;li&gt;더 많은 사용자의 자원에 접속할 수 있다.&lt;/li&gt;
+  &lt;li&gt;검색 기능에 허용가능한 제한이 없다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;보다 자세한 차이점은 아래 링크에서 참고할 수 있다.&lt;br /&gt;
