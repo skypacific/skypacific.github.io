@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>UXDev's Blog</title>
- <link href="https://skypacific.github.io/atom.xml" rel="self"/>
- <link href="https://skypacific.github.io/"/>
- <updated>2019-01-28T19:11:09+09:00</updated>
- <id>https://skypacific.github.io</id>
+ <link href="http://localhost:4000/atom.xml" rel="self"/>
+ <link href="http://localhost:4000/"/>
+ <updated>2019-01-29T11:04:44+09:00</updated>
+ <id>http://localhost:4000</id>
  <author>
    <name></name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스</title>
-   <link href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
+   <link href="http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
    <updated>2019-01-28T00:00:00+09:00</updated>
-   <id>https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot</id>
+   <id>http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot</id>
    <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다.
 Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다.&lt;/code&gt;&lt;/p&gt;
 
@@ -47,7 +47,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 
 &lt;p&gt;이 글에서는 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 에 이어서 진행하도록 한다.&lt;br /&gt;
 만약 이전 글을 읽지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
-&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://localhost:4000/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -301,7 +301,7 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;본 예제 결과물 sbtest02.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
-&lt;i class=&quot;nf nf-fa-instagram&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest02.zip&quot;&gt;sbtest02.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://localhost:4000/assets/download/sbtest02.zip&quot;&gt;sbtest02.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -310,9 +310,9 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
  
  <entry>
    <title>스프링 부트 (Spring boot) 소개</title>
-   <link href="https://skypacific.github.io/2019/01/25/kang.heehun@introduce-spring-boot.html"/>
+   <link href="http://localhost:4000/2019/01/25/kang.heehun@introduce-spring-boot.html"/>
    <updated>2019-01-25T00:00:00+09:00</updated>
-   <id>https://skypacific.github.io/2019/01/25/kang.heehun@introduce-spring-boot</id>
+   <id>http://localhost:4000/2019/01/25/kang.heehun@introduce-spring-boot</id>
    <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;최근 백엔드(Back-end) 자바 어플리케이션 개발에서 가장 핫한 프레임워크은 아무래도 스프링 부트가 아닐까 한다.
 오늘은 이 스프링 부트에 대해 소개하는 시간을 가져본다.&lt;/code&gt;&lt;/p&gt;
 
@@ -457,7 +457,7 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;본 예제 결과물 sbtest01.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
-&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://localhost:4000/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 </content>
@@ -465,9 +465,9 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
  
  <entry>
    <title>개발자 기본 개발 환경 설정</title>
-   <link href="https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html"/>
+   <link href="http://localhost:4000/2019/01/24/kang.heehun@dev-env-setting.html"/>
    <updated>2019-01-24T00:00:00+09:00</updated>
-   <id>https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting</id>
+   <id>http://localhost:4000/2019/01/24/kang.heehun@dev-env-setting</id>
    <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;개발자가 처음 조직 및 프로젝트에 투입되었을때, 기본적으로 수행해야 할 개발 환경 설정에 대해 기술한다.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;일반적으로 개발도구를 설치할때 다음과 같이 세가지 방법이 있을 수 있다.&lt;/p&gt;
@@ -778,9 +778,9 @@ C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; git config &lt;span cl
  
  <entry>
    <title>개발자를 위한 통합개발환경 비교</title>
-   <link href="https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html"/>
+   <link href="http://localhost:4000/2019/01/22/kang.heehun@ides-for-developers.html"/>
    <updated>2019-01-22T00:00:00+09:00</updated>
-   <id>https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers</id>
+   <id>http://localhost:4000/2019/01/22/kang.heehun@ides-for-developers</id>
    <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;현재 시장에는 개발자를 위한 많은 통합개발환경(이하 IDE)가 있다.&lt;/code&gt;&lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;본 글에서는 주류로 많이 사용중인 Eclipse, VS Code, IntelliJ 를 비교분석 해보도록 한다.&lt;/code&gt;&lt;/p&gt;
 
@@ -864,9 +864,9 @@ IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Expo
  
  <entry>
    <title>자바스크립트 스타일 가이드</title>
-   <link href="https://skypacific.github.io/2019/01/21/kang.heehun@javascript-style-guide.html"/>
+   <link href="http://localhost:4000/2019/01/21/kang.heehun@javascript-style-guide.html"/>
    <updated>2019-01-21T00:00:00+09:00</updated>
-   <id>https://skypacific.github.io/2019/01/21/kang.heehun@javascript-style-guide</id>
+   <id>http://localhost:4000/2019/01/21/kang.heehun@javascript-style-guide</id>
    <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;본 스타일 가이드는 여러 개발자들이 협업을 통해서 자바스크립트 소스를 작성할때, 가장 깔끔하고 이해하기 쉬운 결과물을 생성하기 위해 권장하는 스타일을 모아보았다.&lt;/code&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;1-들여쓰기는-공백space를-사용하고-탭tab을-사용하지-않는다&quot;&gt;1. 들여쓰기는 공백(space)를 사용하고, 탭(tab)을 사용하지 않는다.&lt;/h1&gt;

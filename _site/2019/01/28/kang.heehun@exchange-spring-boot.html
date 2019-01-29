@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@skypacific" />
     <meta name="twitter:title" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스" />
-    <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
+    <meta name="twitter:image" content="http://localhost:4000/assets/images/internet.png" />
     
     <meta name="twitter:description"  content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
     
@@ -29,8 +29,8 @@
   
   <meta property="og:description" content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
   
-  <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
-  <meta property="og:url" content="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" />
+  <meta property="og:image" content="http://localhost:4000/assets/images/internet.png" />
+  <meta property="og:url" content="http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot.html" />
   <meta property="og:type" content="article" />
   <meta property="article:published_time" content="2019-01-28T00:00:00+09:00">
 
@@ -38,12 +38,12 @@
 
   <meta name="naver-site-verification" content="" />
 
-  <link rel="canonical" href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
+  <link rel="canonical" href="http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
   <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png"/>
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548670269050505000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548727484373994000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -86,7 +86,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 
-<a href="https://skypacific.github.io" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
+<a href="http://localhost:4000" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
 <!-- header end -->
 
 
@@ -94,13 +94,13 @@
       <article class="post">
         <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
           <meta itemprop="name" content="UXDev's Blog" />
-          <meta itemprop="url" content="https://skypacific.github.io" />
+          <meta itemprop="url" content="http://localhost:4000" />
           <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-            <meta itemprop="url" content="https://skypacific.github.io/assets/images/internet.png" />
+            <meta itemprop="url" content="http://localhost:4000/assets/images/internet.png" />
           </div>
         </div>
         <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
-          <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg" />
+          <meta itemprop="url" content="http://localhost:4000/assets/images/kang.heehun.jpg" />
         </div>
         <meta itemprop="headline" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스" />
         <meta itemprop="mainEntityOfPage" content="/2019/01/28/kang.heehun@exchange-spring-boot.html" />
@@ -114,29 +114,14 @@
               
             </h1>
             <div class="cf post-meta-text">
-              <section class="share">
-                <div class="fb-like" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                
-                <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
-                
-                
-                  
-                    <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EC%97%90%EC%84%9C+Exchange+%EC%84%9C%EB%B2%84+%EC%97%91%EC%84%B8%EC%8A%A4&amp;u=https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"
-                      onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
-                      <i class="nf nf-fa-facebook"></i><span class="hidden">facebook</span>
-                    </a>
-                  
-                
-                  
-                
-              </section>
               <div class="author-info">
                 <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
                 <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                  heehun kang<meta itemprop="name" content="heehun kang" /><meta itemprop="url" content="https://skypacific.github.io/about" />
+                  HeeHun Kang<meta itemprop="name" content="HeeHun Kang" /><meta itemprop="url" content="http://localhost:4000/about" />
                 </h4>
-                on
-                <time datetime="2019-01-28T00:00:00+09:00">28 Jan 2019</time>
+                &nbsp;&nbsp;
+                <i class="nf nf-fa-calendar"></i>
+                <time datetime="2019-01-28">2019-01-28</time>
               </div>
             </div>
           </div>
@@ -199,7 +184,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 
 <p>이 글에서는 이전 글 <a href="/2019/01/25/kang.heehun@introduce-spring-boot.html">스프링 부트 (Spring boot) 소개</a> 에 이어서 진행하도록 한다.<br>
 만약 이전 글을 읽지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.<br>
-<i class="nf nf-fa-archive"></i> <a href="https://skypacific.github.io/assets/download/sbtest01.zip">sbtest01.zip 소스파일</a></p>
+<i class="nf nf-fa-archive"></i> <a href="http://localhost:4000/assets/download/sbtest01.zip">sbtest01.zip 소스파일</a></p>
 
 <hr>
 
@@ -482,7 +467,7 @@ http://localhost:8080//ews/user/inbox</p>
 <hr>
 
 <p>본 예제 결과물 sbtest02.zip 소스파일은 아래 링크에서 다운받을 수 있다.<br>
-<i class="nf nf-fa-instagram"></i> <a href="https://skypacific.github.io/assets/download/sbtest02.zip">sbtest02.zip 소스파일</a></p>
+<i class="nf nf-fa-archive"></i> <a href="http://localhost:4000/assets/download/sbtest02.zip">sbtest02.zip 소스파일</a></p>
 
 <hr>
 
@@ -501,35 +486,54 @@ http://localhost:8080//ews/user/inbox</p>
         </section>
         <footer class="post-footer">
           <section class="share">
-            <div class="fb-like" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-like" data-href="http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
             
-            <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
+            
+            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EC%97%90%EC%84%9C+Exchange+%EC%84%9C%EB%B2%84+%EC%97%91%EC%84%B8%EC%8A%A4&amp;u=http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot"
+               onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+              <i class="nf nf-fa-facebook"></i><span class="hidden">facebook</span>
+            </a>
             
             
-              
-                <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EC%97%90%EC%84%9C+Exchange+%EC%84%9C%EB%B2%84+%EC%97%91%EC%84%B8%EC%8A%A4&amp;u=https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot"
-                  onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
-                <i class="nf nf-fa-facebook"></i><span class="hidden">facebook</span>
-                </a>
-              
             
-              
             
           </section>
         </footer>
         <div class="bottom-teaser cf">
-        </div>
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+              <h4>HeeHun Kang</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2019-01-28">2019-01-28</time></p>
+            </section>
+          </div>
 
-         
-        <div class="fb-comments-wrapper">
-          
-            <div class="fb-comments" data-href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" data-num-posts="5" data-order-by="social" data-width="100%"></div>
-          
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> You should subscribe to my feed.</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright <a href="http://localhost:4000/">HeeHun Kang</a> &copy; 2019<br>All rights reserved.</section>
+              </div>
+            </footer>
         </div>
-        
 
         
       </article>
+
+      
+      <div class="fb-comments-wrapper">
+        
+        <div class="fb-comments" data-href="http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot.html" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+        
+      </div>
+      
+      
     </main>
 
     <aside class="read-next">
@@ -549,7 +553,7 @@ http://localhost:8080//ews/user/inbox</p>
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548670269050505000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548727484373994000"></script>
 
   </body>
 </html>

@@ -39,8 +39,9 @@
             <div class="cf post-meta-text">
               <div class="author-image" style="background-image: url({{ site.author_image }})">Blog Logo</div>
               <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">{{ site.author }}</h4>
-              on
-              <time datetime="{{ page.date | date: "%F %R" }}">{{ page.date | date_to_string }}</time>
+              &nbsp;&nbsp;
+              <i class="nf nf-fa-calendar"></i>
+              <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y-%m-%d' }}</time>
             </div>
             <div style="text-align:center">
               <a href="#topofpage" class="topofpage"><i class="nf nf-fa-angle-down"></i></a>
@@ -57,27 +58,14 @@
               {% endif %}
             </h1>
             <div class="cf post-meta-text">
-              <section class="share">
-                <div class="fb-like" data-href="{{ site.url }}{{ page.url }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                
-                <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
-                
-                {% for social in site.social %}
-                  {% if social.share_url != null %}
-                    <a class="icon-{{ social.icon }}" href="{{ social.share_url }}{{ social.share_title }}{{page.title | cgi_escape}}{{ social.share_link }}{{site.url}}{{page.id}}.html"
-                      onclick="window.open(this.href, '{{ social.icon }}-share', 'width=550,height=255');return false;">
-                      <i class="nf nf-fa-{{ social.icon }}"></i><span class="hidden">{{ social.icon }}</span>
-                    </a>
-                  {% endif %}
-                {% endfor %}
-              </section>
               <div class="author-info">
                 <div class="author-image" style="background-image: url({{ site.author_image }})">Blog Logo</div>
                 <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">
                   {%if page.author %}{{ page.author }}<meta itemprop="name" content="{{ page.author }}" />{% else %}{{ site.author }}<meta itemprop="name" content="{{ site.author }}" /><meta itemprop="url" content="{{ site.url }}/about" />{% endif %}
                 </h4>
-                on
-                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date_to_string }}</time>
+                &nbsp;&nbsp;
+                <i class="nf nf-fa-calendar"></i>
+                <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y-%m-%d' }}</time>
               </div>
             </div>
           </div>
@@ -98,31 +86,39 @@
         <footer class="post-footer">
           <section class="share">
             <div class="fb-like" data-href="{{ site.url }}{{ page.url }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-            
-            <!--<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>-->
-            
+            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
             {% for social in site.social %}
-              {% if social.share_url != null %}
-                <a class="icon-{{ social.icon }}" href="{{ social.share_url }}{{ social.share_title }}{{page.title | cgi_escape}}{{ social.share_link }}{{site.url}}{{page.id}}"
-                  onclick="window.open(this.href, '{{ social.icon }}-share', 'width=550,height=255');return false;">
-                <i class="nf nf-fa-{{ social.icon }}"></i><span class="hidden">{{ social.icon }}</span>
-                </a>
-              {% endif %}
+            {% if social.share_url != null %}
+            <a class="icon-{{ social.icon }}" href="{{ social.share_url }}{{ social.share_title }}{{page.title | cgi_escape}}{{ social.share_link }}{{site.url}}{{page.id}}"
+               onclick="window.open(this.href, '{{ social.icon }}-share', 'width=550,height=255');return false;">
+              <i class="nf nf-fa-{{ social.icon }}"></i><span class="hidden">{{ social.icon }}</span>
+            </a>
+            {% endif %}
             {% endfor %}
           </section>
         </footer>
         <div class="bottom-teaser cf">
-        </div>
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url({{site.author_image}})">Blog Logo</div>
+              <h4>{{ site.author }}</h4>
+              <p class="bio">{{author.bio}}</p>
+              <hr>
+              <p class="published">Published <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y-%m-%d' }}</time></p>
+            </section>
+          </div>
 
-        {% if page.comments %} 
-        <div class="fb-comments-wrapper">
-          {% if page.fb_social_baseurl %} 
-            <div class="fb-comments" data-href="{{ page.fb_social_baseurl }}{{ page.url }}" data-num-posts="5" data-order-by="social" data-width="100%"></div>
-          {% else %}
-            <div class="fb-comments" data-href="{{ site.url }}{{ page.url }}" data-num-posts="5" data-order-by="social" data-width="100%"></div>
-          {% endif %}
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="{{ "/feed.xml" | prepend: site.baseurl }}"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> You should subscribe to my feed.</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright <a href="{{site.url}}/">{{site.author}}</a> &copy; {{ site.time | date: '%Y' }}<br>All rights reserved.</section>
+              </div>
+            </footer>
         </div>
-        {% endif %}
 
         {%if site.disqus %}
         <div id="disqus_thread"></div>
@@ -140,6 +136,17 @@
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
         {% endif %}
       </article>
+
+      {% if page.comments %}
+      <div class="fb-comments-wrapper">
+        {% if page.fb_social_baseurl %}
+        <div class="fb-comments" data-href="{{ page.fb_social_baseurl }}{{ page.url }}" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+        {% else %}
+        <div class="fb-comments" data-href="{{ site.url }}{{ page.url }}" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+        {% endif %}
+      </div>
+      {% endif %}
+      
     </main>
 
     <aside class="read-next">

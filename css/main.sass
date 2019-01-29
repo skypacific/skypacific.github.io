@@ -8,8 +8,8 @@
 
 $rs: 16px
 
-$font-serif: "Spoqa Han Sans", "Apple SD Gothic Neo", "Nanum Gothic", "나눔고딕", "Malgun Gothic"
-$font-sans: "Spoqa Han Sans", "Apple SD Gothic Neo", "Nanum Gothic", "나눔고딕", "Malgun Gothic"
+$font-serif: "Apple SD Gothic Neo", "Nanum Gothic", "나눔고딕", "Malgun Gothic"
+$font-sans: "Apple SD Gothic Neo", "Nanum Gothic", "나눔고딕", "Malgun Gothic"
 
 
 @mixin respond-to($breakpoint)
@@ -19,11 +19,6 @@ $font-sans: "Spoqa Han Sans", "Apple SD Gothic Neo", "Nanum Gothic", "나눔고�
 // Only needed for syntax highlighting
 %vertical-rhythm
   margin-bottom: $rs
-
-.pull-left
-  float: left
-.pull-right
-  float: right
 
 main
   display: block
@@ -77,6 +72,7 @@ body
 
 .blog-header
   width: 100%
+  //max-width: 680px
   background-color: #fafafa
   margin: 0 auto
   position: relative
@@ -133,7 +129,7 @@ body
 
 .content
   width: 100%
-  max-width: 700px
+  max-width: 680px
   margin: 0 auto
   word-wrap: break-word
   word-break: break-all
@@ -256,7 +252,7 @@ body
   margin: 0 auto
   padding: $rs*3 0
   width: 100%
-  max-width: 700px
+  max-width: 680px
   font-size: $rs/4*3
   text-align: center
   color: #999
@@ -332,7 +328,7 @@ body
         left: $rs
         right: $rs
     .post-title
-      font-weight: normal
+      font-weight: 700
       font-style: normal
       letter-spacing: -0.05em
       font-size: 27px
@@ -377,16 +373,18 @@ body
     .topofpage
       text-decoration: underline
   .noarticleimage
+    background-color: black
+    padding: 15px
     .post-meta
       font-family: $font-sans
       padding-top: 60px
     .post-title
-      font-weight: normal
+      font-weight: 700
       font-style: normal
       letter-spacing: -0.04em
       font-size: 30px
       line-height: 1.1
-      color: #333332
+      color: #ffffff
       margin-bottom: 16px
     .author-image
       display: inline-block
@@ -595,7 +593,7 @@ body
       h4
         font-size: 18px
         line-height: 1.1
-        font-weight: normal
+        font-weight: 700
         padding: 0
         margin: 0
         padding-left: 100px
@@ -632,7 +630,7 @@ body
         .poweredby
           display: block
           padding-bottom: 18px
-          font-weight: normal
+          font-weight: 700
           color: #333
   .page-navigation
     border-top: 1px solid #dededc
@@ -654,6 +652,7 @@ body
   .fb-comments-wrapper
     padding-top: 30px
 .share
+  text-align: right
   padding: 20px 0 0
   line-height: 22px
   .fb_iframe_widget
@@ -696,7 +695,7 @@ body
     width: 100%
     position: relative
     z-index: 99
-    max-width: 700px
+    max-width: 680px
     padding: 120px 0 90px
     text-align: center
     margin: 0 auto
