@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548730009957280000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548754301819078000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -157,12 +157,12 @@
 </ul><p><code class="highlighter-rouge">스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다.
 Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다.</code></p>
 
-<p><i class="nf nf-dev-java"></i> 자바 어플리케이션이 Exchange 서버에 엑세스 방법은 EAS 와 EWS 2가지 방법이 있다.</p>
+<p><i class="nf nf-dev-java"></i> 자바 어플리케이션이 Exchange 서버에 엑세스하는 방법은 EAS 와 EWS 2가지 방법이 있다.</p>
 
 <ol>
   <li>EAS (Exchange ActiveSync)
     <ul>
-      <li>EAS는 모바일 디바이스와 같은 클라이언트 어플리케이 접속을 하기 위해 만들어진 기술이다.</li>
+      <li>EAS는 모바일 디바이스와 같은 클라이언트 어플리케이션으로부터 접속을 하기 위해 만들어진 기술이다.</li>
       <li>서버 to 서버는 지원하지 않는다.</li>
       <li>모바일 기기의 개인정보관리자(PIM - Personal Information Manager)와 싱크를 맞추는것이 지원된다.</li>
       <li>검색 기능에서 제한이 있다. 검색 최대 200개 결과만 가져올 수 있다.</li>
@@ -170,9 +170,10 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
   </li>
   <li>EWS (Exchange Web Services)
     <ul>
-      <li>EWA는 클라이언트 to 서버, 서버 to 서버 엑세스 둘 다 지원을 한다.</li>
+      <li>EWA는 클라이언트 to 서버, 서버 to 서버 둘 다 지원을 한다.</li>
       <li>EWS에 비해 상대적으로 더 많은 기능들이 지원되고 더 많은 자원에 접근가능하다.</li>
-      <li>검색 밎 사용자 자원 조회에 허용 제한이 없다.</li>
+      <li>검색 기능에 허용 제한이 없다.</li>
+      <li>더 많은 사용자의 자원에 접속할 수 있다.</li>
     </ul>
   </li>
 </ol>
@@ -183,7 +184,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 <hr>
 
 <p>이 글에서는 이전 글 <a href="/2019/01/25/kang.heehun@introduce-spring-boot.html">스프링 부트 (Spring boot) 소개</a> 에 이어서 진행하도록 한다.<br>
-만약 이전 글을 읽지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.<br>
+만약 이전 과정을 진행하지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.<br>
 <i class="nf nf-fa-archive"></i> <a href="https://skypacific.github.io/assets/download/sbtest01.zip">sbtest01.zip 소스파일</a></p>
 
 <hr>
@@ -553,7 +554,7 @@ http://localhost:8080//ews/user/inbox</p>
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548730009957280000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548754301819078000"></script>
 
   </body>
 </html>

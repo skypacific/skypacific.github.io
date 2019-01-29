@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-01-29T11:46:49+09:00</updated>
+ <updated>2019-01-29T18:31:41+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -20,12 +20,12 @@
    <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다.
 Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다.&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;i class=&quot;nf nf-dev-java&quot;&gt;&lt;/i&gt; 자바 어플리케이션이 Exchange 서버에 엑세스 방법은 EAS 와 EWS 2가지 방법이 있다.&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;nf nf-dev-java&quot;&gt;&lt;/i&gt; 자바 어플리케이션이 Exchange 서버에 엑세스하는 방법은 EAS 와 EWS 2가지 방법이 있다.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;EAS (Exchange ActiveSync)
     &lt;ul&gt;
-      &lt;li&gt;EAS는 모바일 디바이스와 같은 클라이언트 어플리케이 접속을 하기 위해 만들어진 기술이다.&lt;/li&gt;
+      &lt;li&gt;EAS는 모바일 디바이스와 같은 클라이언트 어플리케이션으로부터 접속을 하기 위해 만들어진 기술이다.&lt;/li&gt;
       &lt;li&gt;서버 to 서버는 지원하지 않는다.&lt;/li&gt;
       &lt;li&gt;모바일 기기의 개인정보관리자(PIM - Personal Information Manager)와 싱크를 맞추는것이 지원된다.&lt;/li&gt;
       &lt;li&gt;검색 기능에서 제한이 있다. 검색 최대 200개 결과만 가져올 수 있다.&lt;/li&gt;
@@ -33,9 +33,10 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
   &lt;/li&gt;
   &lt;li&gt;EWS (Exchange Web Services)
     &lt;ul&gt;
-      &lt;li&gt;EWA는 클라이언트 to 서버, 서버 to 서버 엑세스 둘 다 지원을 한다.&lt;/li&gt;
+      &lt;li&gt;EWA는 클라이언트 to 서버, 서버 to 서버 둘 다 지원을 한다.&lt;/li&gt;
       &lt;li&gt;EWS에 비해 상대적으로 더 많은 기능들이 지원되고 더 많은 자원에 접근가능하다.&lt;/li&gt;
-      &lt;li&gt;검색 밎 사용자 자원 조회에 허용 제한이 없다.&lt;/li&gt;
+      &lt;li&gt;검색 기능에 허용 제한이 없다.&lt;/li&gt;
+      &lt;li&gt;더 많은 사용자의 자원에 접속할 수 있다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -46,7 +47,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 &lt;hr /&gt;
 
 &lt;p&gt;이 글에서는 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 에 이어서 진행하도록 한다.&lt;br /&gt;
-만약 이전 글을 읽지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
+만약 이전 과정을 진행하지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
 &lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -484,7 +485,7 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
 
 &lt;p&gt;윈도우즈에서는 기본적으로 패키지 관리자가 없기 때문에 별도로 패캐지 관리자를 설치해야 한다.&lt;/p&gt;
 
-&lt;p&gt;윈도우즈에서 가장 많이 사용하는 Chocolatey 를 사용한다.&lt;/p&gt;
+&lt;p&gt;이 글에서는 윈도우즈에서 가장 많이 사용하는 Chocolatey 를 사용한다.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;여기서 C:&amp;gt; 다음에 나오는 문장들은 터미널에서 입력하는 명령이다.&lt;/em&gt;&lt;/p&gt;
 
@@ -596,7 +597,7 @@ C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; git config &lt;span cl
 &lt;ul&gt;
   &lt;li&gt;아래 명령으로 설치
     &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew tap caskroom/versions
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew cask install java
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew cask install java8
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;아래 명령으로 버젼 확인
@@ -651,7 +652,7 @@ C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; git config &lt;span cl
 &lt;h3 id=&quot;6-docker-설치-1&quot;&gt;6. Docker 설치&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (MAC)” 다운받아 설치&lt;br /&gt;
+    &lt;p&gt;웹브라우져로 아래 링크에서 접속 후 “Docker Desktop (Windows)” 다운받아 설치&lt;br /&gt;
 &lt;a href=&quot;https://hub.docker.com/editions/community/docker-ce-desktop-mac&quot;&gt;https://hub.docker.com/editions/community/docker-ce-desktop-mac&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
