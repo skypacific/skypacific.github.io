@@ -4,10 +4,10 @@
     <title>UXDev's Blog</title>
     <description>UX개발팀 기술 블로그
 </description>
-    <link>https://skypacific.github.io/</link>
-    <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 28 Jan 2019 19:11:09 +0900</pubDate>
-    <lastBuildDate>Mon, 28 Jan 2019 19:11:09 +0900</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 29 Jan 2019 11:04:44 +0900</pubDate>
+    <lastBuildDate>Tue, 29 Jan 2019 11:04:44 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -42,7 +42,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 
 &lt;p&gt;이 글에서는 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 에 이어서 진행하도록 한다.&lt;br /&gt;
 만약 이전 글을 읽지 않았다면 sbtest01.zip 소스파일을 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
-&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://localhost:4000/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -296,14 +296,14 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;본 예제 결과물 sbtest02.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
-&lt;i class=&quot;nf nf-fa-instagram&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest02.zip&quot;&gt;sbtest02.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://localhost:4000/assets/download/sbtest02.zip&quot;&gt;sbtest02.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
 </description>
         <pubDate>Mon, 28 Jan 2019 00:00:00 +0900</pubDate>
-        <link>https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html</link>
-        <guid isPermaLink="true">https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html</guid>
+        <link>http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/28/kang.heehun@exchange-spring-boot.html</guid>
         
         <category>Spring</category>
         
@@ -464,13 +464,13 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;본 예제 결과물 sbtest01.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
-&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;http://localhost:4000/assets/download/sbtest01.zip&quot;&gt;sbtest01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 </description>
         <pubDate>Fri, 25 Jan 2019 00:00:00 +0900</pubDate>
-        <link>https://skypacific.github.io/2019/01/25/kang.heehun@introduce-spring-boot.html</link>
-        <guid isPermaLink="true">https://skypacific.github.io/2019/01/25/kang.heehun@introduce-spring-boot.html</guid>
+        <link>http://localhost:4000/2019/01/25/kang.heehun@introduce-spring-boot.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/25/kang.heehun@introduce-spring-boot.html</guid>
         
         <category>Spring</category>
         
@@ -792,8 +792,8 @@ C:&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt; git config &lt;span cl
 &lt;/ul&gt;
 </description>
         <pubDate>Thu, 24 Jan 2019 00:00:00 +0900</pubDate>
-        <link>https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html</link>
-        <guid isPermaLink="true">https://skypacific.github.io/2019/01/24/kang.heehun@dev-env-setting.html</guid>
+        <link>http://localhost:4000/2019/01/24/kang.heehun@dev-env-setting.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/24/kang.heehun@dev-env-setting.html</guid>
         
         <category>DevelopmentEnviroment</category>
         
@@ -888,8 +888,8 @@ IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Expo
 &lt;hr /&gt;
 </description>
         <pubDate>Tue, 22 Jan 2019 00:00:00 +0900</pubDate>
-        <link>https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html</link>
-        <guid isPermaLink="true">https://skypacific.github.io/2019/01/22/kang.heehun@ides-for-developers.html</guid>
+        <link>http://localhost:4000/2019/01/22/kang.heehun@ides-for-developers.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/22/kang.heehun@ides-for-developers.html</guid>
         
         <category>IDE</category>
         
@@ -1015,8 +1015,8 @@ IntelliJ 로 생성된 프로젝트를 Eclipse 프로젝트로 내보내는(Expo
 &lt;hr /&gt;
 </description>
         <pubDate>Mon, 21 Jan 2019 00:00:00 +0900</pubDate>
-        <link>https://skypacific.github.io/2019/01/21/kang.heehun@javascript-style-guide.html</link>
-        <guid isPermaLink="true">https://skypacific.github.io/2019/01/21/kang.heehun@javascript-style-guide.html</guid>
+        <link>http://localhost:4000/2019/01/21/kang.heehun@javascript-style-guide.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/21/kang.heehun@javascript-style-guide.html</guid>
         
         <category>JavaScript</category>
         
