@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-01-29T18:31:41+09:00</updated>
+ <updated>2019-01-29T18:42:00+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -22,24 +22,21 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
 
 &lt;p&gt;&lt;i class=&quot;nf nf-dev-java&quot;&gt;&lt;/i&gt; 자바 어플리케이션이 Exchange 서버에 엑세스하는 방법은 EAS 와 EWS 2가지 방법이 있다.&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;EAS (Exchange ActiveSync)
-    &lt;ul&gt;
-      &lt;li&gt;EAS는 모바일 디바이스와 같은 클라이언트 어플리케이션으로부터 접속을 하기 위해 만들어진 기술이다.&lt;/li&gt;
-      &lt;li&gt;서버 to 서버는 지원하지 않는다.&lt;/li&gt;
-      &lt;li&gt;모바일 기기의 개인정보관리자(PIM - Personal Information Manager)와 싱크를 맞추는것이 지원된다.&lt;/li&gt;
-      &lt;li&gt;검색 기능에서 제한이 있다. 검색 최대 200개 결과만 가져올 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;EWS (Exchange Web Services)
-    &lt;ul&gt;
-      &lt;li&gt;EWA는 클라이언트 to 서버, 서버 to 서버 둘 다 지원을 한다.&lt;/li&gt;
-      &lt;li&gt;EWS에 비해 상대적으로 더 많은 기능들이 지원되고 더 많은 자원에 접근가능하다.&lt;/li&gt;
-      &lt;li&gt;검색 기능에 허용 제한이 없다.&lt;/li&gt;
-      &lt;li&gt;더 많은 사용자의 자원에 접속할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&quot;1-eas-exchange-activesync&quot;&gt;1. EAS (Exchange ActiveSync)&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;EAS는 모바일 디바이스와 같은 클라이언트 어플리케이션으로부터 접속을 하기 위해 만들어진 기술이다.&lt;/li&gt;
+  &lt;li&gt;서버 to 서버는 지원하지 않는다.&lt;/li&gt;
+  &lt;li&gt;모바일 기기의 개인정보관리자(PIM - Personal Information Manager)와 싱크를 맞추는것이 지원된다.&lt;/li&gt;
+  &lt;li&gt;검색 기능에서 제한이 있다. 검색 최대 200개 결과만 가져올 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2-ews-exchange-web-services&quot;&gt;2. EWS (Exchange Web Services)&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;EWA는 클라이언트 to 서버, 서버 to 서버 둘 다 지원을 한다.&lt;/li&gt;
+  &lt;li&gt;EWS에 비해 상대적으로 더 많은 기능들이 지원되고 더 많은 자원에 접근가능하다.&lt;/li&gt;
+  &lt;li&gt;검색 기능에 허용 제한이 없다.&lt;/li&gt;
+  &lt;li&gt;더 많은 사용자의 자원에 접속할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;보다 자세한 차이점은 아래 링크에서 참고할 수 있다.&lt;br /&gt;
 &lt;a href=&quot;https://docs.microsoft.com/en-us/previous-versions/office/developer/exchange-server-interoperability-guidance/dn144954(v%3Dexchg.140)&quot; target=&quot;_blank&quot;&gt;Choosing between Exchange ActiveSync and EWS&lt;/a&gt;&lt;/p&gt;
