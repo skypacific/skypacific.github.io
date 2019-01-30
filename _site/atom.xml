@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-01-29T19:09:05+09:00</updated>
+ <updated>2019-01-30T10:52:51+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -13,14 +13,14 @@
 
  
  <entry>
-   <title>스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스</title>
+   <title>스프링 부트 (Spring boot) 에서 Exchange 서버 연계</title>
    <link href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
    <updated>2019-01-28T00:00:00+09:00</updated>
    <id>https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot</id>
-   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다.
+   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 기반으로 Exchange 서버를 연계하는 간단한 예제 프로그램을 만들어본다.
 Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다.&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;i class=&quot;nf nf-dev-java&quot;&gt;&lt;/i&gt; 자바 어플리케이션이 Exchange 서버에 엑세스하는 방법은 EAS 와 EWS 2가지 방법이 있다.&lt;/p&gt;
+&lt;p&gt;&lt;i class=&quot;nf nf-dev-java&quot;&gt;&lt;/i&gt; 자바 어플리케이션이 Exchange 서버에 연계하는 방법은 EAS 와 EWS 2가지 방법이 있다.&lt;/p&gt;
 
 &lt;h4 id=&quot;1-eas-exchange-activesync&quot;&gt;1. EAS (Exchange ActiveSync)&lt;/h4&gt;
 &lt;ul&gt;
@@ -121,7 +121,7 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;iii-컨트롤러-클래스에-ews-엑세스-코드-추가&quot;&gt;III. 컨트롤러 클래스에 EWS 엑세스 코드 추가&lt;/h2&gt;
+&lt;h2 id=&quot;iii-컨트롤러-클래스에-ews-연계-코드-추가&quot;&gt;III. 컨트롤러 클래스에 EWS 연계 코드 추가&lt;/h2&gt;
 
 &lt;h3 id=&quot;1-exchange에-연결하고-사용자-자격증명-받기&quot;&gt;1. Exchange에 연결하고 사용자 자격증명 받기&lt;/h3&gt;
 

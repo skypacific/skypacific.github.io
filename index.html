@@ -115,6 +115,12 @@ layout: default
             <div class="post-meta">
               <i class="nf nf-fa-calendar"></i>
               <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+              <i class="nf nf-fa-comment" aria-hidden="true"></i>
+              {% if post.fb_social_baseurl %}
+              <span class="fb-comments-count" data-href="{{ post.fb_social_baseurl }}{{ post.url }}"></span>
+              {% else %}
+              <span class="fb-comments-count" data-href="{{ site.url }}{{ post.url }}"></span>
+              {% endif %}
             </div>
           </div>
         </article>
