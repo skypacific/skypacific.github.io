@@ -7,8 +7,8 @@
   <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스</title>
-  <meta name="description" content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
+  <title>스프링 부트 (Spring boot) 에서 Exchange 서버 연계</title>
+  <meta name="description" content="스프링 부트 기반으로 Exchange 서버를 연계하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
 
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -17,17 +17,17 @@
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@skypacific" />
-    <meta name="twitter:title" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스" />
+    <meta name="twitter:title" content="스프링 부트 (Spring boot) 에서 Exchange 서버 연계" />
     <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
     
-    <meta name="twitter:description"  content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
+    <meta name="twitter:description"  content="스프링 부트 기반으로 Exchange 서버를 연계하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
     
   
   
   <meta property="og:site_name" content="UXDev's Blog" />
-  <meta property="og:title" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스"/>
+  <meta property="og:title" content="스프링 부트 (Spring boot) 에서 Exchange 서버 연계"/>
   
-  <meta property="og:description" content="스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
+  <meta property="og:description" content="스프링 부트 기반으로 Exchange 서버를 연계하는 간단한 예제 프로그램을 만들어본다. Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다." />
   
   <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
   <meta property="og:url" content="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html" />
@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548756545190279000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548813171916571000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -102,7 +102,7 @@
         <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
           <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg" />
         </div>
-        <meta itemprop="headline" content="스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스" />
+        <meta itemprop="headline" content="스프링 부트 (Spring boot) 에서 Exchange 서버 연계" />
         <meta itemprop="mainEntityOfPage" content="/2019/01/28/kang.heehun@exchange-spring-boot.html" />
         <meta itemprop="datePublished" content="2019-01-28 00:00:00 +0900" />
         <meta itemprop="dateModified" content="2019-01-28 00:00:00 +0900" />
@@ -110,7 +110,7 @@
         <div class="noarticleimage">
           <div class="post-meta">
             <h1 class="post-title">
-              스프링 부트 (Spring boot) 에서 Exchange 서버 엑세스
+              스프링 부트 (Spring boot) 에서 Exchange 서버 연계
               
             </h1>
             <div class="cf post-meta-text">
@@ -142,7 +142,7 @@
 <li class="toc-entry toc-h3"><a href="#2-컨트롤러-클래스에-stringbuilder-추가">2. 컨트롤러 클래스에 StringBuilder 추가</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#iii-컨트롤러-클래스에-ews-엑세스-코드-추가">III. 컨트롤러 클래스에 EWS 엑세스 코드 추가</a>
+<li class="toc-entry toc-h2"><a href="#iii-컨트롤러-클래스에-ews-연계-코드-추가">III. 컨트롤러 클래스에 EWS 연계 코드 추가</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#1-exchange에-연결하고-사용자-자격증명-받기">1. Exchange에 연결하고 사용자 자격증명 받기</a></li>
 <li class="toc-entry toc-h3"><a href="#2-exchange에서-사용자의-받은편지함-읽기">2. Exchange에서 사용자의 받은편지함 읽기</a></li>
@@ -156,10 +156,10 @@
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#v-프로젝트를-웹브라우져에서-접속해서-확인">V. 프로젝트를 웹브라우져에서 접속해서 확인</a></li>
-</ul><p><code class="highlighter-rouge">스프링 부트 기반으로 Exchange 서버를 엑세스하는 간단한 예제 프로그램을 만들어본다.
+</ul><p><code class="highlighter-rouge">스프링 부트 기반으로 Exchange 서버를 연계하는 간단한 예제 프로그램을 만들어본다.
 Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbox)를 읽어보도록 한다.</code></p>
 
-<p><i class="nf nf-dev-java"></i> 자바 어플리케이션이 Exchange 서버에 엑세스하는 방법은 EAS 와 EWS 2가지 방법이 있다.</p>
+<p><i class="nf nf-dev-java"></i> 자바 어플리케이션이 Exchange 서버에 연계하는 방법은 EAS 와 EWS 2가지 방법이 있다.</p>
 
 <h4 id="1-eas-exchange-activesync">
 <a id="1-eas-exchange-activesync" class="anchor" href="#1-eas-exchange-activesync" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. EAS (Exchange ActiveSync)</h4>
@@ -271,8 +271,8 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
   </li>
 </ul>
 
-<h2 id="iii-컨트롤러-클래스에-ews-엑세스-코드-추가">
-<a id="iii-컨트롤러-클래스에-ews-엑세스-코드-추가" class="anchor" href="#iii-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-ews-%EC%97%91%EC%84%B8%EC%8A%A4-%EC%BD%94%EB%93%9C-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>III. 컨트롤러 클래스에 EWS 엑세스 코드 추가</h2>
+<h2 id="iii-컨트롤러-클래스에-ews-연계-코드-추가">
+<a id="iii-컨트롤러-클래스에-ews-연계-코드-추가" class="anchor" href="#iii-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90-ews-%EC%97%B0%EA%B3%84-%EC%BD%94%EB%93%9C-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>III. 컨트롤러 클래스에 EWS 연계 코드 추가</h2>
 
 <h3 id="1-exchange에-연결하고-사용자-자격증명-받기">
 <a id="1-exchange에-연결하고-사용자-자격증명-받기" class="anchor" href="#1-exchange%EC%97%90-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B3%A0-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%90%EA%B2%A9%EC%A6%9D%EB%AA%85-%EB%B0%9B%EA%B8%B0" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Exchange에 연결하고 사용자 자격증명 받기</h3>
@@ -491,7 +491,7 @@ http://localhost:8080//ews/user/inbox</p>
             <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
             
             
-            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EC%97%90%EC%84%9C+Exchange+%EC%84%9C%EB%B2%84+%EC%97%91%EC%84%B8%EC%8A%A4&amp;u=https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot"
+            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EC%97%90%EC%84%9C+Exchange+%EC%84%9C%EB%B2%84+%EC%97%B0%EA%B3%84&amp;u=https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot"
                onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
               <i class="nf nf-fa-facebook"></i><span class="hidden">facebook</span>
             </a>
@@ -554,7 +554,7 @@ http://localhost:8080//ews/user/inbox</p>
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548756545190279000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548813171916571000"></script>
 
   </body>
 </html>
