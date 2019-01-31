@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548813171916571000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548924878551164000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -148,7 +148,7 @@
 <li class="toc-entry toc-h2"><a href="#iii-웹서비스-접속">III. 웹서비스 접속</a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#1-기본으로-생성된-웹서비스-접속">1. 기본으로 생성된 웹서비스 접속</a></li>
-<li class="toc-entry toc-h3"><a href="#2-rest-웹서비스-hello-요청핸들러-추가">2. REST 웹서비스 /hello 요청핸들러 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#2-hello-요청핸들러-추가">2. /hello 요청핸들러 추가</a></li>
 </ul>
 </li>
 </ul><p><code class="highlighter-rouge">최근 백엔드(Back-end) 자바 어플리케이션 개발에서 가장 핫한 프레임워크은 아무래도 스프링 부트가 아닐까 한다.
@@ -163,7 +163,7 @@
   <li>스프링 및 외부 라이브러리 들의 설정을 자동으로 해준다.</li>
 </ul>
 
-<p>이 글에서는 간단한 REST 웹서비스를 만들어보기로 하자.<br>
+<p>이 글에서는 간단한 REST API를 만들어보기로 하자.<br>
 <strong>Spring Initializr를 사용하는 방법</strong>과 <strong>통합개발환경을 사용하는 방법</strong> 두가지 다 진행 해보도록 한다.<br>
 여기서는 통합개발환경으로 IntelliJ를 사용하였지만 Eclipse, VS Code, Atom 사용자는 <a href="https://spring.io/tools">Spring Tool 4</a> 를 다운받아 설치하는것을 권장한다.</p>
 
@@ -211,7 +211,7 @@
   <li>최종적으로 입력한 내용이 맞는지 확인하고 “Finish” 버튼을 클릭한다.</li>
 </ul>
 
-<p><code class="highlighter-rouge">Spring Tool 4 (Eclipse) 에서 프로젝트를 생성할때는 File -&gt; New -&gt; Spring Starter Project 를 선택하면 된다.</code></p>
+<p><code class="highlighter-rouge">Spring Tool 4 (Eclipse) 에서는 File -&gt; New -&gt; Spring Starter Project 를 선택하면 된다.</code></p>
 
 <p><img src="/assets/images/springboot02.gif" alt="IntelliJ 를 사용해서 프로젝트를 생성"></p>
 
@@ -273,8 +273,8 @@
   </li>
 </ul>
 
-<h3 id="2-rest-웹서비스-hello-요청핸들러-추가">
-<a id="2-rest-웹서비스-hello-요청핸들러-추가" class="anchor" href="#2-rest-%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4-hello-%EC%9A%94%EC%B2%AD%ED%95%B8%EB%93%A4%EB%9F%AC-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. REST 웹서비스 /hello 요청핸들러 추가</h3>
+<h3 id="2-hello-요청핸들러-추가">
+<a id="2-hello-요청핸들러-추가" class="anchor" href="#2-hello-%EC%9A%94%EC%B2%AD%ED%95%B8%EB%93%A4%EB%9F%AC-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. /hello 요청핸들러 추가</h3>
 
 <ul>
   <li>
@@ -402,7 +402,7 @@
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548813171916571000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548924878551164000"></script>
 
   </body>
 </html>

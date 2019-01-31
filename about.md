@@ -11,7 +11,7 @@ permalink: /about/
 
 중앙그룹 / UX개발팀
 
-`java` `spring` `webflux` `.NET` `C/C++` `javascript(ES2015)` `docker` `kubernetes` `machine-learning`
+`java` `spring` `webflux` `.Net` `C/C++` `javascript(ES2015)` `docker` `kubernetes` `deep-learning` `unity`
 
 - 최신 IT 기술에 관심을 가지고 지속적으로 공부하는 개발자입니다.
 - 물리학(천문학, 양자역학)에도 관심이 많으며 주말에는 자전거를 타고 전국을 유람중입니다. ;-)
