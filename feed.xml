@@ -6,9 +6,418 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 30 Jan 2019 10:52:51 +0900</pubDate>
-    <lastBuildDate>Wed, 30 Jan 2019 10:52:51 +0900</lastBuildDate>
+    <pubDate>Thu, 31 Jan 2019 17:54:38 +0900</pubDate>
+    <lastBuildDate>Thu, 31 Jan 2019 17:54:38 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
+    
+      <item>
+        <title>스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현</title>
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 (Spring boot) 기반으로 JPA를 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 뒤 REST API를 제공하는 코드를 작성해 본다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;i-스프링-부트-프로젝트-생성&quot;&gt;I. 스프링 부트 프로젝트 생성&lt;/h2&gt;
+
+&lt;p&gt;스프링 부트 프로젝트를 생성하는것은 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 를 참고하면 된다.&lt;br /&gt;
+프로젝트 생성시 “Lombok”, “Web”, “JPA”, “H2” 4가지 모듈을 넣어서 생성하면 된다.&lt;/p&gt;
+
+&lt;p&gt;각 스프링 부트 스타터 모듈들의 기능은 다음과 같다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-lombok&quot;&gt;1. Lombok&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;자바에서 모델(=엔티티) 클래스 작성시에 Lombok을 사용하면 Constructor, Getter/Setter, toString 등 컴파일시에 자동으로 생성해준다.&lt;/li&gt;
+  &lt;li&gt;Constructor 의 경우, 파라메터가 없는 경우와 파라메터를 모두 받는 경우 2가지를 생성해준다.&lt;/li&gt;
+  &lt;li&gt;@Log 어노테이션을 사용하면 log 필드가 자동생성이된다.&lt;/li&gt;
+  &lt;li&gt;@Cleanup 어노테이션을 사용하면 해당 자원이 자동으로 닫히게 (close 메소드 호출) 된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-web&quot;&gt;2. Web&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;스프링 부트 어플리케이션 실행시에 내부적으로 Tomcat, Netty, Undertow 웹어플리케이션서버(WAS)를 포함해서(embed) 실행이 된다.&lt;/li&gt;
+  &lt;li&gt;Web 모듈을 사용하면 REST API (RESTful 웹서비스) 구현을 쉽게 할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-jpa&quot;&gt;3. JPA&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;JPA(Java Persistence API) 는 자바 응용프로그램에서 관계형 데이터베이스의 관리를 표현하는 자바 API이다.&lt;/li&gt;
+  &lt;li&gt;자바 모델 클래스에 @Entity 어노테이션을 달면 DB테이블 엔티티로 맵핑되고, 자바 레파지토리 인터페이스에 @Repository 어노테이션을 달면 DB테이블 CRUD 명령을 자동으로 생성해준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;4-h2&quot;&gt;4. H2&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;인메모리(In-memory) 데이타베이스로서 스프링 부트 어플리케이션이 실행시에 내부적으로 포함되어 자동으로 실행된다.&lt;/li&gt;
+  &lt;li&gt;스프링 부트 내부에 포함되어 자동 실행되므로, 따로 데이타베이스 연결 설정이 필요없다.&lt;/li&gt;
+  &lt;li&gt;인메모리 데이타베이스이기 때문에 모든 데이타는 휘발성이다. 서버의 임시데이타(테스트용 데이타베이스, REST API 결과데이타 캐쉬, 사용자 로그인 세션 값)를 저장하는데 용이하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이번 프로젝트 생성에도 IntelliJ 를 사용해서 프로젝트를 생성해 보았다.&lt;br /&gt;
+&lt;a href=&quot;https://spring.io/tools&quot;&gt;Eclipse(Spring Tool 4)&lt;/a&gt; 를 사용한다면  File -&amp;gt; New -&amp;gt; Spring Starter Project 를 클릭하 된다.
+&lt;img src=&quot;/assets/images/sbcreatejpa01.gif&quot; alt=&quot;스프링 부트 프로젝트 생성 (IntelliJ - Lombok, Web, JPA, H2)&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;ii-엔티티-구현&quot;&gt;II. 엔티티 구현&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-엔티티-클래스-생성&quot;&gt;1. 엔티티 클래스 생성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트내의 /src/main 아래에 “model” 패케지(디렉토리)를 만들고, “Product” 클래스를 생성한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_product_model.png&quot; alt=&quot;Product 클래스 생성&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-속성-추가&quot;&gt;2. 속성 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Product 클래스에 아래와 같은 속성을 추가해준다.
+    &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ID&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 제품이름&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 제품가격&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inventory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 재고수량&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-lombok-어노테이션-추가&quot;&gt;3. Lombok 어노테이션 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 클래스에 Getter/Setter 생성을 위해 Lombok 어노테이션 @Data를 달아준다.&lt;/li&gt;
+  &lt;li&gt;이 클래스에 모든 파라메터를 다 받아들이는 생성자가 필요하므로 Lombok 어노테이션 @AllArgsConstructor를 달아준다.&lt;/li&gt;
+  &lt;li&gt;이 클래스에 빈 파라메터 생성자가 필요하므로 Lombok 어노테이션 @NoArgsConstructor를 달아준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Data&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@AllArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@NoArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// ID&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 제품이름&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 제품가격&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inventory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 재고수량&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;4-jpa-어노테이션-추가&quot;&gt;4. JPA 어노테이션 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 클래스는 JPA의 엔티티(Entity) 이기 때문에 , JPA 어노테이션 @Entity를 달아준다.&lt;/li&gt;
+  &lt;li&gt;이 클래스의 “id” 속성값의 엔티티의 키(key)가 되므로, JPA 어노테이션 @Id를 달아준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Data&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@AllArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@NoArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inventory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;iii-레파지토리-구현&quot;&gt;III. 레파지토리 구현&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-레파지토리-클래스-생성&quot;&gt;1. 레파지토리 클래스 생성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트내의 /src/main 아래에 “repository” 패케지(디렉토리)를 만들고, “ProductRepository” 인터페이스를 생성한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_product_repository01.png&quot; alt=&quot;Product 클래스 생성&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-jpa-어노테이션-추가&quot;&gt;2. JPA 어노테이션 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 클래스는 JPA의 레파지토리(Repository) 이기 때문에 , JPA 어노테이션 @Repository 달아준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Repository&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;3-jpa-레파토리-상속&quot;&gt;3. JPA 레파토리 상속&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;이 클래스에서 JPA의 레파지토리(Repository) 구현을 위해 JpaRepository 클래스를 상속받는다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이때 제네릭타입 첫번째(T)는 앞에서 생성한 “Product”, 두번째(ID)는 Product의 키 타입 “Integer”를 넣어준다.&lt;br /&gt;
+(두번째 타입에 원시타입들 “int”, “long” 등을를 넣으면 안되고 랩퍼클래스 “Integer”, “Long” 등을 사용하여야 한다.)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Repository&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JpaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;iv-rest-api-구현&quot;&gt;IV. REST API 구현&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-컨트롤러-클래스-생성&quot;&gt;1. 컨트롤러 클래스 생성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트내의 /src/main 아래에 “controller” 패케지(디렉토리)를 만들고, “ProductController” 클래스를 생성한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_product_controller.png&quot; alt=&quot;Product 클래스 생성&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-레파지토리-속성-추가&quot;&gt;2. 레파지토리 속성 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 클래스의 속성으로 ProductRepository 을 추가하고, 자동으로 주입(Injection) 받기 위해 스프링 어노테이션 @Autowired 를 추가한다.&lt;br /&gt;
+(아마도 이 부분에서 경고가 뜰 수 있는데, 여기서는 예제 목적으로 코드를 작성하는것이므로 그냥 넘어가도록 한다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;3-rest-api-함수-추가&quot;&gt;3. REST API 함수 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 클래스는 REST API 를 제공하는 컨트롤이기 때문에 스프링 어노테이션 @RestController 를 추가한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;4-product-요청핸들러-추가&quot;&gt;4. /product 요청핸들러 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“/product” 경로의 요청을 처리하기 위해 “getProducts” 메소드를 추가하고 스프링 어노테이션 @RequestMapping 을 추가한다.&lt;/li&gt;
+  &lt;li&gt;“getProcuts” 메소드안에 “ProductRepository.findAll” 을 호출하는 코드를 넣어준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/product&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getProducts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;“/product/{id}” 경로의 요청을 처리하기 위해 “getProductById” 메소드를 추가하고 스프링 어노테이션 @RequestMapping 을 추가한다.&lt;/li&gt;
+  &lt;li&gt;“getProcutById” 메소드안에 “ProductRepository.findById” 를 호출하는 코드를 넣어준다.&lt;/li&gt;
+  &lt;li&gt;여기서 id는 경로변수(Path variable)이 되므로 어노테이션 @PathVariable 를 달아준자.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/product&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getProducts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/product/{id}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getProductById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@PathVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;iv-applicationrunner-클랙스-추가&quot;&gt;IV. ApplicationRunner 클랙스 추가&lt;/h2&gt;
+
+&lt;p&gt;본 스프링 부트 어플리케이션 실행시에 H2 데이타베이스가 같이 실행이 된다. &lt;br /&gt;
+그런데 이 데이타베이스에는 샘플 데이타가 없기 때문에 스프링 부트 어플리케이션 실행시에 샘플 데이타를 넣어주기로 한다. &lt;br /&gt;
+이 프로젝트를 테스트 목적으로 만드는것이므로, 메인 클래스(Sbtest03Application.java)에 정적 클래스를 추가하기로 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-레파지토리-속성-추가&quot;&gt;1. 레파지토리 속성 추가&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;메인 클래스(프로젝트 시작시 존재했던 main() 함수를 가지고 있는 클래스)를 연다.&lt;/li&gt;
+  &lt;li&gt;이 클래스의 속성으로 ProductRepository 을 추가하고, 자동으로 주입(Injection) 받기 위해 스프링 어노테이션 @Autowired 를 추가한다.&lt;br /&gt;
+(아마도 이 부분에서 경고가 뜰 수 있는데, 여기서는 예제 목적으로 코드를 작성하는것이므로 그냥 넘어가도록 한다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sbtest03Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sbtest99Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2-applicationrunner-클래스-추가&quot;&gt;2. ApplicationRunner 클래스 추가&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ApplicationRunner 인터페이스를 생성해주는 applicationRunner 메소드를 만든다.&lt;/li&gt;
+  &lt;li&gt;이 메소드는 Bean 을 생성해야 인식해야하므로 스프링 어노테이션 @Bean 을 달아준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sbtest03Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ApplicationRunner&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;applicationRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ApplicationRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sbtest99Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;3-applicationrunner-클래스에서-run-메소드를-구현한다&quot;&gt;3. ApplicationRunner 클래스에서 run() 메소드를 구현한다.&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 클래스에서 상속 받았던 ApplicationRunner 인터페이스에서는 run() 메소드를 구현하여야 하므로 아래와 이를 구현한다.&lt;/li&gt;
+  &lt;li&gt;run() 메소드 안에서는 Product 객체를 생성하고 ProductRepository.save() 함수를 실행해서 저장하는 코드를 넣어준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@SpringBootApplication&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sbtest03Application&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ApplicationRunner&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;appRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ApplicationRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ApplicationArguments&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;iPad 4 Mini&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;500.01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;H&amp;amp;M T-Shirt White&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;10.99&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Charli XCX - Sucker CD&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;19.99&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;SpringApplication&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sbtest99Application&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;[람다식(lambda expression)]&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;여기서 ApplicationRunner 는 메소드가 1개인 FuctionalInterface 이기 때문에 람다식(lambda expression)으로 표현이 가능한다.&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;최근 람다식은 Java, JavaScript 에서 많이 사용되고 있으니 숙지하면 도움이 많이 된다.&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;람다식에 대한 설명은 이 글의 범위를 넘어가므로 나중에 따로 관련 글을 올려보도록 하겠다.&lt;/code&gt;&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;람다식으로 표현한 applicationRunner는 아래와 같다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 람다식으로 구현한 applicationRunner&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ApplicationRunner&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;applicationRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;iPad 4 Mini&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;500.01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;H&amp;amp;M T-Shirt White&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;10.99&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Charli XCX - Sucker CD&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;19.99&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;iv-rest-api-확인&quot;&gt;IV. REST API 확인&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-프로젝트-실행&quot;&gt;1. 프로젝트 실행&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;터미널 환경에서는 프로젝트 디렉토리에서 “mvn install” 실행 후에 “java -jar target/sbtest03-0.0.1-SNAPSHOT.jar”을 실행한다.&lt;/li&gt;
+  &lt;li&gt;Eclipse 와 IntelliJ에서는 Run -&amp;gt; Run 메뉴를 클릭하면 된다.&lt;/li&gt;
+  &lt;li&gt;자세한것은 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 를 참고하도록 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-product-호출&quot;&gt;2. /product 호출&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;웹브라우져에서 아래 링크로 접속한다.
+&lt;a href=&quot;http://localhost:8080/product&quot;&gt;http://localhost:8080/product&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 ApplicationRunner 에서 저장했던 3개의 Product 들이 JSON 결과로 리턴된다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_rest_products.png&quot; alt=&quot;Product 클래스 생성&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-productid-호출&quot;&gt;3. /product/{id} 호출&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;웹브라우져에서 아래 링크로 접속한다.
+&lt;a href=&quot;http://localhost:8080/product/2&quot;&gt;http://localhost:8080/product/2&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 ApplicationRunner 에서 저장했던 id가 2인 Product 가 JSON 결과로 리턴된다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_rest_product2.png&quot; alt=&quot;Product 클래스 생성&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;본 예제 결과물 sbtest03.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest03.zip&quot;&gt;sbtest03.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;아래의 동영상은 본 예제 프로젝트의 시작부터 빌드, 실행 까지의 모든 과정을 담아보았다.&lt;/p&gt;
+
+&lt;p&gt;(유투브 동영상 업로드중…)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Wed, 30 Jan 2019 00:00:00 +0900</pubDate>
+        <link>https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html</link>
+        <guid isPermaLink="true">https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html</guid>
+        
+        <category>Spring</category>
+        
+        <category>SpringBoot</category>
+        
+        <category>Back-end</category>
+        
+        <category>JPA</category>
+        
+        <category>Lombok</category>
+        
+        <category>H2</category>
+        
+        <category>REST</category>
+        
+        
+        <category>Spring</category>
+        
+      </item>
     
       <item>
         <title>스프링 부트 (Spring boot) 에서 Exchange 서버 연계</title>
@@ -139,12 +548,12 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
   &lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setCredentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;credentials&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;Exchange 서버의 서비스 엔드포인트를 찾기 위해 autodiscoverUrl() 함수를 호출한다.&lt;br /&gt;
-이 함수는 사용자의 이메일 주소를 바탕으로 Exchange 서버의 엔드포인드를 찾아서 연결해준다.
+  &lt;li&gt;Exchange 서버의 서비스 엔드포인트를 찾기 위해 autodiscoverUrl() 메소드를 호출한다.&lt;br /&gt;
+autodiscoverUrl() 은 사용자의 이메일 주소를 바탕으로 Exchange 서버의 엔드포인드를 찾아서 연결해준다.
     &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;n&quot;&gt;service&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;autodiscoverUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;useremail&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;autodiscoverUrl() 함수는 예외처리가 필요하니 간단한 try ~ catch 문으로 감싸준다.
+  &lt;li&gt;autodiscoverUrl() 은 예외처리가 필요하니 간단한 try ~ catch 문으로 감싸준다.
     &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c1&quot;&gt;// TODO Exchange에 접속한다.&lt;/span&gt;
             
   &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;useremail&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;yourname@yourdomain.com&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 여기에 실제 사용자 이메일주소를 넣는다.&lt;/span&gt;
@@ -310,6 +719,8 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
         
         <category>Exchange</category>
         
+        <category>REST</category>
+        
         
         <category>Spring</category>
         
@@ -329,7 +740,7 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
   &lt;li&gt;스프링 및 외부 라이브러리 들의 설정을 자동으로 해준다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;이 글에서는 간단한 REST 웹서비스를 만들어보기로 하자.&lt;br /&gt;
+&lt;p&gt;이 글에서는 간단한 REST API를 만들어보기로 하자.&lt;br /&gt;
 &lt;strong&gt;Spring Initializr를 사용하는 방법&lt;/strong&gt;과 &lt;strong&gt;통합개발환경을 사용하는 방법&lt;/strong&gt; 두가지 다 진행 해보도록 한다.&lt;br /&gt;
 여기서는 통합개발환경으로 IntelliJ를 사용하였지만 Eclipse, VS Code, Atom 사용자는 &lt;a href=&quot;https://spring.io/tools&quot;&gt;Spring Tool 4&lt;/a&gt; 를 다운받아 설치하는것을 권장한다.&lt;/p&gt;
 
@@ -370,7 +781,7 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
   &lt;li&gt;최종적으로 입력한 내용이 맞는지 확인하고 “Finish” 버튼을 클릭한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Spring Tool 4 (Eclipse) 에서 프로젝트를 생성할때는 File -&amp;gt; New -&amp;gt; Spring Starter Project 를 선택하면 된다.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Spring Tool 4 (Eclipse) 에서는 File -&amp;gt; New -&amp;gt; Spring Starter Project 를 선택하면 된다.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/springboot02.gif&quot; alt=&quot;IntelliJ 를 사용해서 프로젝트를 생성&quot; /&gt;&lt;/p&gt;
 
@@ -424,7 +835,7 @@ http://localhost:8080//ews/user/inbox&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;2-rest-웹서비스-hello-요청핸들러-추가&quot;&gt;2. REST 웹서비스 /hello 요청핸들러 추가&lt;/h3&gt;
+&lt;h3 id=&quot;2-hello-요청핸들러-추가&quot;&gt;2. /hello 요청핸들러 추가&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;

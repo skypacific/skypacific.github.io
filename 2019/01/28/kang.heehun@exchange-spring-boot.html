@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548813171916571000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548924878551164000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -299,13 +299,13 @@ Exchange 서버에 EWS 로 접속하여 사용자의 메일 받은편지함(Inbo
   <span class="n">service</span><span class="o">.</span><span class="na">setCredentials</span><span class="o">(</span><span class="n">credentials</span><span class="o">);</span>
 </code></pre></div>    </div>
   </li>
-  <li>Exchange 서버의 서비스 엔드포인트를 찾기 위해 autodiscoverUrl() 함수를 호출한다.<br>
-이 함수는 사용자의 이메일 주소를 바탕으로 Exchange 서버의 엔드포인드를 찾아서 연결해준다.
+  <li>Exchange 서버의 서비스 엔드포인트를 찾기 위해 autodiscoverUrl() 메소드를 호출한다.<br>
+autodiscoverUrl() 은 사용자의 이메일 주소를 바탕으로 Exchange 서버의 엔드포인드를 찾아서 연결해준다.
     <div class="language-java highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>  <span class="n">service</span><span class="o">.</span><span class="na">autodiscoverUrl</span><span class="o">(</span><span class="n">useremail</span><span class="o">);</span>
 </code></pre></div>    </div>
   </li>
-  <li>autodiscoverUrl() 함수는 예외처리가 필요하니 간단한 try ~ catch 문으로 감싸준다.
+  <li>autodiscoverUrl() 은 예외처리가 필요하니 간단한 try ~ catch 문으로 감싸준다.
     <div class="language-java highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>  <span class="c1">// TODO Exchange에 접속한다.</span>
             
@@ -483,6 +483,8 @@ http://localhost:8080//ews/user/inbox</p>
             
               <a href="/tags#exchange-ref">Exchange</a>
             
+              <a href="/tags#rest-ref">REST</a>
+            
           </p>
         </section>
         <footer class="post-footer">
@@ -539,6 +541,13 @@ http://localhost:8080//ews/user/inbox</p>
 
     <aside class="read-next">
       
+        <a class="read-next-story no-cover" href="/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html">
+          <section class="post">
+            <h2>스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현</h2>
+            <p>스프링 부트 JPA</p>
+          </section>
+        </a>
+      
       
         <a class="read-next-story prev no-cover" href="/2019/01/25/kang.heehun@introduce-spring-boot.html">
           <section class="post">
@@ -554,7 +563,7 @@ http://localhost:8080//ews/user/inbox</p>
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548813171916571000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548924878551164000"></script>
 
   </body>
 </html>
