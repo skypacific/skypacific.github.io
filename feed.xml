@@ -6,8 +6,8 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 31 Jan 2019 19:17:41 +0900</pubDate>
-    <lastBuildDate>Thu, 31 Jan 2019 19:17:41 +0900</lastBuildDate>
+    <pubDate>Thu, 31 Jan 2019 19:20:16 +0900</pubDate>
+    <lastBuildDate>Thu, 31 Jan 2019 19:20:16 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -271,7 +271,7 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;2-applicationrunner-클래스-추가&quot;&gt;2. ApplicationRunner 클래스 추가&lt;/h2&gt;
+&lt;h3 id=&quot;2-applicationrunner-클래스-추가&quot;&gt;2. ApplicationRunner 클래스 추가&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;ApplicationRunner 인터페이스를 생성해주는 applicationRunner 메소드를 만든다.&lt;/li&gt;
@@ -295,7 +295,7 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;3-applicationrunner-클래스에서-run-메소드를-구현한다&quot;&gt;3. ApplicationRunner 클래스에서 run() 메소드를 구현한다.&lt;/h2&gt;
+&lt;h3 id=&quot;3-applicationrunner-클래스에서-run-메소드를-구현한다&quot;&gt;3. ApplicationRunner 클래스에서 run() 메소드를 구현한다.&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;이 클래스에서 상속 받았던 ApplicationRunner 인터페이스에서는 run() 메소드를 구현하여야 하므로 아래와 이를 구현한다.&lt;/li&gt;
