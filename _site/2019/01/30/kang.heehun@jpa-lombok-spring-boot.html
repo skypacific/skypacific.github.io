@@ -7,8 +7,8 @@
   <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현</title>
-  <meta name="description" content="스프링 부트 JPA" />
+  <title>스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현</title>
+  <meta name="description" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다." />
 
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -17,17 +17,17 @@
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@skypacific" />
-    <meta name="twitter:title" content="스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현" />
+    <meta name="twitter:title" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현" />
     <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
     
-    <meta name="twitter:description"  content="스프링 부트 JPA" />
+    <meta name="twitter:description"  content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다." />
     
   
   
   <meta property="og:site_name" content="UXDev's Blog" />
-  <meta property="og:title" content="스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현"/>
+  <meta property="og:title" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현"/>
   
-  <meta property="og:description" content="스프링 부트 JPA" />
+  <meta property="og:description" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다." />
   
   <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
   <meta property="og:url" content="https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html" />
@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548925969970808000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548926400403614000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -102,7 +102,7 @@
         <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
           <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg" />
         </div>
-        <meta itemprop="headline" content="스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현" />
+        <meta itemprop="headline" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현" />
         <meta itemprop="mainEntityOfPage" content="/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html" />
         <meta itemprop="datePublished" content="2019-01-30 00:00:00 +0900" />
         <meta itemprop="dateModified" content="2019-01-30 00:00:00 +0900" />
@@ -110,7 +110,7 @@
         <div class="noarticleimage">
           <div class="post-meta">
             <h1 class="post-title">
-              스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현
+              스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현
               
             </h1>
             <div class="cf post-meta-text">
@@ -178,15 +178,15 @@
 <li class="toc-entry toc-h3"><a href="#3-productid-호출">3. /product/{id} 호출</a></li>
 </ul>
 </li>
-</ul><p><code class="highlighter-rouge">스프링 부트 (Spring boot) 기반으로 JPA를 사용하여 H2 데이타베이스에 데이타를 쓰고 읽어 리턴하는 REST API 웹서비스를 작성해 본다.</code></p>
+</ul><p><code class="highlighter-rouge">스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다.</code></p>
 
 <h2 id="i-스프링-부트-프로젝트-생성">
 <a id="i-스프링-부트-프로젝트-생성" class="anchor" href="#i-%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B6%80%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. 스프링 부트 프로젝트 생성</h2>
 
 <p>스프링 부트 프로젝트를 생성하는것은 이전 글 <a href="/2019/01/25/kang.heehun@introduce-spring-boot.html">스프링 부트 (Spring boot) 소개</a> 를 참고하면 된다.<br>
-프로젝트 생성시 “Lombok”, “Web”, “JPA”, “H2” 4가지 모듈을 넣어서 생성하면 된다.</p>
+본 프로젝트 생성시 “Lombok”, “Web”, “JPA”, “H2” 4가지 모듈을 넣어서 생성하면 된다.</p>
 
-<p>각 스프링 부트 스타터 모듈들의 기능은 다음과 같다.</p>
+<p>각 스프링 부트 모듈들의 기능은 다음과 같다.</p>
 
 <h3 id="1-lombok">
 <a id="1-lombok" class="anchor" href="#1-lombok" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Lombok</h3>
@@ -614,7 +614,7 @@
             <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
             
             
-            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+JPA%2C+Lombok%2C+H2+%EB%A5%BC+%EC%9D%B4%EC%9A%A9+REST+API+%EA%B5%AC%ED%98%84&amp;u=https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot"
+            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B6%80%ED%8A%B8+%28Spring+boot%29+%EA%B8%B0%EB%B0%98%EC%9C%BC%EB%A1%9C+JPA%2C+Lombok%2C+H2+%EB%A5%BC+%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC+REST+API+%EC%9B%B9%EC%84%9C%EB%B9%84%EC%8A%A4+%EA%B5%AC%ED%98%84&amp;u=https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot"
                onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
               <i class="nf nf-fa-facebook"></i><span class="hidden">facebook</span>
             </a>
@@ -677,7 +677,7 @@
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548925969970808000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548926400403614000"></script>
 
   </body>
 </html>
