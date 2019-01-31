@@ -6,13 +6,13 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 31 Jan 2019 18:06:23 +0900</pubDate>
-    <lastBuildDate>Thu, 31 Jan 2019 18:06:23 +0900</lastBuildDate>
+    <pubDate>Thu, 31 Jan 2019 18:12:49 +0900</pubDate>
+    <lastBuildDate>Thu, 31 Jan 2019 18:12:49 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
         <title>스프링 부트 (Spring boot) JPA, Lombok, H2 를 이용 REST API 구현</title>
-        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 (Spring boot) 기반으로 JPA를 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 뒤 REST API를 제공하는 코드를 작성해 본다.&lt;/code&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 (Spring boot) 기반으로 JPA를 사용하여 H2 데이타베이스에 데이타를 쓰고 읽어 리턴하는 REST API 웹서비스를 작성해 본다.&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;i-스프링-부트-프로젝트-생성&quot;&gt;I. 스프링 부트 프로젝트 생성&lt;/h2&gt;
 
@@ -32,7 +32,7 @@
 &lt;h3 id=&quot;2-web&quot;&gt;2. Web&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;스프링 부트 어플리케이션 실행시에 내부적으로 Tomcat, Netty, Undertow 웹어플리케이션서버(WAS)를 포함해서(embed) 실행이 된다.&lt;/li&gt;
-  &lt;li&gt;Web 모듈을 사용하면 REST API (RESTful 웹서비스) 구현을 쉽게 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;Web 모듈을 사용하면 REST API 를 쉽게 구현 할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;3-jpa&quot;&gt;3. JPA&lt;/h3&gt;
