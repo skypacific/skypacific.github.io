@@ -6,26 +6,27 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 31 Jan 2019 19:20:16 +0900</pubDate>
-    <lastBuildDate>Thu, 31 Jan 2019 19:20:16 +0900</lastBuildDate>
+    <pubDate>Fri, 01 Feb 2019 11:01:36 +0900</pubDate>
+    <lastBuildDate>Fri, 01 Feb 2019 11:01:36 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
         <title>스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현</title>
-        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다.&lt;/code&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 임시 데이타를 기록한뒤 REST API 에서 이를 읽고 리턴하는 웹서비스를 구현해 본다.&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;i-스프링-부트-프로젝트-생성&quot;&gt;I. 스프링 부트 프로젝트 생성&lt;/h2&gt;
 
-&lt;p&gt;스프링 부트 프로젝트를 생성하는것은 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 를 참고하면 된다.&lt;br /&gt;
-본 프로젝트 생성시 “Lombok”, “Web”, “JPA”, “H2” 4가지 모듈을 넣어서 생성하면 된다.&lt;/p&gt;
+&lt;p&gt;스프링 부트 프로젝트를 생성하는것은 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 를 참고할 수 있다. 
+이번 프로젝트 생성시에는 “Lombok”, “Web”, “JPA”, “H2” 4가지 모듈을 넣어서 생성하도록 한다.&lt;/p&gt;
 
 &lt;p&gt;각 스프링 부트 모듈들의 기능은 다음과 같다.&lt;/p&gt;
 
 &lt;h3 id=&quot;1-lombok&quot;&gt;1. Lombok&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;자바에서 모델(=엔티티) 클래스 작성시에 Lombok을 사용하면 Constructor, Getter/Setter, toString 등 컴파일시에 자동으로 생성해준다.&lt;/li&gt;
-  &lt;li&gt;Constructor 의 경우, 파라메터가 없는 경우와 파라메터를 모두 받는 경우 2가지를 생성해준다.&lt;/li&gt;
-  &lt;li&gt;@Log 어노테이션을 사용하면 log 필드가 자동생성이된다.&lt;/li&gt;
+  &lt;li&gt;자바 모델 클래스 작성시에 Lombok을 사용하면 Constructor, Getter/Setter, toString 등을 컴파일시에 자동으로 생성이된다.&lt;/li&gt;
+  &lt;li&gt;Constructor 의 경우, 파라메터가 없는 경우와 파라메터를 모두 받는 경우 2가지를 생성이된다.&lt;/li&gt;
+  &lt;li&gt;@EqualsAndHashCode 어노테이션을 사용하면 equals, hashCode 메소드가 생성이된다.&lt;/li&gt;
+  &lt;li&gt;@Log 어노테이션을 사용하면 log 필드가 생성이된다.&lt;/li&gt;
   &lt;li&gt;@Cleanup 어노테이션을 사용하면 해당 자원이 자동으로 닫히게 (close 메소드 호출) 된다.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -248,8 +249,9 @@
 
 &lt;h2 id=&quot;iv-applicationrunner-클랙스-추가&quot;&gt;IV. ApplicationRunner 클랙스 추가&lt;/h2&gt;
 
-&lt;p&gt;본 스프링 부트 어플리케이션 실행시에 H2 데이타베이스가 같이 실행이 된다. &lt;br /&gt;
-그런데 이 데이타베이스에는 샘플 데이타가 없기 때문에 스프링 부트 어플리케이션 실행시에 샘플 데이타를 넣어주기로 한다. &lt;br /&gt;
+&lt;p&gt;본 스프링 부트 어플리케이션 실행시에 H2 데이타베이스가 같이 실행이 된다.&lt;br /&gt;
+그런데 이 데이타베이스에는 샘플 데이타가 없기 때문에 스프링 부트 어플리케이션 실행시에 샘플 데이타를 넣어주기로 한다.&lt;br /&gt;
+ApplicationRunner 객체를 생성해 놓으면 스프링 부트 어플리케이션 실행시에 자동으로 이 객체의 run() 메소드가 실행이된다.&lt;br /&gt;
 이 프로젝트를 테스트 목적으로 만드는것이므로, 메인 클래스(Sbtest03Application.java)에 정적 클래스를 추가하기로 한다.&lt;/p&gt;
 
 &lt;h3 id=&quot;1-레파지토리-속성-추가&quot;&gt;1. 레파지토리 속성 추가&lt;/h3&gt;
@@ -274,7 +276,8 @@
 &lt;h3 id=&quot;2-applicationrunner-클래스-추가&quot;&gt;2. ApplicationRunner 클래스 추가&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;ApplicationRunner 인터페이스를 생성해주는 applicationRunner 메소드를 만든다.&lt;/li&gt;
+  &lt;li&gt;ApplicationRunner 빈(Bean)을 생성해주는 applicationRunner 메소드를 만든다.&lt;/li&gt;
+  &lt;li&gt;스프링 부트 어플리케이션 실행시에 자동으로 이 객체의 run() 메소드가 실행이된다.&lt;/li&gt;
   &lt;li&gt;이 메소드는 Bean 을 생성해야 인식해야하므로 스프링 어노테이션 @Bean 을 달아준다.&lt;/li&gt;
 &lt;/ul&gt;
 
