@@ -6,8 +6,8 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 01 Feb 2019 11:01:36 +0900</pubDate>
-    <lastBuildDate>Fri, 01 Feb 2019 11:01:36 +0900</lastBuildDate>
+    <pubDate>Fri, 01 Feb 2019 11:31:29 +0900</pubDate>
+    <lastBuildDate>Fri, 01 Feb 2019 11:31:29 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -367,7 +367,7 @@ ApplicationRunner 객체를 생성해 놓으면 스프링 부트 어플리케이
   &lt;li&gt;
     &lt;p&gt;위의 ApplicationRunner 에서 저장했던 3개의 Product 들이 JSON 결과로 리턴된다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_rest_products.png&quot; alt=&quot;Product 클래스 생성&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_rest_products.png&quot; alt=&quot;/product 호출&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -381,7 +381,7 @@ ApplicationRunner 객체를 생성해 놓으면 스프링 부트 어플리케이
   &lt;li&gt;
     &lt;p&gt;위의 ApplicationRunner 에서 저장했던 id가 2인 Product 가 JSON 결과로 리턴된다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_rest_product2.png&quot; alt=&quot;Product 클래스 생성&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/assets/images/sbjpa01_rest_product2.png&quot; alt=&quot;/product/{id} 호출&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
