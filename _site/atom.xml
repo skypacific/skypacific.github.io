@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-02-01T11:31:29+09:00</updated>
+ <updated>2019-02-01T20:54:57+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -399,7 +399,7 @@ ApplicationRunner 객체를 생성해 놓으면 스프링 부트 어플리케이
 
 &lt;p&gt;아래의 동영상은 본 예제 프로젝트의 시작부터 빌드, 실행 까지의 모든 과정을 담아보았다.&lt;/p&gt;
 
-&lt;iframe width=&quot;1280&quot; height=&quot;720&quot; src=&quot;https://www.youtube.com/embed/z0xw5GXZ4Aw&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;iframe width=&quot;1280&quot; height=&quot;720&quot; src=&quot;https://www.youtube.com/embed/6orne0iI9mE&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
 &lt;hr /&gt;
 
