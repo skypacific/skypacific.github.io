@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현</title>
-  <meta name="description" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다." />
+  <meta name="description" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 임시 데이타를 기록한뒤 REST API에서 이를 읽고 리턴하는 웹서비스를 구현해 본다." />
 
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -20,14 +20,14 @@
     <meta name="twitter:title" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현" />
     <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
     
-    <meta name="twitter:description"  content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다." />
+    <meta name="twitter:description"  content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 임시 데이타를 기록한뒤 REST API에서 이를 읽고 리턴하는 웹서비스를 구현해 본다." />
     
   
   
   <meta property="og:site_name" content="UXDev's Blog" />
   <meta property="og:title" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 웹서비스 구현"/>
   
-  <meta property="og:description" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다." />
+  <meta property="og:description" content="스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 임시 데이타를 기록한뒤 REST API에서 이를 읽고 리턴하는 웹서비스를 구현해 본다." />
   
   <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
   <meta property="og:url" content="https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html" />
@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1548930016219938000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1548986496733979000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -178,22 +178,23 @@
 <li class="toc-entry toc-h3"><a href="#3-productid-호출">3. /product/{id} 호출</a></li>
 </ul>
 </li>
-</ul><p><code class="highlighter-rouge">스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 데이타를 쓰고 읽은 값을 리턴하는 REST API 웹서비스를 구현해 본다.</code></p>
+</ul><p><code class="highlighter-rouge">스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 임시 데이타를 기록한뒤 REST API 에서 이를 읽고 리턴하는 웹서비스를 구현해 본다.</code></p>
 
 <h2 id="i-스프링-부트-프로젝트-생성">
 <a id="i-스프링-부트-프로젝트-생성" class="anchor" href="#i-%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B6%80%ED%8A%B8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. 스프링 부트 프로젝트 생성</h2>
 
-<p>스프링 부트 프로젝트를 생성하는것은 이전 글 <a href="/2019/01/25/kang.heehun@introduce-spring-boot.html">스프링 부트 (Spring boot) 소개</a> 를 참고하면 된다.<br>
-본 프로젝트 생성시 “Lombok”, “Web”, “JPA”, “H2” 4가지 모듈을 넣어서 생성하면 된다.</p>
+<p>스프링 부트 프로젝트를 생성하는것은 이전 글 <a href="/2019/01/25/kang.heehun@introduce-spring-boot.html">스프링 부트 (Spring boot) 소개</a> 를 참고할 수 있다. 
+이번 프로젝트 생성시에는 “Lombok”, “Web”, “JPA”, “H2” 4가지 모듈을 넣어서 생성하도록 한다.</p>
 
 <p>각 스프링 부트 모듈들의 기능은 다음과 같다.</p>
 
 <h3 id="1-lombok">
 <a id="1-lombok" class="anchor" href="#1-lombok" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Lombok</h3>
 <ul>
-  <li>자바에서 모델(=엔티티) 클래스 작성시에 Lombok을 사용하면 Constructor, Getter/Setter, toString 등 컴파일시에 자동으로 생성해준다.</li>
-  <li>Constructor 의 경우, 파라메터가 없는 경우와 파라메터를 모두 받는 경우 2가지를 생성해준다.</li>
-  <li>@Log 어노테이션을 사용하면 log 필드가 자동생성이된다.</li>
+  <li>자바 모델 클래스 작성시에 Lombok을 사용하면 Constructor, Getter/Setter, toString 등을 컴파일시에 자동으로 생성이된다.</li>
+  <li>Constructor 의 경우, 파라메터가 없는 경우와 파라메터를 모두 받는 경우 2가지를 생성이된다.</li>
+  <li>@EqualsAndHashCode 어노테이션을 사용하면 equals, hashCode 메소드가 생성이된다.</li>
+  <li>@Log 어노테이션을 사용하면 log 필드가 생성이된다.</li>
   <li>@Cleanup 어노테이션을 사용하면 해당 자원이 자동으로 닫히게 (close 메소드 호출) 된다.</li>
 </ul>
 
@@ -435,8 +436,9 @@
 <h2 id="iv-applicationrunner-클랙스-추가">
 <a id="iv-applicationrunner-클랙스-추가" class="anchor" href="#iv-applicationrunner-%ED%81%B4%EB%9E%99%EC%8A%A4-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>IV. ApplicationRunner 클랙스 추가</h2>
 
-<p>본 스프링 부트 어플리케이션 실행시에 H2 데이타베이스가 같이 실행이 된다. <br>
-그런데 이 데이타베이스에는 샘플 데이타가 없기 때문에 스프링 부트 어플리케이션 실행시에 샘플 데이타를 넣어주기로 한다. <br>
+<p>본 스프링 부트 어플리케이션 실행시에 H2 데이타베이스가 같이 실행이 된다.<br>
+그런데 이 데이타베이스에는 샘플 데이타가 없기 때문에 스프링 부트 어플리케이션 실행시에 샘플 데이타를 넣어주기로 한다.<br>
+ApplicationRunner 객체를 생성해 놓으면 스프링 부트 어플리케이션 실행시에 자동으로 이 객체의 run() 메소드가 실행이된다.<br>
 이 프로젝트를 테스트 목적으로 만드는것이므로, 메인 클래스(Sbtest03Application.java)에 정적 클래스를 추가하기로 한다.</p>
 
 <h3 id="1-레파지토리-속성-추가">
@@ -463,7 +465,8 @@
 <a id="2-applicationrunner-클래스-추가" class="anchor" href="#2-applicationrunner-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. ApplicationRunner 클래스 추가</h3>
 
 <ul>
-  <li>ApplicationRunner 인터페이스를 생성해주는 applicationRunner 메소드를 만든다.</li>
+  <li>ApplicationRunner 빈(Bean)을 생성해주는 applicationRunner 메소드를 만든다.</li>
+  <li>스프링 부트 어플리케이션 실행시에 자동으로 이 객체의 run() 메소드가 실행이된다.</li>
   <li>이 메소드는 Bean 을 생성해야 인식해야하므로 스프링 어노테이션 @Bean 을 달아준다.</li>
 </ul>
 
@@ -677,7 +680,7 @@
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1548930016219938000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1548986496733979000"></script>
 
   </body>
 </html>

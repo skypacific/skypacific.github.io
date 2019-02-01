@@ -436,7 +436,7 @@ body {
     padding-bottom: 20px;
     color: #333; }
   .post .post-content a {
-    color: #479dfb;
+    color: #f58220;
     text-decoration: underline; }
   .post .post-content img {
     max-width: 100%;
@@ -950,8 +950,8 @@ pre {
       -webkit-transition: all 0.4s cubic-bezier(0.25, 0.8, 0.4, 0.95); }
       .post .post-content .section-nav li a.active, .post .post-content .section-nav li a:hover {
         padding-left: 5px;
-        border-left: 3px solid #479dfb;
-        color: #479dfb; }
+        border-left: 3px solid #f58220;
+        color: #f58220; }
 @media(max-width: 1100px) {
   .post .post-content .section-nav {
     display: none; } }
