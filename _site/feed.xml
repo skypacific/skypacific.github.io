@@ -6,8 +6,8 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 08 Feb 2019 18:22:00 +0900</pubDate>
-    <lastBuildDate>Fri, 08 Feb 2019 18:22:00 +0900</lastBuildDate>
+    <pubDate>Fri, 08 Feb 2019 22:50:45 +0900</pubDate>
+    <lastBuildDate>Fri, 08 Feb 2019 22:50:45 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -28,11 +28,11 @@ Vue.js 는 위의 세 프레임워크 중 가장 늦게 배포되었지만, 활�
 NPM + WebPack + Babel 구성으로 빌드하는 방법만을 고수해야 하는 상황이다.&lt;/p&gt;
 
 &lt;p&gt;물론 Vue.js 도 고급기능을 사용할때는 NPM + WebPack + Babel 구성으로 빌드하겠지만&lt;br /&gt;
-아무래도 개발자에게 기존 페이지 구성를 두고 점진적으로 적용이 가능하다는 선택사항이 있점은 큰 장점이 된다.&lt;/p&gt;
+아무래도 개발자에게 기존 페이지 구성를 두고 점진적으로 적용이 가능하다는 선택사항이 있는점은 큰 장점이 된다.&lt;/p&gt;
 
 &lt;h2 id=&quot;ii-http-웹-서버-http-web-server-시작&quot;&gt;II. HTTP 웹 서버 (HTTP Web Server) 시작&lt;/h2&gt;
 
-&lt;p&gt;이번 예제에서는 index.html 1개 파일만 작성하 이 파일을 HTTP 웹서버에 올려서 테스트 하려고 한다.&lt;/p&gt;
+&lt;p&gt;이번 글에서는 index.html 1개 파일만을 작성한 뒤 이 파일을 HTTP 웹서버에 올려서 테스트 하려고 한다.&lt;/p&gt;
 
 &lt;p&gt;로컬 개발환경에서 HTTP 웹서버를 띄우는 방법은 아래와 같은 방법이 있을것이다.&lt;/p&gt;
 &lt;ul&gt;
@@ -42,9 +42,7 @@ NPM + WebPack + Babel 구성으로 빌드하는 방법만을 고수해야 하는
   &lt;li&gt;스프링부트(Spring Boot) 자바 어플리케이션에 HTML 파일을 올려서 실행하는 방법&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;아래에서는 네번째 방법에 대해 간략히 설명한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;1-스프링부트spring-boot-자바-어플리케이션에-html-파일을-올리는-방법&quot;&gt;1. 스프링부트(Spring Boot) 자바 어플리케이션에 HTML 파일을 올리는 방법&lt;/h3&gt;
+&lt;p&gt;아래에서는 네번째 방법(스프링부트(Spring Boot) 자바 어플리케이션에 HTML 파일을 올리는 방법)에 대해 간략히 설명한다.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -95,7 +93,7 @@ NPM + WebPack + Babel 구성으로 빌드하는 방법만을 고수해야 하는
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;이후에 여기에 쇼핑몰에서 많이 사용 프로세스인 &lt;strong&gt;“제품 목록을 나열하고 ‘장바구니 담기’ 버튼을 누르면 장바구니에 담는 프로세스”&lt;/strong&gt; 를 구현할것이다.&lt;/p&gt;
+&lt;p&gt;이후에 여기에 쇼핑몰에서 많이 사용중인 프로세스인 &lt;strong&gt;“제품 목록을 나열하고 ‘장바구니 담기’ 버튼을 누르면 장바구니에 담는 프로세스”&lt;/strong&gt; 를 구현할것이다.&lt;/p&gt;
 
 &lt;h3 id=&quot;2-웹브라우져에서-확인&quot;&gt;2. 웹브라우져에서 확인&lt;/h3&gt;
 
@@ -107,14 +105,14 @@ NPM + WebPack + Babel 구성으로 빌드하는 방법만을 고수해야 하는
 
 &lt;h3 id=&quot;1-html-템플릿에-title-추가&quot;&gt;1. HTML 템플릿에 title 추가&lt;/h3&gt;
 
-&lt;p&gt;HTML 템플릿의 &amp;lt;h1&amp;gt; 태그 안에 {{ title }} 문장을 넣어준다.&lt;/p&gt;
+&lt;p&gt;HTML 템플릿의 &amp;lt;h1&amp;gt; 안에 {{ title }} 문장을 넣어준다.&lt;/p&gt;
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;app&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
     &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;{{ title }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;2-vuejs-프레임워크-추가&quot;&gt;2. Vue.js 프레임워크 추가&lt;/h3&gt;
 
-&lt;p&gt;&amp;lt;/body&amp;gt; 태그 바로 앞에 아래 스크립트 태그를 추가한다.&lt;/p&gt;
+&lt;p&gt;&amp;lt;/body&amp;gt; 바로 앞에 아래의 스크립트 태그를 추가한다.&lt;/p&gt;
 
 &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://cdn.jsdelivr.net/npm/vue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/script&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
 &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/body&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
@@ -137,21 +135,21 @@ NPM + WebPack + Babel 구성으로 빌드하는 방법만을 고수해야 하는
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;이 Vue 객체에서…&lt;br /&gt;
-el 가 지정한 #app DOM은 Vue 객체와 맵핑이 되고&lt;br /&gt;
+el 이 지정한 #app DOM은 Vue 객체와 맵핑이 되고&lt;br /&gt;
 data의 title 값이 HTML 템플릿의 {{ title }} 으로 바인딩된다.&lt;/p&gt;
 
 &lt;h3 id=&quot;4-웹브라우져에서-확인&quot;&gt;4. 웹브라우져에서 확인&lt;/h3&gt;
 
 &lt;p&gt;웹브라우져 화면을 리로드 한다.&lt;br /&gt;
-아래와 같이 &amp;lt;h1&amp;gt; 태그값이 “Vue.js Store”로 변경되어 있음을 확인 할 수 있다.&lt;/p&gt;
+&amp;lt;h1&amp;gt; 값이 “Vue.js Store”로 변경되어 있음을 확인 할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/vuejs_store_02.png&quot; alt=&quot;index.html 웹브라우져에서 확인 #2&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;v-제품-목록-추가&quot;&gt;V. 제품 목록 추가&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-html-템플릿의-첫번째-li-태그의-루프문-추가&quot;&gt;1. HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 태그의 루프문 추가&lt;/h3&gt;
+&lt;h3 id=&quot;1-html-템플릿의-첫번째-li-에-루프문-추가&quot;&gt;1. HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 에 루프문 추가&lt;/h3&gt;
 
-&lt;p&gt;HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 태그에 아래와 같은 코드를 추가한다.&lt;/p&gt;
+&lt;p&gt;HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 에 아래와 같은 코드를 추가한다.&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;v-for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;product in products&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
     {{ product.title }} ($ {{ product.price}}) - Inventory {{ product.inventory }}
@@ -182,15 +180,15 @@ data의 title 값이 HTML 템플릿의 {{ title }} 으로 바인딩된다.&lt;/p
 &lt;h3 id=&quot;3-웹브라우져에서-확인&quot;&gt;3. 웹브라우져에서 확인&lt;/h3&gt;
 
 &lt;p&gt;웹브라우져 화면을 리로드 한다.&lt;br /&gt;
-아래와 같이 Product 제목 아래에 제품 목록이 표시됨을 확인할 수 있다.&lt;/p&gt;
+Product 목록에 제품의 이름, 가격, 재고수량이 잘 표시됨을 확인할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/vuejs_store_03.png&quot; alt=&quot;index.html 웹브라우져에서 확인 #3&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;vi-장바구니-목록-추가&quot;&gt;VI. 장바구니 목록 추가&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-html-템플릿의-첫번째-li-태그의-button-태그에-이벤트-추가&quot;&gt;1. HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 태그의 &amp;lt;button&amp;gt; 태그에 이벤트 추가&lt;/h3&gt;
+&lt;h3 id=&quot;1-html-템플릿의-첫번째-li-의-button-에-이벤트-추가&quot;&gt;1. HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 의 &amp;lt;button&amp;gt; 에 이벤트 추가&lt;/h3&gt;
 
-&lt;p&gt;HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 태그의 &amp;lt;button&amp;gt; 태그에 아래와 같은 코드를 추가한다.&lt;/p&gt;
+&lt;p&gt;HTML 템플릿의 첫번째 &amp;lt;li&amp;gt; 의 &amp;lt;button&amp;gt; 에 아래와 같은 코드를 추가한다.&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;v-for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;product in products&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
     {{ product.title }} ($ {{ product.price}}) - Inventory {{ product.inventory }} 
@@ -198,9 +196,9 @@ data의 title 값이 HTML 템플릿의 {{ title }} 으로 바인딩된다.&lt;/p
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;2-html-템플릿의-두번째-li-태그의-루프문-추가&quot;&gt;2. HTML 템플릿의 두번째 &amp;lt;li&amp;gt; 태그의 루프문 추가&lt;/h3&gt;
+&lt;h3 id=&quot;2-html-템플릿의-두번째-li-에-루프문-추가&quot;&gt;2. HTML 템플릿의 두번째 &amp;lt;li&amp;gt; 에 루프문 추가&lt;/h3&gt;
 
-&lt;p&gt;HTML 템플릿의 두번째 &amp;lt;li&amp;gt; 태그에 아래와 같은 코드를 추가한다.&lt;/p&gt;
+&lt;p&gt;HTML 템플릿의 두번째 &amp;lt;li&amp;gt; 에 아래와 같은 코드를 추가한다.&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;li&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;v-for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;product in cartItems&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
     {{ product.title }} ($ {{ product.price}}) x {{ product.quantity}}  
@@ -306,7 +304,7 @@ Product 목록 아이템의 “Add Cart” 버튼을 클릭하면 재고(Invento
 
 &lt;h3 id=&quot;1-html-템플릿에-totalamount-추가&quot;&gt;1. HTML 템플릿에 totalAmount 추가&lt;/h3&gt;
 
-&lt;p&gt;HTML 템플릿의 &amp;lt;h3&amp;gt; 태그 안에 “Total Amount : $ {{ totalAmount }}” 문장을 넣어준다.&lt;/p&gt;
+&lt;p&gt;HTML 템플릿의 &amp;lt;h3&amp;gt; 안에 “Total Amount : $ {{ totalAmount }}” 문장을 넣어준다.&lt;/p&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;h3&amp;gt;&lt;/span&gt;Total Amount : $ {{ totalAmount }}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h3&amp;gt;&lt;/span&gt; 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -420,21 +418,27 @@ Cart 목록에 아이템이 추가될때마다 총 합계가 계산되는것을 
 
 &lt;h3 id=&quot;3-products-배열-값-주석처리&quot;&gt;3. products 배열 값 주석처리&lt;/h3&gt;
 
-&lt;p&gt;Vue 객체 정의에서 products 배열의 값들을 주석처리 한다.&lt;/p&gt;
+&lt;p&gt;Vue 객체 정의에서 products 배열의 값들을 주석처리 하고 mounted 함수를 추가한다.&lt;/p&gt;
 
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nx&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// {id:1, title:'iPad Mini', price:500.5, inventory:7},&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// {id:2, title:'iPad Pro', price:800.4, inventory:5},&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// {id:3, title:'MacBook', price:1200.6, inventory:2}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;4-mounted-함수-추가&quot;&gt;4. mounted 함수 추가&lt;/h3&gt;
-
-&lt;p&gt;Vue 객체 정의에서 mounted 함수를 추가한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// computed 의 끝&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;mounted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#app'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Vue.js Store'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// {id:1, title:'iPad Mini', price:500.5, inventory:7},&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// {id:2, title:'iPad Pro', price:800.4, inventory:5},&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// {id:3, title:'MacBook', price:1200.6, inventory:2}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;cartItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...(중략)...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;computed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...(중략)...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;mounted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PRODUCT_API_URL&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/product/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_app&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
@@ -447,6 +451,7 @@ Cart 목록에 아이템이 추가될때마다 총 합계가 계산되는것을 
                 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
             &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;mounted() 함수는 new Vue 로 생성한 객체에 #app DOM 엘리먼트에 마운트된 시점에서 실행이 된다.
@@ -480,7 +485,7 @@ AXIOS는 HTTP 요청의 응답을 Promise 구조로 넘겨준다.&lt;br /&gt;
     &lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;5-웹브라우져에서-확인&quot;&gt;5. 웹브라우져에서 확인&lt;/h3&gt;
+&lt;h3 id=&quot;4-웹브라우져에서-확인-2&quot;&gt;4. 웹브라우져에서 확인&lt;/h3&gt;
 
 &lt;p&gt;웹브라우져 화면을 리로드 한다.&lt;br /&gt;
 웹 페이지 로딩시에 REST API 호출 결과로 Products 목록이 채워짐을 확인 할 수 있다.&lt;/p&gt;
