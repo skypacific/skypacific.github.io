@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출 예제</title>
+  <meta name="description" content="Vue.js 프레임워크를 기반으로 간단한 예제 프로그램을 만들고, 스프링부트(Spring Boot)로 만들어 놓은 REST API 를 호출하는 예제를 구현해본다." />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@skypacific" />
+    <meta name="twitter:title" content="Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출 예제" />
+    <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
+    
+    <meta name="twitter:description"  content="Vue.js 프레임워크를 기반으로 간단한 예제 프로그램을 만들고, 스프링부트(Spring Boot)로 만들어 놓은 REST API 를 호출하는 예제를 구현해본다." />
+    
+  
+  
+  <meta property="og:site_name" content="UXDev's Blog" />
+  <meta property="og:title" content="Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출 예제"/>
+  
+  <meta property="og:description" content="Vue.js 프레임워크를 기반으로 간단한 예제 프로그램을 만들고, 스프링부트(Spring Boot)로 만들어 놓은 REST API 를 호출하는 예제를 구현해본다." />
+  
+  <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
+  <meta property="og:url" content="https://skypacific.github.io/2019/02/07/kang.heehun@introduce_vuejs.html" />
+  <meta property="og:type" content="article" />
+  <meta property="article:published_time" content="2019-02-07T00:00:00+09:00">
+
+  <meta property="fb:app_id" content="380589692745930" />
+
+  <meta name="naver-site-verification" content="" />
+
+  <link rel="canonical" href="https://skypacific.github.io/2019/02/07/kang.heehun@introduce_vuejs.html"/>
+  <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png"/>
+  <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
+  <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1549617720510608000" />
+  <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
+  <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
+
+  <link rel="stylesheet" type="text/css" href="/css/monokai-sublime.css" />
+
+
+
+  
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MLD9R29');</script>
+  
+
+  
+  
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6479271863698606",
+      enable_page_level_ads: true
+    });
+  </script>
+  
+</head>
+
+  <body itemscope itemtype="http://schema.org/BlogPosting">
+    <!-- header start -->
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v3.2&appId=380589692745930&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<a href="https://skypacific.github.io" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/internet.png)"></span></a>
+<!-- header end -->
+
+
+    <main class="content" role="main">
+      <article class="post">
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+          <meta itemprop="name" content="UXDev's Blog" />
+          <meta itemprop="url" content="https://skypacific.github.io" />
+          <div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+            <meta itemprop="url" content="https://skypacific.github.io/assets/images/internet.png" />
+          </div>
+        </div>
+        <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+          <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg" />
+        </div>
+        <meta itemprop="headline" content="Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출 예제" />
+        <meta itemprop="mainEntityOfPage" content="/2019/02/07/kang.heehun@introduce_vuejs.html" />
+        <meta itemprop="datePublished" content="2019-02-07 00:00:00 +0900" />
+        <meta itemprop="dateModified" content="2019-02-07 00:00:00 +0900" />
+        
+        <div class="noarticleimage">
+          <div class="post-meta">
+            <h1 class="post-title">
+              Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출 예제
+              
+            </h1>
+            <div class="cf post-meta-text">
+              <div class="author-info">
+                <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+                <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  HeeHun Kang<meta itemprop="name" content="HeeHun Kang" /><meta itemprop="url" content="https://skypacific.github.io/about" />
+                </h4>
+                &nbsp;&nbsp;
+                <i class="nf nf-fa-calendar"></i>
+                <time datetime="2019-02-07">2019-02-07</time>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <section class="post-content">
+          <a name="topofpage"></a>
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#i-vuejs-소개">I. Vue.js 소개</a></li>
+<li class="toc-entry toc-h2"><a href="#ii-http-웹-서버-http-web-server-시작">II. HTTP 웹 서버 (HTTP Web Server) 시작</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-스프링부트spring-boot-자바-어플리케이션에-html-파일을-올리는-방법">1. 스프링부트(Spring Boot) 자바 어플리케이션에 HTML 파일을 올리는 방법</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#iii-vuejs-예제-프로젝트-작성">III. Vue.js 예제 프로젝트 작성</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-indexhtml-에-html-템플릿-추가">1. index.html 에 HTML 템플릿 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#2-웹브라우져에서-확인">2. 웹브라우져에서 확인</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#iv-vue-객체를-생성하고-제목-바인딩">IV. Vue 객체를 생성하고 제목 바인딩</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-html-템플릿에-title-추가">1. HTML 템플릿에 title 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#2-vuejs-프레임워크-추가">2. Vue.js 프레임워크 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#3-vue-객체-생성">3. Vue 객체 생성</a></li>
+<li class="toc-entry toc-h3"><a href="#4-웹브라우져에서-확인">4. 웹브라우져에서 확인</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#v-제품-목록-추가">V. 제품 목록 추가</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-html-템플릿의-첫번째-li-태그의-루프문-추가">1. HTML 템플릿의 첫번째 &lt;li&gt; 태그의 루프문 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#2-vue-객체의-data-에-products-배열-추가">2. Vue 객체의 data 에 products 배열 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#3-웹브라우져에서-확인">3. 웹브라우져에서 확인</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#vi-장바구니-목록-추가">VI. 장바구니 목록 추가</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-html-템플릿의-첫번째-li-태그의-button-태그에-이벤트-추가">1. HTML 템플릿의 첫번째 &lt;li&gt; 태그의 &lt;button&gt; 태그에 이벤트 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#2-html-템플릿의-두번째-li-태그의-루프문-추가">2. HTML 템플릿의 두번째 &lt;li&gt; 태그의 루프문 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#3-cartitems-배열과-addtocart-함수-추가">3. cartItems 배열과 addToCart 함수 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#4-웹브라우져에서-확인-1">4. 웹브라우져에서 확인</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#vii-장바구니-합계-추가">VII. 장바구니 합계 추가</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-html-템플릿에-totalamount-추가">1. HTML 템플릿에 totalAmount 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#2-totalamount-함수-추가">2. totalAmount 함수 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#3-웹브라우져에서-확인-1">3. 웹브라우져에서 확인</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#viii-rest-api-호출">VIII. REST API 호출</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#1-스프링부트-rest-api-실행">1. 스프링부트 REST API 실행</a></li>
+<li class="toc-entry toc-h3"><a href="#2-스크립트-태그-추가">2. 스크립트 태그 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#3-products-배열-값-주석처리">3. products 배열 값 주석처리</a></li>
+<li class="toc-entry toc-h3"><a href="#4-mounted-함수-추가">4. mounted 함수 추가</a></li>
+<li class="toc-entry toc-h3"><a href="#5-웹브라우져에서-확인">5. 웹브라우져에서 확인</a></li>
+</ul>
+</li>
+</ul><p><code class="highlighter-rouge">Vue.js 프레임워크를 기반으로 간단한 예제 프로그램을 만들고, 스프링부트(Spring Boot)로 만들어 놓은 REST API 를 호출하는 예제를 구현해본다.</code></p>
+
+<h2 id="i-vuejs-소개">
+<a id="i-vuejs-소개" class="anchor" href="#i-vuejs-%EC%86%8C%EA%B0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Vue.js 소개</h2>
+
+<p>Vue.js 는 현재 가장 많이 사용되는 자바스트립트 프레임워크 TOP 3 중 하나이다.<br>
+<strong>“Angular”</strong>, <strong>“React”</strong>, <strong>“Vue.js”</strong><br>
+Vue.js 는 위의 세 프레임워크 중 가장 늦게 배포되었지만, 활발히 사용자 커뮤니티가 늘어나는중이다.</p>
+
+<p>Vue.js 가 다른 프레임워크와 가장 큰 특징은 점진적으로 채택이 가능하다는것이다.<br>
+기존에 HTML 과 Javascript 으로 구성된 페이지가 있을때, 이 구성을 그대로 두고 Vue.js 적용이 가능하다.</p>
+
+<p>React의 경우에는 JSX 와 ES6 (ECMAScript 2015) 에 의존을 많이 하고 있는데…<br>
+아직 Internet Explorer 11 과 같은 (ES6 이상을 지원하지 못하는) 웹브라우져들이 존재하는 까닭에<br>
+NPM + WebPack + Babel 구성으로 빌드하는 방법만을 고수해야 하는 상황이다.</p>
+
+<p>물론 Vue.js 도 고급기능을 사용할때는 NPM + WebPack + Babel 구성으로 빌드하겠지만<br>
+아무래도 개발자에게 기존 페이지 구성를 두고 점진적으로 적용이 가능하다는 선택사항이 있점은 큰 장점이 된다.</p>
+
+<h2 id="ii-http-웹-서버-http-web-server-시작">
+<a id="ii-http-웹-서버-http-web-server-시작" class="anchor" href="#ii-http-%EC%9B%B9-%EC%84%9C%EB%B2%84-http-web-server-%EC%8B%9C%EC%9E%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>II. HTTP 웹 서버 (HTTP Web Server) 시작</h2>
+
+<p>이번 예제에서는 index.html 1개 파일만 작성하 이 파일을 HTTP 웹서버에 올려서 테스트 하려고 한다.</p>
+
+<p>로컬 개발환경에서 HTTP 웹서버를 띄우는 방법은 아래와 같은 방법이 있을것이다.</p>
+<ul>
+  <li>Apache WebServer 나 Nginx WebServer 등의 설치패키지를 수동으로 다운받아 설치 후 실행하는 방법</li>
+  <li>NPM의 webpack-dev-server 로 실행하는 방법</li>
+  <li>도커(Docker)에서 Apache WebServer 나 Nginx WebServer 등의 컨테이너를 실행하는 방법</li>
+  <li>스프링부트(Spring Boot) 자바 어플리케이션에 HTML 파일을 올려서 실행하는 방법</li>
+</ul>
+
+<p>아래에서는 네번째 방법에 대해 간략히 설명한다.</p>
+
+<h3 id="1-스프링부트spring-boot-자바-어플리케이션에-html-파일을-올리는-방법">
+<a id="1-스프링부트spring-boot-자바-어플리케이션에-html-파일을-올리는-방법" class="anchor" href="#1-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8spring-boot-%EC%9E%90%EB%B0%94-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%97%90-html-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%98%AC%EB%A6%AC%EB%8A%94-%EB%B0%A9%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 스프링부트(Spring Boot) 자바 어플리케이션에 HTML 파일을 올리는 방법</h3>
+
+<ul>
+  <li>
+    <p>이전 글 <a href="/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html">스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 구현 예제</a> 을 구현해봤다면 그 스프링부트 프로젝트를 그대로 사용한다.  <br>
+(<i class="nf nf-fa-archive"></i> <a href="https://skypacific.github.io/assets/download/sbtest03.zip">sbtest03.zip 소스파일</a> 을 다운로드 받아도 된다.)</p>
+  </li>
+  <li>
+    <p>스프링부트 프로젝트의 “/src/main/resource/static” 디렉토리에 빈 index.html 파일을 생성해 넣는다.</p>
+  </li>
+  <li>
+    <p>스프링부트 프로젝트를 빌드하고 실행한 뒤 웹브라우져로 “http://localhost:8080/” 주소로 접속하면 index.html 이 실행된다.</p>
+  </li>
+  <li>
+    <p><i>(주의) index.html 파일을 변경하면 프로젝트를 다시 빌드해야 변경된 내용이 반영 된다.</i></p>
+  </li>
+</ul>
+
+<h2 id="iii-vuejs-예제-프로젝트-작성">
+<a id="iii-vuejs-예제-프로젝트-작성" class="anchor" href="#iii-vuejs-%EC%98%88%EC%A0%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%9E%91%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>III. Vue.js 예제 프로젝트 작성</h2>
+
+<h3 id="1-indexhtml-에-html-템플릿-추가">
+<a id="1-indexhtml-에-html-템플릿-추가" class="anchor" href="#1-indexhtml-%EC%97%90-html-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. index.html 에 HTML 템플릿 추가</h3>
+<p>index.html 에 아래와 같은 HTML 템플릿을 추가한다.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Vue.js Shop<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;&lt;/h1&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>Product<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+            <span class="nt">&lt;li&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>Cart<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;ul&gt;</span>
+            <span class="nt">&lt;li&gt;</span>
+            <span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;/ul&gt;</span>
+        <span class="nt">&lt;h3&gt;</span>Total Amount : <span class="nt">&lt;/h3&gt;</span> 
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>이후에 여기에 쇼핑몰에서 많이 사용 프로세스인 <strong>“제품 목록을 나열하고 ‘장바구니 담기’ 버튼을 누르면 장바구니에 담는 프로세스”</strong> 를 구현할것이다.</p>
+
+<h3 id="2-웹브라우져에서-확인">
+<a id="2-웹브라우져에서-확인" class="anchor" href="#2-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%B8%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 웹브라우져에서 확인</h3>
+
+<p>웹브라우져로 “http://localhost:8080/” 또는 “http://localhost:8080/index.html” 을 접속하면 아래와 같은 화면이 표시된다.</p>
+
+<p><img src="/assets/images/vuejs_store_01.png" alt="index.html 웹브라우져에서 확인 #1"></p>
+
+<h2 id="iv-vue-객체를-생성하고-제목-바인딩">
+<a id="iv-vue-객체를-생성하고-제목-바인딩" class="anchor" href="#iv-vue-%EA%B0%9D%EC%B2%B4%EB%A5%BC-%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0-%EC%A0%9C%EB%AA%A9-%EB%B0%94%EC%9D%B8%EB%94%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>IV. Vue 객체를 생성하고 제목 바인딩</h2>
+
+<h3 id="1-html-템플릿에-title-추가">
+<a id="1-html-템플릿에-title-추가" class="anchor" href="#1-html-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%97%90-title-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. HTML 템플릿에 title 추가</h3>
+
+<p>HTML 템플릿의 &lt;h1&gt; 태그 안에 {{ title }} 문장을 넣어준다.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>{{ title }}<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<h3 id="2-vuejs-프레임워크-추가">
+<a id="2-vuejs-프레임워크-추가" class="anchor" href="#2-vuejs-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Vue.js 프레임워크 추가</h3>
+
+<p>&lt;/body&gt; 태그 바로 앞에 아래 스크립트 태그를 추가한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"https://cdn.jsdelivr.net/npm/vue"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<h3 id="3-vue-객체-생성">
+<a id="3-vue-객체-생성" class="anchor" href="#3-vue-%EA%B0%9D%EC%B2%B4-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Vue 객체 생성</h3>
+
+<p>위의 스크립트 태그 아래에 아래와 같은 JavaScript 스크립트 태그를 추가한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"https://cdn.jsdelivr.net/npm/vue"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"application/javascript"</span> <span class="nx">language</span><span class="o">=</span><span class="s2">"JavaScript"</span><span class="o">&gt;</span>
+    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="na">el</span><span class="p">:</span> <span class="s1">'#app'</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">title</span><span class="p">:</span> <span class="s1">'Vue.js Store'</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="sr">/body</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>이 Vue 객체에서…<br>
+el 가 지정한 #app DOM은 Vue 객체와 맵핑이 되고<br>
+data의 title 값이 HTML 템플릿의 {{ title }} 으로 바인딩된다.</p>
+
+<h3 id="4-웹브라우져에서-확인">
+<a id="4-웹브라우져에서-확인" class="anchor" href="#4-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%B8%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 웹브라우져에서 확인</h3>
+
+<p>웹브라우져 화면을 리로드 한다.<br>
+아래와 같이 &lt;h1&gt; 태그값이 “Vue.js Store”로 변경되어 있음을 확인 할 수 있다.</p>
+
+<p><img src="/assets/images/vuejs_store_02.png" alt="index.html 웹브라우져에서 확인 #2"></p>
+
+<h2 id="v-제품-목록-추가">
+<a id="v-제품-목록-추가" class="anchor" href="#v-%EC%A0%9C%ED%92%88-%EB%AA%A9%EB%A1%9D-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>V. 제품 목록 추가</h2>
+
+<h3 id="1-html-템플릿의-첫번째-li-태그의-루프문-추가">
+<a id="1-html-템플릿의-첫번째-li-태그의-루프문-추가" class="anchor" href="#1-html-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%9D%98-%EC%B2%AB%EB%B2%88%EC%A7%B8-li-%ED%83%9C%EA%B7%B8%EC%9D%98-%EB%A3%A8%ED%94%84%EB%AC%B8-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. HTML 템플릿의 첫번째 &lt;li&gt; 태그의 루프문 추가</h3>
+
+<p>HTML 템플릿의 첫번째 &lt;li&gt; 태그에 아래와 같은 코드를 추가한다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"product in products"</span><span class="nt">&gt;</span>
+    {{ product.title }} ($ {{ product.price}}) - Inventory {{ product.inventory }}
+<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<h3 id="2-vue-객체의-data-에-products-배열-추가">
+<a id="2-vue-객체의-data-에-products-배열-추가" class="anchor" href="#2-vue-%EA%B0%9D%EC%B2%B4%EC%9D%98-data-%EC%97%90-products-%EB%B0%B0%EC%97%B4-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Vue 객체의 data 에 products 배열 추가</h3>
+
+<p>Vue 객체의 data 에 products 배열을 추가한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"application/javascript"</span> <span class="nx">language</span><span class="o">=</span><span class="s2">"JavaScript"</span><span class="o">&gt;</span>
+    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="na">el</span><span class="p">:</span> <span class="s1">'#app'</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">title</span><span class="p">:</span> <span class="s1">'Vue.js Store'</span><span class="p">,</span>
+            <span class="na">products</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'iPad Mini'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">500.5</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">7</span><span class="p">},</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'iPad Pro'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">800.4</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'MacBook'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">1200.6</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>Vue 객체의 products 배열의 아이템 갯수만큼 &lt;li&gt; 가 생성이되고 자식 텍스트에 재품 이름, 가격, 재고가 맵핑이 된다.</p>
+
+<h3 id="3-웹브라우져에서-확인">
+<a id="3-웹브라우져에서-확인" class="anchor" href="#3-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%B8%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 웹브라우져에서 확인</h3>
+
+<p>웹브라우져 화면을 리로드 한다.<br>
+아래와 같이 Product 제목 아래에 제품 목록이 표시됨을 확인할 수 있다.</p>
+
+<p><img src="/assets/images/vuejs_store_03.png" alt="index.html 웹브라우져에서 확인 #3"></p>
+
+<h2 id="vi-장바구니-목록-추가">
+<a id="vi-장바구니-목록-추가" class="anchor" href="#vi-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88-%EB%AA%A9%EB%A1%9D-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>VI. 장바구니 목록 추가</h2>
+
+<h3 id="1-html-템플릿의-첫번째-li-태그의-button-태그에-이벤트-추가">
+<a id="1-html-템플릿의-첫번째-li-태그의-button-태그에-이벤트-추가" class="anchor" href="#1-html-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%9D%98-%EC%B2%AB%EB%B2%88%EC%A7%B8-li-%ED%83%9C%EA%B7%B8%EC%9D%98-button-%ED%83%9C%EA%B7%B8%EC%97%90-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. HTML 템플릿의 첫번째 &lt;li&gt; 태그의 &lt;button&gt; 태그에 이벤트 추가</h3>
+
+<p>HTML 템플릿의 첫번째 &lt;li&gt; 태그의 &lt;button&gt; 태그에 아래와 같은 코드를 추가한다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"product in products"</span><span class="nt">&gt;</span>
+    {{ product.title }} ($ {{ product.price}}) - Inventory {{ product.inventory }} 
+    <span class="nt">&lt;button</span> <span class="na">v-on:click=</span><span class="s">"addToCart($event, product)"</span> <span class="na">v-bind:disabled=</span><span class="s">"product.inventory &lt;= 0"</span><span class="nt">&gt;</span>Add Cart<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<h3 id="2-html-템플릿의-두번째-li-태그의-루프문-추가">
+<a id="2-html-템플릿의-두번째-li-태그의-루프문-추가" class="anchor" href="#2-html-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%9D%98-%EB%91%90%EB%B2%88%EC%A7%B8-li-%ED%83%9C%EA%B7%B8%EC%9D%98-%EB%A3%A8%ED%94%84%EB%AC%B8-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. HTML 템플릿의 두번째 &lt;li&gt; 태그의 루프문 추가</h3>
+
+<p>HTML 템플릿의 두번째 &lt;li&gt; 태그에 아래와 같은 코드를 추가한다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"product in cartItems"</span><span class="nt">&gt;</span>
+    {{ product.title }} ($ {{ product.price}}) x {{ product.quantity}}  
+<span class="nt">&lt;/li&gt;</span>
+</code></pre></div></div>
+
+<h3 id="3-cartitems-배열과-addtocart-함수-추가">
+<a id="3-cartitems-배열과-addtocart-함수-추가" class="anchor" href="#3-cartitems-%EB%B0%B0%EC%97%B4%EA%B3%BC-addtocart-%ED%95%A8%EC%88%98-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. cartItems 배열과 addToCart 함수 추가</h3>
+
+<p>Vue 객체 정의에서<br>
+data 안에 cartItems 배열을 추가하고
+methods 안에 addToCart 함수를 추가한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"application/javascript"</span> <span class="nx">language</span><span class="o">=</span><span class="s2">"JavaScript"</span><span class="o">&gt;</span>
+    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="na">el</span><span class="p">:</span> <span class="s1">'#app'</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">title</span><span class="p">:</span> <span class="s1">'Vue.js Store'</span><span class="p">,</span>
+            <span class="na">products</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'iPad Mini'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">500.5</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">7</span><span class="p">},</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'iPad Pro'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">800.4</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'MacBook'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">1200.6</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="na">cartItems</span><span class="p">:</span> <span class="p">[</span>
+                 
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">addToCart</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">product</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// event: DOM 이벤트 객체</span>
+                <span class="c1">// product: 클릭 이벤트가 발생된 제품 객체</span>
+        
+                <span class="c1">// &lt;코드블럭 #1&gt;      </span>
+                <span class="c1">// 전체 products 배열에서 product.id 값과 일치하는 제품을 찾아 재고수량(inventory)을 -1 감소시킨다.</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span>
+                    <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">})</span>
+                    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">inventory</span><span class="o">--</span><span class="p">});</span>
+
+                <span class="c1">// &lt;코드블럭 #2&gt;  </span>
+                <span class="c1">// 전체 cartItems 배열에서 product.id 값과 일치하는 제품을 찾아</span>
+                <span class="c1">// 존재하지 하면 수량(quantity)을 +1 증가시킨다.</span>
+                <span class="c1">// 존재하지 하지 않으면 product 파라메터로 넘어온 값을 참고하여 새로운 객체를 만들고 수량(quantity)은 1로 지정한다.</span>
+                <span class="kd">var</span> <span class="nx">_cartItem</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">_cartItem</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">_cartItem</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">quantity</span><span class="o">++</span><span class="p">});</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+                        <span class="s2">"id"</span><span class="p">:</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+                        <span class="s2">"title"</span><span class="p">:</span> <span class="nx">product</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+                        <span class="s2">"price"</span><span class="p">:</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span><span class="p">,</span>
+                        <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">1</span>
+                    <span class="p">});</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>Vue 객체의 products &lt;li&gt; 아래의 &lt;button&gt; 을 클릭하면 addToCart() 함수가 실행된다. <br>
+이 함수에서는 products 배열의 아이템에서 inventory를 하나 감소시키고, cartItems 배열의 아이템에서는 quantity를 하나 증가시키게 된다.</p>
+
+<p>&lt;코드블럭 #1&gt;</p>
+
+<p>여기에는 filter()와 map() 함수를 사용했다.<br>
+filter(), map(), reduce() 는 대용량데이터 처리 목적으로 나온 개념을 자바스크립트로 구현한 함수로 배열처리에서 그 효용성이 좋으니 숙지하면 좋다.</p>
+
+<p>전통적인 for 루프를 사용한 코드로는 아래와 같이 구현 할 수 있다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 전통적인 for 루프</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">p</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">p</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span><span class="p">[</span><span class="nx">p</span><span class="p">].</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span><span class="p">[</span><span class="nx">p</span><span class="p">].</span><span class="nx">inventory</span><span class="o">--</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>그리고 “Arrow Function”을 사용하여 구현할 수도 있다.<br>
+<em>ES6(ES2015) 이상에서만 지원</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// "Arrow Function" 사용 (ES6 이상 지원)</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span>
+    <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">inventory</span><span class="o">--</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>&lt;코드블럭 #2&gt;</p>
+
+<p>여기에도 filter()와 map() 함수를 사용했다.</p>
+
+<p>this.$data.cartItems.push() 의 객체 복사시에 Object.assign() 함수를 사용하면 훨씬 깔끔해진다.<br>
+<em>ES6(ES2015) 이상에서만 지원</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Object.assign() 사용 (ES6 이상 지원)</span>
+<span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({</span><span class="s1">'quantity'</span><span class="p">:</span><span class="mi">1</span><span class="p">},</span> <span class="nx">product</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="4-웹브라우져에서-확인-1">
+<a id="4-웹브라우져에서-확인-1" class="anchor" href="#4-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%B8%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 웹브라우져에서 확인</h3>
+
+<p>웹브라우져 화면을 리로드 한다.<br>
+Product 목록 아이템의 “Add Cart” 버튼을 클릭하면 재고(Inventory)가 감소하고 하단의 Cart 목록에 아이템이 추가되는것을 확인할 수 있다.</p>
+
+<p><img src="/assets/images/vuejs_store_04.png" alt="index.html 웹브라우져에서 확인 #4"></p>
+
+<h2 id="vii-장바구니-합계-추가">
+<a id="vii-장바구니-합계-추가" class="anchor" href="#vii-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88-%ED%95%A9%EA%B3%84-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>VII. 장바구니 합계 추가</h2>
+
+<h3 id="1-html-템플릿에-totalamount-추가">
+<a id="1-html-템플릿에-totalamount-추가" class="anchor" href="#1-html-%ED%85%9C%ED%94%8C%EB%A6%BF%EC%97%90-totalamount-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. HTML 템플릿에 totalAmount 추가</h3>
+
+<p>HTML 템플릿의 &lt;h3&gt; 태그 안에 “Total Amount : $ {{ totalAmount }}” 문장을 넣어준다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h3&gt;</span>Total Amount : $ {{ totalAmount }}<span class="nt">&lt;/h3&gt;</span> 
+</code></pre></div></div>
+
+<h3 id="2-totalamount-함수-추가">
+<a id="2-totalamount-함수-추가" class="anchor" href="#2-totalamount-%ED%95%A8%EC%88%98-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. totalAmount 함수 추가</h3>
+
+<p>Vue 객체 정의에서 computed 안에 totalAmount 함수를 추가한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"application/javascript"</span> <span class="nx">language</span><span class="o">=</span><span class="s2">"JavaScript"</span><span class="o">&gt;</span>
+    <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="na">el</span><span class="p">:</span> <span class="s1">'#app'</span><span class="p">,</span>
+        <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">title</span><span class="p">:</span> <span class="s1">'Vue.js Store'</span><span class="p">,</span>
+            <span class="na">products</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'iPad Mini'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">500.5</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">7</span><span class="p">},</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'iPad Pro'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">800.4</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">5</span><span class="p">},</span>
+                <span class="p">{</span><span class="na">id</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="na">title</span><span class="p">:</span><span class="s1">'MacBook'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span><span class="mf">1200.6</span><span class="p">,</span> <span class="na">inventory</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="na">cartItems</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">addToCart</span> <span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="nx">product</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// event: DOM 이벤트 객체</span>
+                <span class="c1">// product: 클릭 이벤트가 발생된 제품 객체</span>
+
+                <span class="c1">// &lt;코드블럭 #1&gt;      </span>
+                <span class="c1">// 전체 products 배열에서 product.id 값과 일치하는 제품을 찾아 재고수량(inventory)을 -1 감소시킨다.</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span>
+                    <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">})</span>
+                    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">inventory</span><span class="o">--</span><span class="p">});</span>
+
+                <span class="c1">// &lt;코드블럭 #2&gt;  </span>
+                <span class="c1">// 전체 cartItems 배열에서 product.id 값과 일치하는 제품을 찾아</span>
+                <span class="c1">// 존재하지 하면 수량(quantity)을 +1 증가시킨다.</span>
+                <span class="c1">// 존재하지 하지 않으면 product 파라메터로 넘어온 값을 참고하여 새로운 객체를 만들고 수량(quantity)은 1로 지정한다.</span>
+                <span class="kd">var</span> <span class="nx">_cartItem</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">});</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">_cartItem</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">_cartItem</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">quantity</span><span class="o">++</span><span class="p">});</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+                        <span class="s2">"id"</span><span class="p">:</span> <span class="nx">product</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+                        <span class="s2">"title"</span><span class="p">:</span> <span class="nx">product</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span>
+                        <span class="s2">"price"</span><span class="p">:</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span><span class="p">,</span>
+                        <span class="s2">"quantity"</span><span class="p">:</span> <span class="mi">1</span>
+                    <span class="p">});</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="na">computed</span><span class="p">:</span> <span class="p">{</span>
+            <span class="na">totalAmount</span> <span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+                <span class="c1">// &lt;코드블럭 #3&gt;</span>
+                <span class="c1">// 장바구니에 담긴 제품들 전체 합계를 reduce() 함수를 사용해서 구한다.</span>
+                <span class="kd">var</span> <span class="nx">totalAmount</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">previousSum</span><span class="p">,</span> <span class="nx">currentItem</span><span class="p">)</span> <span class="p">{</span> 
+                    <span class="k">return</span> <span class="nx">previousSum</span> <span class="o">+</span> <span class="nx">currentItem</span><span class="p">.</span><span class="nx">price</span> <span class="o">*</span> <span class="nx">currentItem</span><span class="p">.</span><span class="nx">quantity</span><span class="p">;</span>
+                <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">totalAmount</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="o">&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>computed() 는 계산하여 값을 가져와야 할 경우에 구현한다.<br>
+(C++ 나 C# 에서의 property getter 와 유사하다)<br>
+여기서는 cartItems 배열이 변경될때마다 이 배열의 아이템들 금액을 계산해서 합계 내주는 로직을 구현하였다.</p>
+
+<p>&lt;코드블럭 #3&gt;</p>
+
+<p>여기에는 reduce() 함수를 사용했다.<br>
+reduce() 함수는 배열을 순차적으로 엑세스하여 하나값을 도출하는데 유용한 함수이다.</p>
+
+<p>전통적인 for 루프를 사용한 코드로는 아래와 같이 구현 할 수 있다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">totalAmount</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">totalAmount</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">price</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">quantity</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">totalAmount</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>이 역시 “Arrow Function”을 사용하여 구현할 수도 있다.<br>
+<em>ES6(ES2015) 이상에서만 지원</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// "Arrow Function" 사용 (ES6 이상 지원)</span>
+    <span class="kd">var</span> <span class="nx">totalAmount</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span>
+        <span class="p">(</span><span class="nx">previousSum</span><span class="p">,</span> <span class="nx">currentItem</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">previousSum</span> <span class="o">+</span> <span class="nx">currentItem</span><span class="p">.</span><span class="nx">price</span> <span class="o">*</span> <span class="nx">currentItem</span><span class="p">.</span><span class="nx">quantity</span>
+        <span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">totalAmount</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="3-웹브라우져에서-확인-1">
+<a id="3-웹브라우져에서-확인-1" class="anchor" href="#3-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%B8%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 웹브라우져에서 확인</h3>
+
+<p>웹브라우져 화면을 리로드 한다.<br>
+Cart 목록에 아이템이 추가될때마다 총 합계가 계산되는것을 볼 수 있다.</p>
+
+<p><img src="/assets/images/vuejs_store_05.png" alt="index.html 웹브라우져에서 확인 #5"></p>
+
+<h2 id="viii-rest-api-호출">
+<a id="viii-rest-api-호출" class="anchor" href="#viii-rest-api-%ED%98%B8%EC%B6%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>VIII. REST API 호출</h2>
+
+<h3 id="1-스프링부트-rest-api-실행">
+<a id="1-스프링부트-rest-api-실행" class="anchor" href="#1-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8-rest-api-%EC%8B%A4%ED%96%89" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 스프링부트 REST API 실행</h3>
+
+<p>이전 글 <a href="/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html">스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 구현 예제</a> 을 구현해봤다면 그 스프링부트 프로젝트를 그대로 사용한다.<br>
+그렇지 않으면 <i class="nf nf-fa-archive"></i> <a href="https://skypacific.github.io/assets/download/sbtest03.zip">sbtest03.zip 소스파일</a> 을 다운로드 받아도 된다.</p>
+
+<h3 id="2-스크립트-태그-추가">
+<a id="2-스크립트-태그-추가" class="anchor" href="#2-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%83%9C%EA%B7%B8-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 스크립트 태그 추가</h3>
+
+<p>기존의 존재했던 스크립트 태그 아래에 두줄의 스크립트 태그를 추가한다.</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://unpkg.com/axios/dist/axios.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<h3 id="3-products-배열-값-주석처리">
+<a id="3-products-배열-값-주석처리" class="anchor" href="#3-products-%EB%B0%B0%EC%97%B4-%EA%B0%92-%EC%A3%BC%EC%84%9D%EC%B2%98%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. products 배열 값 주석처리</h3>
+
+<p>Vue 객체 정의에서 products 배열의 값들을 주석처리 한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">products</span><span class="p">:</span> <span class="p">[</span>
+        <span class="c1">// {id:1, title:'iPad Mini', price:500.5, inventory:7},</span>
+        <span class="c1">// {id:2, title:'iPad Pro', price:800.4, inventory:5},</span>
+        <span class="c1">// {id:3, title:'MacBook', price:1200.6, inventory:2}</span>
+    <span class="p">],</span>
+</code></pre></div></div>
+
+<h3 id="4-mounted-함수-추가">
+<a id="4-mounted-함수-추가" class="anchor" href="#4-mounted-%ED%95%A8%EC%88%98-%EC%B6%94%EA%B0%80" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. mounted 함수 추가</h3>
+
+<p>Vue 객체 정의에서 mounted 함수를 추가한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="p">},</span> <span class="c1">// computed 의 끝</span>
+    <span class="nx">mounted</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">PRODUCT_API_URL</span> <span class="o">=</span> <span class="s2">"/product/"</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">_app</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="c1">// use Axios + Promise</span>
+        <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">PRODUCT_API_URL</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">_app</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+            <span class="p">})</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>mounted() 함수는 new Vue 로 생성한 객체에 #app DOM 엘리먼트에 마운트된 시점에서 실행이 된다.
+이 함수에서 REST API를 호출하는 코드를 작성했다.</p>
+
+<p>여기서는 AXIOS 라이브러리를 사용하였다.<br>
+AXIOS는 HTTP 요청의 응답을 Promise 구조로 넘겨준다.<br>
+현재 Internet Explorer는 Promise를 지원하지 않으므로 Promise 지원을 위해 스크립트 태그에서 es6-promise 라이브러리를 추가하였다.</p>
+
+<p>만약 전통적인 XMLHttpRequest 를 사용한다면 아래와 같이 코드를 작성할 수도 있다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// XMLHttpRequest 사용</span>
+    <span class="kd">var</span> <span class="nx">xhttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">_app</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="k">this</span><span class="p">.</span><span class="nx">response</span> <span class="o">===</span> <span class="s2">"string"</span><span class="p">)</span> <span class="p">?</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">response</span><span class="p">;</span> 
+        <span class="p">}</span>
+    <span class="p">};</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="nx">PRODUCT_API_URL</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>REST API 호출시에 async/await 를 사용하면 훨씬 깔끔해진다.<br>
+<em>ES6(ES2015) 이상에서만 지원</em></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1">// async/await 사용</span>
+    <span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nx">_app</span><span class="p">.</span><span class="nx">$data</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="p">(</span><span class="kr">await</span> <span class="nx">axios</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nx">PRODUCT_API_URL</span><span class="p">)).</span><span class="nx">data</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">})();</span>
+</code></pre></div></div>
+
+<h3 id="5-웹브라우져에서-확인">
+<a id="5-웹브라우져에서-확인" class="anchor" href="#5-%EC%9B%B9%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%B8%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. 웹브라우져에서 확인</h3>
+
+<p>웹브라우져 화면을 리로드 한다.<br>
+웹 페이지 로딩시에 REST API 호출 결과로 Products 목록이 채워짐을 확인 할 수 있다.</p>
+
+<p><img src="/assets/images/vuejs_store_06.png" alt="index.html 웹브라우져에서 확인 #6"></p>
+
+<hr>
+
+<p>본 예제 결과물 sbvue.zip 소스파일은 아래 링크에서 다운받을 수 있다.<br>
+<i class="nf nf-fa-archive"></i> <a href="https://skypacific.github.io/assets/download/sbvue.zip">sbvue.zip 소스파일</a></p>
+
+<hr>
+
+<p>앞에서 언급된 ES6(ES2015) 관련코드는 Vue.js 를 NPM + WebPack + Babel 구성으로 빌드하면<br>
+Internet Explorer 등의 낮은스펙의 웹브라우져에서도 문제없이 실행이 가능하다.<br>
+이 부분에 대해서는 다음에 글을 남겨보도록 하겠다.</p>
+
+          <p class="tags">
+            
+              <a href="/tags#front-end-ref">Front-end</a>
+            
+              <a href="/tags#vue-js-ref">Vue.js</a>
+            
+              <a href="/tags#spring-ref">Spring</a>
+            
+              <a href="/tags#springboot-ref">SpringBoot</a>
+            
+              <a href="/tags#back-end-ref">Back-end</a>
+            
+              <a href="/tags#rest-api-ref">REST API</a>
+            
+          </p>
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            <div class="fb-like" data-href="https://skypacific.github.io/2019/02/07/kang.heehun@introduce_vuejs.html" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
+            
+            
+            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=Vue.js+%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC+%EC%86%8C%EA%B0%9C%EC%99%80+%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8%28Spring+Boot%29+REST+API+%ED%98%B8%EC%B6%9C+%EC%98%88%EC%A0%9C&amp;u=https://skypacific.github.io/2019/02/07/kang.heehun@introduce_vuejs"
+               onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+              <i class="nf nf-fa-facebook"></i><span class="hidden">facebook</span>
+            </a>
+            
+            
+            
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/kang.heehun.jpg)">Blog Logo</div>
+              <h4>HeeHun Kang</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2019-02-07">2019-02-07</time></p>
+            </section>
+          </div>
+
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="nf nf-fa-rss"></i> You should subscribe to my feed.</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright <a href="https://skypacific.github.io/">HeeHun Kang</a> &copy; 2019<br>All rights reserved.</section>
+              </div>
+            </footer>
+        </div>
+
+        
+      </article>
+
+      
+      <div class="fb-comments-wrapper">
+        
+        <div class="fb-comments" data-href="https://skypacific.github.io/2019/02/07/kang.heehun@introduce_vuejs.html" data-num-posts="5" data-order-by="social" data-width="100%"></div>
+        
+      </div>
+      
+      
+    </main>
+
+    <aside class="read-next">
+      
+      
+        <a class="read-next-story prev no-cover" href="/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html">
+          <section class="post">
+            <h2>스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 구현 예제</h2>
+            <p>스프링 부트 (Spring boot) 기반으로 JPA, Lombok을 사용하여 H2 데이타베이스에 임시 데이타를 기록한뒤 이를 읽고...</p>
+          </section>
+        </a>
+      
+    </aside>
+    <footer class="post-site-footer clearfix">
+      <section class="copyright"><a href="/">UXDev's Blog</a> © 2019</section>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/assets/js/index.js?1549617720510608000"></script>
+
+  </body>
+</html>
