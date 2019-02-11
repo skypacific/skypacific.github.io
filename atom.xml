@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-02-08T22:50:45+09:00</updated>
+ <updated>2019-02-11T11:34:18+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -26,7 +26,7 @@
 Vue.js 는 위의 세 프레임워크 중 가장 늦게 배포되었지만, 활발히 사용자 커뮤니티가 늘어나는중이다.&lt;/p&gt;
 
 &lt;p&gt;Vue.js 가 다른 프레임워크와 가장 큰 특징은 점진적으로 채택이 가능하다는것이다.&lt;br /&gt;
-기존에 HTML 과 Javascript 으로 구성된 페이지가 있을때, 이 구성을 그대로 두고 Vue.js 적용이 가능하다.&lt;/p&gt;
+이미 HTML 과 Javascript 으로 구성된 페이지가 있을때, 이 구성을 그대로 두고 Vue.js 적용이 가능하다.&lt;/p&gt;
 
 &lt;p&gt;React의 경우에는 JSX 와 ES6 (ECMAScript 2015) 에 의존을 많이 하고 있는데…&lt;br /&gt;
 아직 Internet Explorer 11 과 같은 (ES6 이상을 지원하지 못하는) 웹브라우져들이 존재하는 까닭에&lt;br /&gt;
@@ -479,7 +479,7 @@ AXIOS는 HTTP 요청의 응답을 Promise 구조로 넘겨준다.&lt;br /&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;REST API 호출시에 async/await 를 사용하면 훨씬 깔끔해진다.&lt;br /&gt;
-&lt;em&gt;ES6(ES2015) 이상에서만 지원&lt;/em&gt;&lt;/p&gt;
+&lt;em&gt;ES8(ES2017) 이상에서만 지원&lt;/em&gt;&lt;/p&gt;
 &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c1&quot;&gt;// async/await 사용&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
