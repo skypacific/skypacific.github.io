@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-02-17T03:10:41+09:00</updated>
+ <updated>2019-02-17T03:12:33+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -324,7 +324,7 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.&lt;/li&gt;
   &lt;li&gt;각 제품들의 “ADD CART” 버튼을 클릭하면 “My Cart Items” 아래에 추가됨을 확인 할 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project04.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #3&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project05.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #4&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;

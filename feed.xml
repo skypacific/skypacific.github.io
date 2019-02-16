@@ -6,8 +6,8 @@
 </description>
     <link>https://skypacific.github.io/</link>
     <atom:link href="https://skypacific.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 17 Feb 2019 03:10:41 +0900</pubDate>
-    <lastBuildDate>Sun, 17 Feb 2019 03:10:41 +0900</lastBuildDate>
+    <pubDate>Sun, 17 Feb 2019 03:12:33 +0900</pubDate>
+    <lastBuildDate>Sun, 17 Feb 2019 03:12:33 +0900</lastBuildDate>
     <generator>Jekyll v3.7.4</generator>
     
       <item>
@@ -319,7 +319,7 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.&lt;/li&gt;
   &lt;li&gt;각 제품들의 “ADD CART” 버튼을 클릭하면 “My Cart Items” 아래에 추가됨을 확인 할 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project04.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #3&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project05.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #4&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
