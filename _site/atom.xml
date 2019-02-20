@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-02-17T03:14:44+09:00</updated>
+ <updated>2019-02-20T09:50:42+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -13,7 +13,7 @@
 
  
  <entry>
-   <title>Vue-CLI를 사용해서 Vue.js 프로젝트를 생성하고 Vuetify 머터리얼 디자인 적용</title>
+   <title>Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 로 머터리얼 디자인 적용 하기</title>
    <link href="https://skypacific.github.io/2019/02/16/kang.heehun@introduce_vuetify.html"/>
    <updated>2019-02-16T00:00:00+09:00</updated>
    <id>https://skypacific.github.io/2019/02/16/kang.heehun@introduce_vuetify</id>
@@ -51,7 +51,7 @@
 &lt;p&gt;프로젝트를 생성하기전에 NPM 에서 Vue-CLI 를 먼저 설치해야 한다.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;터미널에서 아래 명령어를 실행한다.
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt; @vue/cli
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install -g @vue/cli
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -60,13 +60,13 @@
 
 &lt;ul&gt;
   &lt;li&gt;프로젝트를 생성할 폴더로 이동한 뒤 아래 명령어를 실행한다.
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vue create vuetify01
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ vue create vuetify01
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;“Please pick a preset:” 선택옵션에서 나오면 “default(babel, lint)” 항목을 선택한다.
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;? Please pick a preset:
-❯ default &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;babel, eslint&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-Manually &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;features
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;? Please pick a preset:
+❯ default (babel, eslint)
+Manually select features
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -92,15 +92,15 @@ Manually &lt;span class=&quot;k&quot;&gt;select &lt;/span&gt;features
 &lt;h3 id=&quot;2-vuetify-적용&quot;&gt;2. Vuetify 적용&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;기본적으로 생성되는 프로젝트에는 Vuetify 가 적용되지 으므로 터미널에서 아래 명령어로 Vuetify 를 적용한다.
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vue add vuetify
+  &lt;li&gt;기본적으로 생성되는 프로젝트에는 Vuetify 가 적용되지 않으므로 터미널에서 아래 명령어로 Vuetify 를 적용한다.
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ vue add vuetify
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;선택옵션에서는 “Default”를 선택하도록 한다.
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;? Choose a preset: &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Use arrow keys&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-❯ Default &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;recommended&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
-Prototype &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;rapid development&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
-Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;? Choose a preset: (Use arrow keys)
+❯ Default (recommended) 
+Prototype (rapid development) 
+Configure (advanced) 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -109,7 +109,7 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 
 &lt;ul&gt;
   &lt;li&gt;NPM 명령으로 프로젝트를 실행해 볼 수 있다. 터미널에서 아래 명령어를 입력한다.
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm run serve
+    &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm run serve
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -118,7 +118,7 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project02.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #1&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project02.png&quot; alt=&quot;Vuetify를 적용한 화면&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;iv-vuejs-프로젝트-수정&quot;&gt;IV. Vue.js 프로젝트 수정&lt;/h2&gt;
@@ -129,10 +129,51 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
   &lt;li&gt;App.vue 파일을 열어서 모든 “HelloWorld” 를 “HomeView”로 변경한다.&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;v-app&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;v-toolbar&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;v-toolbar-title&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;headline text-uppercase&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Vuetify&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;font-weight-light&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;MATERIAL DESIGN&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/v-toolbar-title&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;v-spacer&amp;gt;&amp;lt;/v-spacer&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;v-btn&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;flat&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://github.com/vuetifyjs/vuetify/releases/latest&quot;&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;target=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;_blank&quot;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mr-2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Latest Release&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/v-btn&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/v-toolbar&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;v-content&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;HomeView/&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/v-content&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/v-app&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HomeView&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./components/HomeView'&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'App'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;components&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;HomeView&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h3 id=&quot;2-새로운-vue-컴포넌트-생성&quot;&gt;2. 새로운 Vue 컴포넌트 생성&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;/src/components 폴더에서 “HomeView.vue” 파일을 생성한다.&lt;/li&gt;
+  &lt;li&gt;/src/components 폴더에서 “HomeView.vue” 파일을 생성한다.
+&lt;img src=&quot;/assets/images/vuejs_project06.png&quot; alt=&quot;sr/components 폴더에 HomeVue.vue 파일을 생성&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;3-homeview-컴포넌트-초기화&quot;&gt;3. HomeView 컴포넌트 초기화&lt;/h3&gt;
@@ -192,17 +233,25 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;지금처럼 생성한 HomeView을 Single File Component 라고 부른다.&lt;br /&gt;
+“&amp;lt;template&amp;gt;” 태그안에는 이 컴포넌트의 외형을 표현하는 HTML 템플릿을 작성하고&lt;br /&gt;
+“&amp;lt;script&amp;gt;” 태그안에는 이 컴포넌트의 액션을 작성하고&lt;br /&gt;
+“&amp;lt;style&amp;gt;” 태그에 이 컴포넌트의 스타일을 작성하면 된다.&lt;/p&gt;
+
+&lt;p&gt;이 템플릿에서는 “&amp;lt;v-container&amp;gt;“로 시작해서 2세트의 “&amp;lt;h1&amp;gt;” 과 “&amp;lt;v-card&amp;gt;” 를 구현해 놓았다.
+위 쪽에서는 제품들 목록, 아래쪽에서는 장바구니 아이템 목록을 표시할 예정이다.&lt;/p&gt;
+
 &lt;h3 id=&quot;4-웹브라우져에서-확인-1&quot;&gt;4. 웹브라우져에서 확인&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project03.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #2&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project03.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;5-제품-데이타-추가&quot;&gt;5. 제품 데이타 추가&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;script 영역의 date 아래의 “products” 배열값을 아래 내용으로 수정한다.&lt;/li&gt;
+  &lt;li&gt;script 영역의 data 아래의 “products” 배열값을 아래 내용으로 수정한다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
@@ -256,12 +305,12 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project04.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #3&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project04.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;8-장바구니-템플릿-수정&quot;&gt;8. 장바구니 템플릿 수정&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;template 영역에서 첫번째 &amp;lt;v-card&amp;gt; 태그를 아래 내용으로 수정한다.&lt;/li&gt;
+  &lt;li&gt;template 영역에서 두번 &amp;lt;v-card&amp;gt; 태그를 아래 내용으로 수정한다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;v-card&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;v-for=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cartItem in cartItems&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;:key=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;'C' + cartItem.id&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
@@ -281,6 +330,7 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 &lt;ul&gt;
   &lt;li&gt;methods 속성 아래와 같이 addToCart() 함수를 구현한다.
     &lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;addToCart&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// STEP01 - products 배열에서 id 를 기준으로 필터링하고 필터링된 아이템에서 inventory 값을 -1 한다.&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;products&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
           &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;
@@ -289,14 +339,17 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
           &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inventory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 
+  &lt;span class=&quot;c1&quot;&gt;// STEP02 - cartItems 배열에서 id 를 기준으로 필터링하고...&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_cartItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cartItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_cartItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// 필터링 된 아이템이 존재하면 quantity 값을 +1 한다.&lt;/span&gt;
       &lt;span class=&quot;nx&quot;&gt;_cartItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
           &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;quantity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// 필터링 된 아이템이 없으면 새로운 객체를 생성해서 추가한다.&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cartItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
           &lt;span class=&quot;s2&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
           &lt;span class=&quot;s2&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -306,11 +359,13 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
       &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
+  &lt;span class=&quot;c1&quot;&gt;// STEP03 - cartItems 배열에서 &quot;소계 = 가격 x 수량&quot; 을 계산하여 아이템의 subsum 속성 값으로 대입한다.&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cartItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;subsum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;quantity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 
+  &lt;span class=&quot;c1&quot;&gt;// STEP4 - cartItems 배열에서 REDUCE 하여 &quot;총계&quot; 값을 구해서 totalAmount 변수에 대입한다.&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;totalAmount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cartItems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;reduce&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;previousSum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currentItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;previousSum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currentItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;price&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;currentItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;quantity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -323,8 +378,9 @@ Configure &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;advanced&lt;span class=&
 
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.&lt;/li&gt;
-  &lt;li&gt;각 제품들의 “ADD CART” 버튼을 클릭하면 “My Cart Items” 아래에 추가됨을 확인 할 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project05.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면 #4&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;각 제품들의 “ADD CART” 버튼을 클릭하면 “My Cart Items” 아래에 추가됨을 확인 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;각 항목마다 “가격 x 수량”으로 소계를 계산하여 표시해 주었고, “My Cart Items” 옆에에는 총계가 표시된다.
+&lt;img src=&quot;/assets/images/vuejs_project05.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
