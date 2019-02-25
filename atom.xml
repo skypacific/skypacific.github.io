@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-02-20T09:50:42+09:00</updated>
+ <updated>2019-02-25T17:02:09+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -13,19 +13,484 @@
 
  
  <entry>
-   <title>Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 로 머터리얼 디자인 적용 하기</title>
+   <title>빈 프로젝트 부터 시작하여 풀스펙 Vue.js 프로젝트 구축</title>
+   <link href="https://skypacific.github.io/2019/02/25/kang.heehun@buildup_vuejs.html"/>
+   <updated>2019-02-25T00:00:00+09:00</updated>
+   <id>https://skypacific.github.io/2019/02/25/kang.heehun@buildup_vuejs</id>
+   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;빈 프로젝트(디렉토리)부터 시작하여 NPM, Webpack, Babel 등을 사용하여 풀스펙 Vue.js 프로젝트를 점진적으로 구축해 본다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;이전 글에서는 Vue CLI 를 사용해 풀스펙 Vue.js 프로젝트를 만들어 보았다.&lt;/p&gt;
+
+&lt;p&gt;Vue CLI 처럼 풀스펙 프로젝트를 생성해주는 툴은 상당한 편리함을 주지만&lt;/p&gt;
+
+&lt;p&gt;다른 한편으로는 처음 시작하는 개발자에게는 복잡한 프로젝트 구성이 진입장벽으로 다가올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이번 글에서는 빈 프로젝(디렉토리)부터 시작하며, 한가지씩 기능을 추가하면서 풀스펙 프로젝트로 점진적으로 구축을 해보도록 한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;아래 과정을 진행하기 전에 NPM은 기본적으로 설치되어 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;NPM 설치에 관해서는 이전 글 &lt;a href=&quot;/2019/01/24/kang.heehun@dev-env-setting.html&quot;&gt;개발자 기본 개발 환경 설정&lt;/a&gt; 에서 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;i-시작-프로젝트-만들기&quot;&gt;I. 시작 프로젝트 만들기&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-npm-초기화&quot;&gt;1. NPM 초기화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;터미널(컴맨드) 창을 열고, 아래 명령으로 빈 디렉토리를 만든다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mkdir vueapp01
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;vueapp01
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;아래 명령으로 NPM을 초기화 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;NPM이 프로젝트를 생성하기 위한 초값들을 물어보는데 모두 기본값(엔터 입력)으로 진행한다.&lt;/p&gt;
+
+&lt;p&gt;처음 생성했던 작업공간에 “package.json” 파일이 아래와 같이 생성이 된다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“package.json” 파일 내용은 아래와 같다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;vueapp01&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;index.js&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;echo &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Error: no test specified&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &amp;amp;&amp;amp; exit 1&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ISC&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;디렉토리 구조는 “package.json” 파일 하나만 존재하는 상태가 된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/Projects/vueapp01
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;la
+total 1
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt;  1 heehun.kang  staff   204B  2 25 11:07 package.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이후부터는 통합개발환경으로 이 디렉토리를 열어 작업하도록 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-필수-모듈-설치&quot;&gt;2. 필수 모듈 설치&lt;/h3&gt;
+
+&lt;p&gt;터미널(컴맨드) 창에서 아래 명령으로 필수 모듈들을 설치한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install &lt;span class=&quot;nt&quot;&gt;--save&lt;/span&gt; vue vue-router vuex
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install &lt;span class=&quot;nt&quot;&gt;--save-dev&lt;/span&gt; webpack webpack-cli
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여기서 사용된 NPM 옵션 2가지에 대해 간략히 설명하도록 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;—save-dev&lt;br /&gt;
+현재 프로젝트의 &lt;strong&gt;“node_modules”&lt;/strong&gt; 폴더에 선택된 모듈들을 설치하도록 한다.&lt;br /&gt;
+이 모듈들은 빌드시에만 사용되며 따라서 배포결과물에 추가되지 않는다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;—save&lt;br /&gt;
+현재 프로젝트의 &lt;strong&gt;“node_modules”&lt;/strong&gt; 폴더에 선택된 모듈들을 설치하도록 한다.&lt;br /&gt;
+이 모듈들은 빌드뿐만 아니라 실행시에도 사용되므로 배포결과물에 추가된다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;프로젝트 디렉토리에 &lt;strong&gt;“package-lock.json”&lt;/strong&gt; 파일이 생성이 되고 &lt;strong&gt;“node_modules”&lt;/strong&gt; 폴더에는 위의 명령으로 선택 모듈들이 설치가 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/Projects/vueapp01
+❯ la
+total 322
+drwxr-xr-x  320 heehun.kang  staff    10K  2 25 11:16 node_modules
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt;    1 heehun.kang  staff   139K  2 25 11:16 package-lock.json
+&lt;span class=&quot;nt&quot;&gt;-rw-r--r--&lt;/span&gt;    1 heehun.kang  staff   381B  2 25 11:16 package.json
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ii-기본-vuejs-프로젝트-구축&quot;&gt;II. 기본 Vue.js 프로젝트 구축&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-appjs-appvue-파일-생성&quot;&gt;1. app.js, App.vue 파일 생성&lt;/h3&gt;
+
+&lt;p&gt;프로젝트 폴더에 &lt;strong&gt;“src”&lt;/strong&gt; 하위 폴더를 생성하고, &lt;strong&gt;“app.js”&lt;/strong&gt; 파일과 &lt;strong&gt;“App.vue”&lt;/strong&gt; 파일을 생성한다.&lt;/p&gt;
+
+&lt;p&gt;이 두 파일의 내용은 아래와 같이 입력한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;/src/app.js 파일 내용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vue&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'vue'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'./App.vue'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'#app'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;/src/App.vue 파일 내용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello World!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;“app.js”&lt;/strong&gt;은 최초 진입점(Entry-point)이 되고 &lt;strong&gt;“App.vue”&lt;/strong&gt; 파일로부터 App 컴포넌트를 생성한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-webpack-환경파일-생성&quot;&gt;2. Webpack 환경파일 생성&lt;/h3&gt;
+
+&lt;p&gt;프로젝트 폴더에 &lt;strong&gt;“build”&lt;/strong&gt; 하위 폴더를 생성하고, &lt;strong&gt;“webpack.config.dev.js”&lt;/strong&gt; 파일을 생성한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;/build/webpack.config.dev.js 파일 내용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VueLoaderPlugin&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'vue-loader'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'development'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;s1&quot;&gt;'./src/app.js'&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;vue$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'vue-loader'&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VueLoaderPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;빌드모드(mode)는 &lt;strong&gt;development&lt;/strong&gt;, 진입스크립트(entry)는 &lt;strong&gt;“app.js”&lt;/strong&gt;로 지정이 되었고&lt;br /&gt;
+*.vue 파일을 만나면 &lt;strong&gt;vue-loader&lt;/strong&gt; 모듈에서 실행이 되도록 규칙(rules)이 만들어 졌다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-webpack-빌드-환경-구성&quot;&gt;3. Webpack 빌드 환경 구성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;터미널(컴맨드)에서 아래 명령을 실행하여 vue-loader 관련 모듈들을 설치 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install &lt;span class=&quot;nt&quot;&gt;--save-dev&lt;/span&gt; vue-loader vue-template-compiler
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“package.json” 파일을 열어서 “scripts” 항목에 아래 속성 값을 추가한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;build&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;webpack --config build/webpack.config.dev.js&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트 루트 디렉토리에 “index.html” 파일을 만들고 아래 내용을 입력한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;width=device-width,initial-scale=1.0&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;My Vue app with webpack 4&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;app&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dist/main.js&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;4-webpack-빌드-명령-실행&quot;&gt;4. Webpack 빌드 명령 실행&lt;/h3&gt;
+
+&lt;p&gt;이제부터는 웹팩을 사용해서 Vue.js 프로젝트 빌드결과물을 생성할 수 있다&lt;/p&gt;
+
+&lt;p&gt;터미널(컴맨드)에서 아래 명령을 실행하면 “/dist” 폴더에 Webpack 빌드결과물이 생성이 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm run build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;지금까지 구축된 프로젝트 구조는 아래와 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/scratch_vuejs_01.png&quot; alt=&quot;Vue.js 프로젝트 구조&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;프로젝트내의 &lt;strong&gt;index.html&lt;/strong&gt; 파일을 웹브라우져에서 바로 읽거나,&lt;br /&gt;
+외부 웹서버의 게시 폴더에 “index.html” 과 “dist” 폴더를  배포하고 웹브라우져로 접속하면 빌드결과물을 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/scratch_vuejs_02.png&quot; alt=&quot;Vue.js 프로젝트 실행&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;iii-vuejs-프로젝트-확장&quot;&gt;III. Vue.js 프로젝트 확장&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-웹팩-개발서버-추가&quot;&gt;1. 웹팩 개발서버 추가&lt;/h3&gt;
+
+&lt;p&gt;지금 프로젝트를 수정하고 결과를 반영하기 위해서는 항상 &lt;strong&gt;“npm run build”&lt;/strong&gt;를 실행하고 &lt;strong&gt;index.html&lt;/strong&gt;을 갱신해야만 했다.&lt;/p&gt;
+
+&lt;p&gt;이런 불편함을 해소하기 위해 &lt;strong&gt;“webpack-dev-server”&lt;/strong&gt;를 추가하도록 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;아래 명령을 입력하여 &lt;strong&gt;babel-loader&lt;/strong&gt;를 설치한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install &lt;span class=&quot;nt&quot;&gt;--save-dev&lt;/span&gt; webpack-dev-server html-webpack-plugin
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;“/package.js”&lt;/strong&gt; 파일을 열어서 &lt;strong&gt;scripts&lt;/strong&gt; 속성값에 아래 내용을 추가한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;dev&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;webpack-dev-server --config build/webpack.config.dev.js&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;“/build/webpack.config.dev.js”&lt;/strong&gt; 파일을 열어서 아래 내용으로 수정한다.
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'webpack'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VueLoaderPlugin&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'vue-loader'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HtmlWebpackPlugin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'html-webpack-plugin'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'development'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  
+&lt;span class=&quot;na&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'./src/app.js'&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;devServer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;hot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;watchOptions&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;poll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;vue$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'vue-loader'&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;webpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;HotModuleReplacementPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;VueLoaderPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HtmlWebpackPlugin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'index.html'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'index.html'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;inject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;devServer&lt;/strong&gt; 설정값으로 HMR(Hot Module Replacement)가 활성화 되었고&lt;br /&gt;
+&lt;strong&gt;plugins&lt;/strong&gt; 설정값으로 관련 플러그인들이 생성되었다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;/dist&lt;/strong&gt; 폴더가 존재하면 이 폴더의 빌드결과물들이 우선권을 가지므로 삭제하도록 한다.
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rm &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; dist
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이제 아래 명령으로 웹팩 개발 서버를 실 할 수 있게 되었다.
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;웹팩 개발 서버를 실행하면 &lt;a href=&quot;http://localhost:8080/&quot;&gt;http://localhost:8080/&lt;/a&gt; URL로 &lt;strong&gt;index.html&lt;/strong&gt; 파일에 접속할 수 있으며 프로젝트 내의 소스가 변경되면 바로 내용이 수정된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-css-스타일-로더-추가&quot;&gt;2. CSS 스타일 로더 추가&lt;/h3&gt;
+
+&lt;p&gt;Vue.js 에서 CSS 스타일을 적용하는 방법은 2가지 방법이 있다.&lt;/p&gt;
+
+&lt;p&gt;1) 별도의 *.css 파일을 만들고 app.js 파일에서 이 css 파일을 import&lt;/p&gt;
+
+&lt;p&gt;2) *.vue 파일안에 &lt;strong&gt;&amp;lt;style&amp;gt;&amp;lt;/style&amp;gt;&lt;/strong&gt; 태그를 추가하고 이 안에 CSS 스타일을 구현&lt;/p&gt;
+
+&lt;p&gt;지금은 CSS 파일에 대한 규칙(rule)을 입력하지 않아서 빌드시에 에러가 발생한다.&lt;/p&gt;
+
+&lt;p&gt;따라서 이 문제를 해결하기 위해 CSS 로더 모듈을 추가하도록 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;터미널(컴맨드) 창에서 아래 명령을 입력해서 &lt;strong&gt;css-loader&lt;/strong&gt;와 &lt;strong&gt;vue-style-loader&lt;/strong&gt; 를 설치한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install &lt;span class=&quot;nt&quot;&gt;--save-dev&lt;/span&gt; css-loader vue-style-loader
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;“/build/webpack.config.dev.js”&lt;/strong&gt; 파일을 열어서 &lt;strong&gt;rule&lt;/strong&gt; 속성값에 아래 내용을 추가한다.
+    &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;css$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'vue-style-loader'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;s1&quot;&gt;'css-loader'&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-css-스타일-적용-1&quot;&gt;3. CSS 스타일 적용 #1&lt;/h3&gt;
+
+&lt;p&gt;첫번째 방법으로 *.css 파일을 만들어서 적용하는 방법을 구현해 본다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트 디렉토리에 &lt;strong&gt;/assets&lt;/strong&gt; 폴더를 만들고 &lt;strong&gt;app.css&lt;/strong&gt; 파일을 생성한 뒤 아래 내용을 입력한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;flex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;justify-content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;/src/app.js&lt;/strong&gt; 파일을 열어서 아래 내용을 추가한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'../assets/app.css'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;터미널(컴맨드) 창에서 아래 명령을 입력하여 프로젝트를 실행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹브라우져에서 index.html 를 접속하여 바뀐 내용을 확인한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/scratch_vuejs_03.png&quot; alt=&quot;CSS 스타일이 적용된 결과 화면&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;CSS 스타일이 적용되어 “Hello World!” 텍스트가 가운데 정렬 되었음을 확인 할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-css-스타일-적용-2&quot;&gt;4. CSS 스타일 적용 #2&lt;/h3&gt;
+
+&lt;p&gt;두번째 방법으로 *.vue 파일안에 &lt;strong&gt;&amp;lt;style&amp;gt;&amp;lt;/style&amp;gt;&lt;/strong&gt; 태그를 추가하는 방법을 구현해 본다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;/src/App.vue&lt;/strong&gt; 파일을 연뒤에 마지막에 아래 내용을 추가한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;style &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;scoped&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;h1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;navy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;터미널(컴맨드) 창에서 아래 명령을 입력하여 프로젝트를 실행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;웹브라우져에서 index.html 를 접속하여 바뀐 내용을 확인한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/scratch_vuejs_04.png&quot; alt=&quot;CSS 스타일이 적용된 결과 화면&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;CSS 스타일이 적용되어 “Hello World!” 텍스트가 파란색으로 바뀌었음을 확인할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-바벨-추가&quot;&gt;5. 바벨 추가&lt;/h3&gt;
+
+&lt;p&gt;현재의 프로젝트 구성은 낮은 자바스크립트 스펙의 웹브라우져(Internet Explore 11 같은)로 접속했을때 정상적으로 표시가 되지 않는다.&lt;/p&gt;
+
+&lt;p&gt;이런 낮은 자바스크립트 스펙의 웹브라우져를 지원하기 위해서는 &lt;strong&gt;babel-loader&lt;/strong&gt;를 설치해야 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;아래 명령을 입력하여 &lt;strong&gt;babel-loader&lt;/strong&gt;를 설치한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install &lt;span class=&quot;nt&quot;&gt;--save-dev&lt;/span&gt; @babel/core babel-loader @babel/preset-env
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;“/build/webpack.config.dev.js”&lt;/strong&gt; 파일을 열어서 &lt;strong&gt;rule&lt;/strong&gt; 속성값에 아래 내용을 추가한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/\.js$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;'babel-loader'&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로젝트 디렉토리에 &lt;strong&gt;“.babelrc”&lt;/strong&gt; 파일을 생성하고 아래 내용을 입력한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;presets&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@babel/env&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;modules&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;targets&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;browsers&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt; 1%&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;last 2 versions&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;not ie &amp;lt;= 8&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;터미널(컴맨드) 창에서 아래 명령을 입력하여 프로젝트를 실행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm run dev
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;낮은 자바스크립트 스펙의 웹브라우져(Internet Explorer 11 등)에서 index.html 를 접속하여 바뀐 내용을 확인한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/scratch_vuejs_05.png&quot; alt=&quot;바벨이 적용된 결과 화면&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;낮은 자바스크립트 스펙의 웹브라우져에서도 해당 내용이 잘 보임을 확인할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;본 예제 결과물 vueapp01.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/vueapp01.zip&quot;&gt;vueapp01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Vue.js SPA를 생성하고 Vuetify 머터리얼 디자인 적용</title>
    <link href="https://skypacific.github.io/2019/02/16/kang.heehun@introduce_vuetify.html"/>
    <updated>2019-02-16T00:00:00+09:00</updated>
    <id>https://skypacific.github.io/2019/02/16/kang.heehun@introduce_vuetify</id>
-   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Vue-CLI를 사용해서 Vue.js 프로젝트를 생성하고 Vuetify 머터리얼 디자인을 적용해 본다.&lt;/code&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Vue CLI 를 사용해 Vue.js SPA(Single Page Application)을 생성하고 Vuetify를 사용해 머터리얼 디자인을 적용해 본다.&lt;/code&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;i-vue-cli-와-vuetifyjs-소개&quot;&gt;I. Vue-CLI 와 Vuetify.js 소개&lt;/h2&gt;
+&lt;h2 id=&quot;i-vue-cli-와-vuetifyjs-소개&quot;&gt;I. Vue CLI 와 Vuetify.js 소개&lt;/h2&gt;
 
-&lt;p&gt;Vue-CLI 는 Vue.js 를 생성, 관리, 실행할 수 있는 Command Line Interface 이다.&lt;/p&gt;
+&lt;p&gt;Vue CLI 는 Vue.js 를 생성, 관리, 실행할 수 있는 Command Line Interface 이다.&lt;/p&gt;
 
-&lt;p&gt;Vue-CLI 를 사용하면 WebPack, Babel, Lint, TypeScript, Vue Router, Vuex 등의 다양한 피쳐들을 선택해서 프로젝트를 생성할 수 있다.&lt;/p&gt;
+&lt;p&gt;Vue CLI 를 사용하면 Webpack, Babel, Lint, TypeScript, Vue Router, Vuex 등의 다양한 피쳐들을 선택해서 프로젝트를 생성할 수 있다.&lt;/p&gt;
 
-&lt;p&gt;이번 프로젝트는 Vue-CLI 를 사용해서 SPA(Single Page Application)을 생성하고 빌드하도록 한다.&lt;/p&gt;
+&lt;p&gt;이번 프로젝트는 Vue CLI 를 사용해서 SPA(Single Page Application)을 생성하고 빌드하도록 한다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -42,13 +507,13 @@
 
 &lt;h2 id=&quot;ii-vuejs-프로젝트-생성&quot;&gt;II. Vue.js 프로젝트 생성&lt;/h2&gt;
 
-&lt;p&gt;Vue-CLI를 사용해서 Vue.js 로젝트를 만들기 위해서는 NPM 이 먼저 설치되어 있어야 한다.&lt;/p&gt;
+&lt;p&gt;Vue CLI를 사용해서 Vue.js 프로젝트를 만들기 위해서는 NPM 이 먼저 설치되어 있어야 한다.&lt;/p&gt;
 
 &lt;p&gt;NPM 설치에 관해서는 이전 글 &lt;a href=&quot;/2019/01/24/kang.heehun@dev-env-setting.html&quot;&gt;개발자 기본 개발 환경 설정&lt;/a&gt; 에서 확인할 수 있다.&lt;/p&gt;
 
-&lt;h3 id=&quot;1-vue-cli-설치&quot;&gt;1. Vue-CLI 설치&lt;/h3&gt;
+&lt;h3 id=&quot;1-vue-cli-설치&quot;&gt;1. Vue CLI 설치&lt;/h3&gt;
 
-&lt;p&gt;프로젝트를 생성하기전에 NPM 에서 Vue-CLI 를 먼저 설치해야 한다.&lt;/p&gt;
+&lt;p&gt;프로젝트를 생성하기전에 NPM 에서 Vue CLI 를 먼저 설치해야 한다.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;터미널에서 아래 명령어를 실행한다.
     &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install -g @vue/cli
@@ -56,7 +521,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;2-vue-cli-를-사용해-vuejs-프로젝트를-생성&quot;&gt;2. Vue-CLI 를 사용해 Vue.js 프로젝트를 생성&lt;/h3&gt;
+&lt;h3 id=&quot;2-vue-cli-를-사용해-vuejs-프로젝트를-생성&quot;&gt;2. Vue CLI 를 사용해 Vue.js 프로젝트를 생성&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;프로젝트를 생성할 폴더로 이동한 뒤 아래 명령어를 실행한다.
@@ -84,8 +549,8 @@ Manually select features
     &lt;p&gt;통합개발환경(IDE)에서 생성된 프로젝트를 연다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Vue-CLI 가 많은 파일들을 생성해주는데, /src 폴더 이하에서 주로 작업을 하게되니 이부분을 주의 깊게 관찰하도록 한다.
-&lt;img src=&quot;/assets/images/vuejs_project01.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 소스&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;Vue CLI 가 많은 파일들을 생성해주는데, /src 폴더 이하에서 주로 작업을 하게되니 이부분을 주의 깊게 관찰하도록 한다.
+&lt;img src=&quot;/assets/images/vuejs_project01.png&quot; alt=&quot;Vue CLI 로 생성된 Vue.js 프로젝트 소스&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -245,7 +710,7 @@ Configure (advanced)
 
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project03.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project03.png&quot; alt=&quot;Vue CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;5-제품-데이타-추가&quot;&gt;5. 제품 데이타 추가&lt;/h3&gt;
@@ -305,7 +770,7 @@ Configure (advanced)
 
 &lt;ul&gt;
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.
-&lt;img src=&quot;/assets/images/vuejs_project04.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project04.png&quot; alt=&quot;Vue CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;8-장바구니-템플릿-수정&quot;&gt;8. 장바구니 템플릿 수정&lt;/h3&gt;
@@ -380,7 +845,7 @@ Configure (advanced)
   &lt;li&gt;웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.&lt;/li&gt;
   &lt;li&gt;각 제품들의 “ADD CART” 버튼을 클릭하면 “My Cart Items” 아래에 추가됨을 확인 할 수 있다.&lt;/li&gt;
   &lt;li&gt;각 항목마다 “가격 x 수량”으로 소계를 계산하여 표시해 주었고, “My Cart Items” 옆에에는 총계가 표시된다.
-&lt;img src=&quot;/assets/images/vuejs_project05.png&quot; alt=&quot;Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
+&lt;img src=&quot;/assets/images/vuejs_project05.png&quot; alt=&quot;Vue CLI 로 생성된 Vue.js 프로젝트 결과화면&quot; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -393,7 +858,7 @@ Configure (advanced)
  </entry>
  
  <entry>
-   <title>Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출 예제</title>
+   <title>Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출</title>
    <link href="https://skypacific.github.io/2019/02/07/kang.heehun@introduce_vuejs.html"/>
    <updated>2019-02-07T00:00:00+09:00</updated>
    <id>https://skypacific.github.io/2019/02/07/kang.heehun@introduce_vuejs</id>
@@ -410,9 +875,9 @@ Vue.js 는 위의 세 프레임워크 중 가장 늦게 배포되었지만, 활�
 
 &lt;p&gt;React의 경우에는 JSX 와 ES6 (ECMAScript 2015) 에 의존을 많이 하고 있는데…&lt;br /&gt;
 아직 Internet Explorer 11 과 같은 (ES6 이상을 지원하지 못하는) 웹브라우져들이 존재하는 까닭에&lt;br /&gt;
-NPM + WebPack + Babel 구성으로 빌드하는 방법만을 고수해야 하는 상황이다.&lt;/p&gt;
+NPM + Webpack + Babel 구성으로 빌드하는 방법만을 고수해야 하는 상황이다.&lt;/p&gt;
 
-&lt;p&gt;물론 Vue.js 도 고급기능을 사용할때는 NPM + WebPack + Babel 구성으로 빌드하겠지만&lt;br /&gt;
+&lt;p&gt;물론 Vue.js 도 고급기능을 사용할때는 NPM + Webpack + Babel 구성으로 빌드하겠지만&lt;br /&gt;
 아무래도 개발자에게 기존 페이지 구성를 두고 점진적으로 적용이 가능하다는 선택사항이 있는점은 큰 장점이 된다.&lt;/p&gt;
 
 &lt;h2 id=&quot;ii-http-웹-서버-http-web-server-시작&quot;&gt;II. HTTP 웹 서버 (HTTP Web Server) 시작&lt;/h2&gt;
@@ -884,14 +1349,14 @@ AXIOS는 HTTP 요청의 응답을 Promise 구조로 넘겨준다.&lt;br /&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;앞에서 언급된 ES6(ES2015) 관련코드는 Vue.js 를 NPM + WebPack + Babel 구성으로 빌드하면&lt;br /&gt;
+&lt;p&gt;앞에서 언급된 ES6(ES2015) 관련코드는 Vue.js 를 NPM + Webpack + Babel 구성으로 빌드하면&lt;br /&gt;
 Internet Explorer 등의 낮은스펙의 웹브라우져에서도 문제없이 실행이 가능하다.&lt;br /&gt;
 이 부분에 대해서는 다음에 글을 남겨보도록 하겠다.&lt;/p&gt;
 </content>
  </entry>
  
  <entry>
-   <title>스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 구현 예제</title>
+   <title>스프링 부트 (Spring boot) 기반으로 JPA, Lombok, H2 를 이용하여 REST API 구현</title>
    <link href="https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot.html"/>
    <updated>2019-01-30T00:00:00+09:00</updated>
    <id>https://skypacific.github.io/2019/01/30/kang.heehun@jpa-lombok-spring-boot</id>
@@ -1285,7 +1750,7 @@ ApplicationRunner 객체를 생성해 놓으면 스프링 부트 어플리케이
  </entry>
  
  <entry>
-   <title>스프링 부트 (Spring boot) 에서 Exchange 서버 연계 예제</title>
+   <title>스프링 부트 (Spring boot) 에서 Exchange 서버 연계</title>
    <link href="https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot.html"/>
    <updated>2019-01-28T00:00:00+09:00</updated>
    <id>https://skypacific.github.io/2019/01/28/kang.heehun@exchange-spring-boot</id>

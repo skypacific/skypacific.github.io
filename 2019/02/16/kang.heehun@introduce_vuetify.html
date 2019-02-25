@@ -7,8 +7,8 @@
   <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 로 머터리얼 디자인 적용 하기</title>
-  <meta name="description" content="Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 머터리얼 디자인을 적용해 본다." />
+  <title>Vue.js SPA를 생성하고 Vuetify 머터리얼 디자인 적용</title>
+  <meta name="description" content="Vue CLI 를 사용해 Vue.js SPA(Single Page Application)을 생성하고 Vuetify를 사용해 머터리얼 디자인을 적용해 본다." />
 
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -17,17 +17,17 @@
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@skypacific" />
-    <meta name="twitter:title" content="Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 로 머터리얼 디자인 적용 하기" />
+    <meta name="twitter:title" content="Vue.js SPA를 생성하고 Vuetify 머터리얼 디자인 적용" />
     <meta name="twitter:image" content="https://skypacific.github.io/assets/images/internet.png" />
     
-    <meta name="twitter:description"  content="Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 머터리얼 디자인을 적용해 본다." />
+    <meta name="twitter:description"  content="Vue CLI 를 사용해 Vue.js SPA(Single Page Application)을 생성하고 Vuetify를 사용해 머터리얼 디자인을 적용해 본다." />
     
   
   
   <meta property="og:site_name" content="UXDev's Blog" />
-  <meta property="og:title" content="Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 로 머터리얼 디자인 적용 하기"/>
+  <meta property="og:title" content="Vue.js SPA를 생성하고 Vuetify 머터리얼 디자인 적용"/>
   
-  <meta property="og:description" content="Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 머터리얼 디자인을 적용해 본다." />
+  <meta property="og:description" content="Vue CLI 를 사용해 Vue.js SPA(Single Page Application)을 생성하고 Vuetify를 사용해 머터리얼 디자인을 적용해 본다." />
   
   <meta property="og:image" content="https://skypacific.github.io/assets/images/internet.png" />
   <meta property="og:url" content="https://skypacific.github.io/2019/02/16/kang.heehun@introduce_vuetify.html" />
@@ -43,7 +43,7 @@
   <!-- <link rel="stylesheet" href="//brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i" /> -->
   <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" /> -->
 
-  <link rel="stylesheet" type="text/css" href="/css/main.css?1550623842055665000" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css?1551081729183092000" />
   <link rel="stylesheet" type="text/css" href="/css/nerd-fonts-generated.css" />
   <!-- <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />-->
 
@@ -102,7 +102,7 @@
         <div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
           <meta itemprop="url" content="https://skypacific.github.io/assets/images/kang.heehun.jpg" />
         </div>
-        <meta itemprop="headline" content="Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 로 머터리얼 디자인 적용 하기" />
+        <meta itemprop="headline" content="Vue.js SPA를 생성하고 Vuetify 머터리얼 디자인 적용" />
         <meta itemprop="mainEntityOfPage" content="/2019/02/16/kang.heehun@introduce_vuetify.html" />
         <meta itemprop="datePublished" content="2019-02-16 00:00:00 +0900" />
         <meta itemprop="dateModified" content="2019-02-16 00:00:00 +0900" />
@@ -110,7 +110,7 @@
         <div class="noarticleimage">
           <div class="post-meta">
             <h1 class="post-title">
-              Vue-CLI 를 사용해 Vue.js 프로젝트를 생성하고 Vuetify 로 머터리얼 디자인 적용 하기
+              Vue.js SPA를 생성하고 Vuetify 머터리얼 디자인 적용
               
             </h1>
             <div class="cf post-meta-text">
@@ -133,11 +133,11 @@
         <section class="post-content">
           <a name="topofpage"></a>
           <ul class="section-nav">
-<li class="toc-entry toc-h2"><a href="#i-vue-cli-와-vuetifyjs-소개">I. Vue-CLI 와 Vuetify.js 소개</a></li>
+<li class="toc-entry toc-h2"><a href="#i-vue-cli-와-vuetifyjs-소개">I. Vue CLI 와 Vuetify.js 소개</a></li>
 <li class="toc-entry toc-h2"><a href="#ii-vuejs-프로젝트-생성">II. Vue.js 프로젝트 생성</a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#1-vue-cli-설치">1. Vue-CLI 설치</a></li>
-<li class="toc-entry toc-h3"><a href="#2-vue-cli-를-사용해-vuejs-프로젝트를-생성">2. Vue-CLI 를 사용해 Vue.js 프로젝트를 생성</a></li>
+<li class="toc-entry toc-h3"><a href="#1-vue-cli-설치">1. Vue CLI 설치</a></li>
+<li class="toc-entry toc-h3"><a href="#2-vue-cli-를-사용해-vuejs-프로젝트를-생성">2. Vue CLI 를 사용해 Vue.js 프로젝트를 생성</a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h2"><a href="#iii-vuejs-프로젝트-확인">III. Vue.js 프로젝트 확인</a>
@@ -162,16 +162,16 @@
 <li class="toc-entry toc-h3"><a href="#10-웹브라우져에서-확인">10. 웹브라우져에서 확인</a></li>
 </ul>
 </li>
-</ul><p><code class="highlighter-rouge">Vue-CLI를 사용해서 Vue.js 프로젝트를 생성하고 Vuetify 머터리얼 디자인을 적용해 본다.</code></p>
+</ul><p><code class="highlighter-rouge">Vue CLI 를 사용해 Vue.js SPA(Single Page Application)을 생성하고 Vuetify를 사용해 머터리얼 디자인을 적용해 본다.</code></p>
 
 <h2 id="i-vue-cli-와-vuetifyjs-소개">
-<a id="i-vue-cli-와-vuetifyjs-소개" class="anchor" href="#i-vue-cli-%EC%99%80-vuetifyjs-%EC%86%8C%EA%B0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Vue-CLI 와 Vuetify.js 소개</h2>
+<a id="i-vue-cli-와-vuetifyjs-소개" class="anchor" href="#i-vue-cli-%EC%99%80-vuetifyjs-%EC%86%8C%EA%B0%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Vue CLI 와 Vuetify.js 소개</h2>
 
-<p>Vue-CLI 는 Vue.js 를 생성, 관리, 실행할 수 있는 Command Line Interface 이다.</p>
+<p>Vue CLI 는 Vue.js 를 생성, 관리, 실행할 수 있는 Command Line Interface 이다.</p>
 
-<p>Vue-CLI 를 사용하면 WebPack, Babel, Lint, TypeScript, Vue Router, Vuex 등의 다양한 피쳐들을 선택해서 프로젝트를 생성할 수 있다.</p>
+<p>Vue CLI 를 사용하면 Webpack, Babel, Lint, TypeScript, Vue Router, Vuex 등의 다양한 피쳐들을 선택해서 프로젝트를 생성할 수 있다.</p>
 
-<p>이번 프로젝트는 Vue-CLI 를 사용해서 SPA(Single Page Application)을 생성하고 빌드하도록 한다.</p>
+<p>이번 프로젝트는 Vue CLI 를 사용해서 SPA(Single Page Application)을 생성하고 빌드하도록 한다.</p>
 
 <hr>
 
@@ -189,14 +189,14 @@
 <h2 id="ii-vuejs-프로젝트-생성">
 <a id="ii-vuejs-프로젝트-생성" class="anchor" href="#ii-vuejs-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>II. Vue.js 프로젝트 생성</h2>
 
-<p>Vue-CLI를 사용해서 Vue.js 로젝트를 만들기 위해서는 NPM 이 먼저 설치되어 있어야 한다.</p>
+<p>Vue CLI를 사용해서 Vue.js 프로젝트를 만들기 위해서는 NPM 이 먼저 설치되어 있어야 한다.</p>
 
 <p>NPM 설치에 관해서는 이전 글 <a href="/2019/01/24/kang.heehun@dev-env-setting.html">개발자 기본 개발 환경 설정</a> 에서 확인할 수 있다.</p>
 
 <h3 id="1-vue-cli-설치">
-<a id="1-vue-cli-설치" class="anchor" href="#1-vue-cli-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Vue-CLI 설치</h3>
+<a id="1-vue-cli-설치" class="anchor" href="#1-vue-cli-%EC%84%A4%EC%B9%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Vue CLI 설치</h3>
 
-<p>프로젝트를 생성하기전에 NPM 에서 Vue-CLI 를 먼저 설치해야 한다.</p>
+<p>프로젝트를 생성하기전에 NPM 에서 Vue CLI 를 먼저 설치해야 한다.</p>
 <ul>
   <li>터미널에서 아래 명령어를 실행한다.
     <div class="language-text highlighter-rouge">
@@ -206,7 +206,7 @@
 </ul>
 
 <h3 id="2-vue-cli-를-사용해-vuejs-프로젝트를-생성">
-<a id="2-vue-cli-를-사용해-vuejs-프로젝트를-생성" class="anchor" href="#2-vue-cli-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-vuejs-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Vue-CLI 를 사용해 Vue.js 프로젝트를 생성</h3>
+<a id="2-vue-cli-를-사용해-vuejs-프로젝트를-생성" class="anchor" href="#2-vue-cli-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%B4-vuejs-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC-%EC%83%9D%EC%84%B1" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Vue CLI 를 사용해 Vue.js 프로젝트를 생성</h3>
 
 <ul>
   <li>프로젝트를 생성할 폴더로 이동한 뒤 아래 명령어를 실행한다.
@@ -238,8 +238,8 @@ Manually select features
     <p>통합개발환경(IDE)에서 생성된 프로젝트를 연다.</p>
   </li>
   <li>
-    <p>Vue-CLI 가 많은 파일들을 생성해주는데, /src 폴더 이하에서 주로 작업을 하게되니 이부분을 주의 깊게 관찰하도록 한다.
-<img src="/assets/images/vuejs_project01.png" alt="Vue-CLI 로 생성된 Vue.js 프로젝트 소스"></p>
+    <p>Vue CLI 가 많은 파일들을 생성해주는데, /src 폴더 이하에서 주로 작업을 하게되니 이부분을 주의 깊게 관찰하도록 한다.
+<img src="/assets/images/vuejs_project01.png" alt="Vue CLI 로 생성된 Vue.js 프로젝트 소스"></p>
   </li>
 </ul>
 
@@ -412,7 +412,7 @@ Configure (advanced)
 
 <ul>
   <li>웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.
-<img src="/assets/images/vuejs_project03.png" alt="Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면">
+<img src="/assets/images/vuejs_project03.png" alt="Vue CLI 로 생성된 Vue.js 프로젝트 결과화면">
 </li>
 </ul>
 
@@ -476,7 +476,7 @@ Configure (advanced)
 
 <ul>
   <li>웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.
-<img src="/assets/images/vuejs_project04.png" alt="Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면">
+<img src="/assets/images/vuejs_project04.png" alt="Vue CLI 로 생성된 Vue.js 프로젝트 결과화면">
 </li>
 </ul>
 
@@ -556,7 +556,7 @@ Configure (advanced)
   <li>웹브라우져에서 아래 주소로 접속하면 프로젝트 실행 결과 화면을 볼 수 있다.</li>
   <li>각 제품들의 “ADD CART” 버튼을 클릭하면 “My Cart Items” 아래에 추가됨을 확인 할 수 있다.</li>
   <li>각 항목마다 “가격 x 수량”으로 소계를 계산하여 표시해 주었고, “My Cart Items” 옆에에는 총계가 표시된다.
-<img src="/assets/images/vuejs_project05.png" alt="Vue-CLI 로 생성된 Vue.js 프로젝트 결과화면">
+<img src="/assets/images/vuejs_project05.png" alt="Vue CLI 로 생성된 Vue.js 프로젝트 결과화면">
 </li>
 </ul>
 
@@ -577,7 +577,7 @@ Configure (advanced)
             
               <a href="/tags#material-design-ref">Material Design</a>
             
-              <a href="/tags#vue-cli-ref">Vue-CLI</a>
+              <a href="/tags#vue-cli-ref">Vue CLI</a>
             
           </p>
         </section>
@@ -587,7 +587,7 @@ Configure (advanced)
             <a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="ko"></a>
             
             
-            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=Vue-CLI+%EB%A5%BC+%EC%82%AC%EC%9A%A9%ED%95%B4+Vue.js+%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EB%A5%BC+%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0+Vuetify+%EB%A1%9C+%EB%A8%B8%ED%84%B0%EB%A6%AC%EC%96%BC+%EB%94%94%EC%9E%90%EC%9D%B8+%EC%A0%81%EC%9A%A9+%ED%95%98%EA%B8%B0&amp;u=https://skypacific.github.io/2019/02/16/kang.heehun@introduce_vuetify"
+            <a class="icon-facebook" href="https://www.facebook.com/sharer.php?t=Vue.js+SPA%EB%A5%BC+%EC%83%9D%EC%84%B1%ED%95%98%EA%B3%A0+Vuetify+%EB%A8%B8%ED%84%B0%EB%A6%AC%EC%96%BC+%EB%94%94%EC%9E%90%EC%9D%B8+%EC%A0%81%EC%9A%A9&amp;u=https://skypacific.github.io/2019/02/16/kang.heehun@introduce_vuetify"
                onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
               <i class="nf nf-fa-facebook"></i><span class="hidden">facebook</span>
             </a>
@@ -635,10 +635,17 @@ Configure (advanced)
 
     <aside class="read-next">
       
+        <a class="read-next-story no-cover" href="/2019/02/25/kang.heehun@buildup_vuejs.html">
+          <section class="post">
+            <h2>빈 프로젝트 부터 시작하여 풀스펙 Vue.js 프로젝트 구축</h2>
+            <p>빈 프로젝트(디렉토리)부터 시작하여 NPM, Webpack, Babel 등을 사용하여 풀스펙 Vue.js 프로젝트를 점진적으로 구축해 본다.</p>
+          </section>
+        </a>
+      
       
         <a class="read-next-story prev no-cover" href="/2019/02/07/kang.heehun@introduce_vuejs.html">
           <section class="post">
-            <h2>Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출 예제</h2>
+            <h2>Vue.js 프레임워크 소개와 스프링부트(Spring Boot) REST API 호출</h2>
             <p>Vue.js 프레임워크를 기반으로 간단한 예제 프로그램을 만들고, 스프링부트(Spring Boot)로 만들어 놓은 REST API 를 호출하는...</p>
           </section>
         </a>
@@ -650,7 +657,7 @@ Configure (advanced)
 
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/assets/js/index.js?1550623842055665000"></script>
+<script type="text/javascript" src="/assets/js/index.js?1551081729183092000"></script>
 
   </body>
 </html>
