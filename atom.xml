@@ -4,13 +4,371 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-02-25T17:02:09+09:00</updated>
+ <updated>2019-03-12T16:57:27+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>스프링 부트 프로젝트에 테스트 주도 개발 적용</title>
+   <link href="https://skypacific.github.io/2019/03/12/kang.heehun@tdd_spring-boot.html"/>
+   <updated>2019-03-12T00:00:00+09:00</updated>
+   <id>https://skypacific.github.io/2019/03/12/kang.heehun@tdd_spring-boot</id>
+   <content type="html">&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;스프링 부트 프로젝트를 기반으로 테스트 주도 개발을 적용하여 단계별 구축을 진행해 본다.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;테스트 주도 개발(Test Driven Development)&lt;/p&gt;
+
+&lt;p&gt;실제 구현될 코드를 작성하기 전에 테스트 코드를 먼저 작성해가면서 개발을 진행하는 방식이다.&lt;/p&gt;
+
+&lt;p&gt;유명한 TDD 방법론이 널리 알려져 사용되고 있다.&lt;/p&gt;
+
+&lt;p&gt;TDD 방법론 자체가 광범위 하기 때문에 모든 내용을 다 담을 수 없으므로 본 글에서 스프링 부트 생성 부터 간단한 REST API를 구축까지만 진행해 보도록 하자.&lt;/p&gt;
+
+&lt;p&gt;여기서는 간단히 두가지 규칙만을 적용하도록 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;반드시 구현 클래스를 작성하기 전에 테스트 클래스를 먼저 작성한다.&lt;/li&gt;
+  &lt;li&gt;1개의 구현 클래스당 1개 이상의 테스트 클래스를 꼭 작성한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;아래 과정을 진행하기 전에 스프링 부트 프로젝트 생성에 대해서는 이전 글 &lt;a href=&quot;/2019/01/25/kang.heehun@introduce-spring-boot.html&quot;&gt;스프링 부트 (Spring boot) 소개&lt;/a&gt; 에서 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;i-시작-프로젝트-만들기&quot;&gt;I. 시작 프로젝트 만들기&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-프로젝트-생성&quot;&gt;1. 프로젝트 생성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://start.spring.io/&quot;&gt;Spring Initializr&lt;/a&gt; 에 접속해서 프로젝트를 생성하거나 통합개발환경에서 스프링 부트 프로젝트를 시작한다.&lt;/li&gt;
+  &lt;li&gt;프로젝트 생성시 선택하는 Dependencies 는 “Web”, “Lombok”, “JPA”, “H2” 를 필수로 선택한다.&lt;/li&gt;
+  &lt;li&gt;여기서 프로젝트명은 “sbtdd01”, 패캐지명은 “com.joongang”  입력한 기준으로 설명하도록 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tdd_spring_boot_01.png&quot; alt=&quot;스프링 부트 프로젝트 생성&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-테스트-폴더-확인&quot;&gt;2. 테스트 폴더 확인&lt;/h3&gt;
+
+&lt;p&gt;자동 생성된 스프링 부트 프로젝트에는 기본적으로 “/src/test/java/com.joongang.sbtdd01” 폴더가 존재한다.&lt;/p&gt;
+
+&lt;p&gt;이 폴더 아래에 클래스 파일을 생성하면, 테스트 모드로 실행시에 이 파일들이 실행이 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tdd_spring_boot_02.png&quot; alt=&quot;스프링 부트 프로젝트 구성&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;ii-도메인-테스트-하기&quot;&gt;II. 도메인 테스트 하기&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-테스트-파일-생성&quot;&gt;1. 테스트 파일 생성&lt;/h3&gt;
+
+&lt;p&gt;“/src/test/java/com.joongang.sbtdd01” 폴더 아래에 “T01DomainTest.java” 파일을 생성한다.&lt;br /&gt;
+(파일명에 “T01” 접두어를 추가한 이유는 파일을 이름순으로 정렬하고 테스트순서를 지정하기 위해서이다.)&lt;/p&gt;
+
+&lt;p&gt;이 파일에 아래 내용을 작성해 넣는다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;joongang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sbtdd01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.runner.RunWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.test.context.SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.test.context.junit4.SpringRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@RunWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SpringRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@SpringBootTest&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T01DomainTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;t01_when_createdomain_except_notnull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;2-테스트-파일-실행&quot;&gt;2. 테스트 파일 실행&lt;/h3&gt;
+
+&lt;p&gt;대부분의 통합개발환경에서 “T01DomainTest.java” 를 선택하고 “Run …” 을 실행하면 테스트 파일이 실행이 된다.&lt;br /&gt;
+(IntelliJ 기준으로 파일 선택 후 마우스 오른쪽 버튼 클릭 -&amp;gt; “Run T01DomainTest.java” 선택)&lt;/p&gt;
+
+&lt;p&gt;테스트 파일이 실행이 되면 아래와 같이 테스트 결과가 표시가 된다.&lt;/p&gt;
+
+&lt;p&gt;현재는 테스트 코드가 작성된것이 없으므로 녹색 아이콘으로 정상적으로 테스트를 패스한것으로 표시가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tdd_spring_boot_03.png&quot; alt=&quot;테스트 실행&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-테스트-코드-추가&quot;&gt;3. 테스트 코드 추가&lt;/h3&gt;
+
+&lt;p&gt;t01_when_createdomain_except_notnull() 함수 안에 아래 코드를 추가한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;t01_when_createdomain_except_notnull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//act&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;iPad mini 64GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;500.20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        
+        &lt;span class=&quot;c1&quot;&gt;//assert&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isNotNull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTitle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;iPad mini 64GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 테스트 코드에서는 Product 클래스의 객체 인스턴스를 생성하고 아래의 테스트를 진행하도록 테스트 코드를 작성하였다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 객체의 인스턴스가 null이 아닌것이 맞는지 테스트&lt;/li&gt;
+  &lt;li&gt;ID값이 1이 맞는지 테스트&lt;/li&gt;
+  &lt;li&gt;Title이 “iPad mini 64GB”가 맞는지 테스트&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;그런데 Product 클래스를 만들지 않고 테스트 코드 먼저 작성했기 때문에, 통합개발환경에서는 여러 라인에서 에러가 나올것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;4-도메인-클래스-생성&quot;&gt;4. 도메인 클래스 생성&lt;/h3&gt;
+
+&lt;p&gt;“/src/main/java/com.joongang.sbtdd01” 폴더 아래에 “Product.java” 파일을 생성한다.&lt;/p&gt;
+
+&lt;p&gt;이 파일에 아래 내용을 작성해 넣는다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;joongang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sbtdd01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;lombok.AllArgsConstructor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;lombok.Data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;javax.persistence.Entity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;javax.persistence.Id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Data&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@AllArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@NoArgsConstructor&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Integer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inventory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;다시 테스트 파일 “T01DomainTest.java”를 열어보면 Product 클래스가 구현이 되었기 때문에 에러가 사라져 있을것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;5-테스트-파일-실행&quot;&gt;5. 테스트 파일 실행&lt;/h3&gt;
+
+&lt;p&gt;테스트 파일을 다시 실행해 보면 녹색 아이콘으로 정상적으로 테스트를 패스한것으로 표시가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tdd_spring_boot_03.png&quot; alt=&quot;테스트 실행&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;iii-레파지토리-테스트-하기&quot;&gt;III. 레파지토리 테스트 하기&lt;/h2&gt;
+
+&lt;p&gt;이번에는 JPA로 데이타를 읽고 쓰는 레파지토리를 테스트 해보도록 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-테스트-파일-생성-1&quot;&gt;1. 테스트 파일 생성&lt;/h3&gt;
+
+&lt;p&gt;“/src/test/java/com.joongang.sbtdd01” 폴더 아래에 “T02RepositoryTest.java” 파일을 생성한다.&lt;/p&gt;
+
+&lt;p&gt;이 파일에 아래 내용을 작성해 넣는다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;joongang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sbtdd01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.assertj.core.api.Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.runner.RunWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.beans.factory.annotation.Autowired&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.test.context.SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.test.context.junit4.SpringRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@RunWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SpringRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@SpringBootTest&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T02RepositoryTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;t01_when_savedomain_except_notnull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//act&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;iPad mini 64GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;500.20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;persistProduct&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;//assert&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;persistProduct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isNotNull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;persistProduct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;persistProduct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTitle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;iPad mini 64GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 테스트 코드에서는&lt;br /&gt;
+ProductRepository 클래스의 객체 인스턴스를 @Autowired로 주입받아 생성해 두고&lt;br /&gt;
+Product 클래스의 객체 인스턴스를 생성한 뒤&lt;br /&gt;
+ProductRepository를 통해 저장 한 뒤 다시 받아서 &lt;br /&gt;
+아래의 테스트를 진행하도록 테스트 코드를 작성하였다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 인스턴스가 null이 아닌것이 맞는지 테스트&lt;/li&gt;
+  &lt;li&gt;ID값이 1이 맞는지 테스트&lt;/li&gt;
+  &lt;li&gt;Title이 “iPad mini 64GB”가 맞는지 테스트&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;마찬가지로 ProductRepository 클래스를 만들지 않고 테스트 코드 먼저 작성했기 때문에, 통합개발환경에서는 여러 라인에서 에러가 나올것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-레파지토리-클래스-생성&quot;&gt;2. 레파지토리 클래스 생성&lt;/h3&gt;
+
+&lt;p&gt;“/src/main/java/com.joongang.sbtdd01” 폴더 아래에 “ProductRepository.java” 파일을 생성한다.&lt;/p&gt;
+
+&lt;p&gt;이 파일에 아래 내용을 작성해 넣는다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;joongang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sbtdd01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.data.jpa.repository.JpaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.stereotype.Repository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@Repository&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;JpaRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;다시 테스트 파일 “T02RepositoryTest.java”를 열어보면 ProductRepository 인터페이스 구현이 되었기 때문에 에러가 사라져 있을것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-테스트-파일-실행&quot;&gt;3. 테스트 파일 실행&lt;/h3&gt;
+
+&lt;p&gt;테스트 파일을 다시 실행해 보면 녹색 아이콘으로 정상적으로 테스트를 패스한것으로 표시가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tdd_spring_boot_04.png&quot; alt=&quot;테스트 실행&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;iv-컨트롤러-테스트-하기&quot;&gt;IV. 컨트롤러 테스트 하기&lt;/h2&gt;
+
+&lt;p&gt;이번에는 JPA로 데이타를 읽고 쓰는 레파지토리를 테스트 해보도록 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-테스트-파일-생성-2&quot;&gt;1. 테스트 파일 생성&lt;/h3&gt;
+
+&lt;p&gt;“/src/test/java/com.joongang.sbtdd01” 폴더 아래에 “T03ControllerTest.java” 파일을 생성한다.&lt;/p&gt;
+
+&lt;p&gt;이 파일에 아래 내용을 작성해 넣는다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;joongang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sbtdd01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.assertj.core.api.Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.assertj.core.util.Lists&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.Test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.junit.runner.RunWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.beans.factory.annotation.Autowired&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.test.context.SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.test.mock.mockito.MockBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.boot.test.web.client.TestRestTemplate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.http.HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.http.ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.test.context.junit4.SpringRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;org&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BDDMockito&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@RunWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SpringRunner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;webEnvironment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SpringBootTest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;WebEnvironment&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RANDOM_PORT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;T03ControllerTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@MockBean&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProductController&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TestRestTemplate&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;restTemplate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;t01_when_getallproducts_except_productlist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//arrange&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;given&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;productController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAllProducts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;willReturn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Lists&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;newArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;iPad mini 64GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;500.20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;iPad Pro 128GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;500.20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+                        &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MacBook Pro Retina 256GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;500.20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;//act&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;restTemplate&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getForEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/products&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[].&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;//assert&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isNotNull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getStatusCode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;products&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBody&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isNotNull&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isGreaterThan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;products&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTitle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isEqualTo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;iPad mini 64GB&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 테스트 코드에서는&lt;br /&gt;
+TestRestTemplate 클래스의 객체 인스턴스를 @Autowired로 주입받아 생성해 두고&lt;br /&gt;
+ProductController 클래스의 MockBean을 주입받아 생성해 둔다.&lt;br /&gt;
+@MockBean 으로 생성된 객체는 given() 함수를 통해서 실제 코드가 동작하는대신 테스트에서 임의로 리턴값을 변경할 수 있다.&lt;br /&gt;
+(“//arrange” 주석 다음의 코드에서 MockBean 객체가 임의로 결과를 리턴할 내용을 변경하고 있다.)&lt;/p&gt;
+
+&lt;p&gt;아래의 각 테스트를 진행하도록 테스트 코드를 작성하였다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;REST 응답값이 Null 이 아닌지 테스트&lt;/li&gt;
+  &lt;li&gt;REST 응답의 상태코드가 OK(200)인지 테스트&lt;/li&gt;
+  &lt;li&gt;REST 응답의 바디가 Null 이 아닌지 테스트&lt;/li&gt;
+  &lt;li&gt;REST 응답의 바디 결과 갯수가 0보다 큰지 테스트&lt;/li&gt;
+  &lt;li&gt;REST 응답의 바디 결과의 첫번째 아이템의 Id가 1이 맞는지 테스트&lt;/li&gt;
+  &lt;li&gt;REST 응답의 바디 결과의 첫번째 아이템의 Title이 “iPad mini 64GB”가 맞는지 테스트&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;마찬가지로 ProductController 클래스를 만들지 않고 테스트 코드 먼저 작성했기 때문에, 통합개발환경에서는 여러 라인에서 에러가 나올것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-컨트롤러-클래스-생성&quot;&gt;2. 컨트롤러 클래스 생성&lt;/h3&gt;
+
+&lt;p&gt;“/src/main/java/com.joongang.sbtdd01” 폴더 아래에 “ProductController.java” 파일을 생성한다.&lt;/p&gt;
+
+&lt;p&gt;이 파일에 아래 내용을 작성해 넣는다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;joongang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sbtdd01&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.beans.factory.annotation.Autowired&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.bind.annotation.GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.bind.annotation.PathVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.web.bind.annotation.RestController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;javax.persistence.EntityNotFoundException&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ProductController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ProductRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAllProducts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findAll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/products/{id}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAllProducts&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@PathVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;productRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;findById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;orElseThrow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;EntityNotFoundException:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;다시 테스트 파일 “T03ControllerTest.java”를 열어보면 ProductController 클래스가 구현이 되었기 때문에 에러가 사라져 있을것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-테스트-파일-실행-1&quot;&gt;3. 테스트 파일 실행&lt;/h3&gt;
+
+&lt;p&gt;테스트 파일을 다시 실행해 보면 녹색 아이콘으로 정상적으로 테스트를 패스한것으로 표시가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/tdd_spring_boot_05.png&quot; alt=&quot;테스트 실행&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;본 예제 결과물 sbtdd01.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtdd01.zip&quot;&gt;sbtdd01.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+</content>
+ </entry>
  
  <entry>
    <title>빈 프로젝트 부터 시작하여 풀스펙 Vue.js 프로젝트 구축</title>
@@ -1345,7 +1703,7 @@ AXIOS는 HTTP 요청의 응답을 Promise 구조로 넘겨준다.&lt;br /&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;본 예제 결과물 sbvue.zip 소스파일은 아래 링크에서 다운받을 수 있다.&lt;br /&gt;
-&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbvue.zip&quot;&gt;sbvue.zip 소스파일&lt;/a&gt;&lt;/p&gt;
+&lt;i class=&quot;nf nf-fa-archive&quot;&gt;&lt;/i&gt; &lt;a href=&quot;https://skypacific.github.io/assets/download/sbtest04.zip&quot;&gt;sbtest04.zip 소스파일&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
