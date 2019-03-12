@@ -4,7 +4,7 @@
  <title>UXDev's Blog</title>
  <link href="https://skypacific.github.io/atom.xml" rel="self"/>
  <link href="https://skypacific.github.io/"/>
- <updated>2019-03-12T16:57:27+09:00</updated>
+ <updated>2019-03-12T17:20:29+09:00</updated>
  <id>https://skypacific.github.io</id>
  <author>
    <name></name>
@@ -303,8 +303,7 @@ ProductRepository를 통해 저장 한 뒤 다시 받아서 &lt;br /&gt;
 &lt;p&gt;이 테스트 코드에서는&lt;br /&gt;
 TestRestTemplate 클래스의 객체 인스턴스를 @Autowired로 주입받아 생성해 두고&lt;br /&gt;
 ProductController 클래스의 MockBean을 주입받아 생성해 둔다.&lt;br /&gt;
-@MockBean 으로 생성된 객체는 given() 함수를 통해서 실제 코드가 동작하는대신 테스트에서 임의로 리턴값을 변경할 수 있다.&lt;br /&gt;
-(“//arrange” 주석 다음의 코드에서 MockBean 객체가 임의로 결과를 리턴할 내용을 변경하고 있다.)&lt;/p&gt;
+@MockBean 으로 생성된 객체는 given() 함수에서 조건을 지정하고 이 조건에 해당하는 요청을 받았을때 실제 코드가 동작하는대신 테스트에서 임의로 리턴값을 변경할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;아래의 각 테스트를 진행하도록 테스트 코드를 작성하였다.&lt;/p&gt;
 
